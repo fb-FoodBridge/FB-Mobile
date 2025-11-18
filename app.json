@@ -3,6 +3,7 @@
     "name": "FB-Mobile",
     "slug": "fb-mobile",
     "version": "1.0.0",
+    "icon": "./assets/png/Vector.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "splash": {
