@@ -1,11 +1,13 @@
-import { useFonts as useGoogleFonts, Inter_500Medium, Inter_700Bold } from "@expo-google-fonts/inter";
+import { useFonts as useGoogleFonts, Inter_500Medium, Inter_700Bold, Inter_600SemiBold, Inter_400Regular } from "@expo-google-fonts/inter";
 import * as Font from "expo-font";
 import { useState, useEffect } from "react";
 
 export const useAppFonts = () => {
   const [fontsLoadedGoogle] = useGoogleFonts({
     Inter_500Medium,
-    Inter_700Bold
+    Inter_700Bold,
+    Inter_600SemiBold,
+    Inter_400Regular
   });
 
   const [fontsLoadedCustom, setFontsLoadedCustom] = useState(false);
