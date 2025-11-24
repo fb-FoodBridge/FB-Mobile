@@ -14,6 +14,13 @@ export interface propsButtonStyle {
   bg?: string;
   size?: string;
   rouded?: string;
-  border?: string
+  border?: string;
+  margin?: string;
   onPress: () => void;
+}
+
+
+export interface propsCardButton {
+  onPress: () => void;
+  children: ReactNode;
 }

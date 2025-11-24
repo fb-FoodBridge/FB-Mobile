@@ -38,12 +38,12 @@ export const dataOnboarding = [
   {
     index:4,
     title: (
-         <Text className="font-interBold  w-[376px] leading-[50px] text-white text-[36px]">
+         <Text className="font-interBold  w-[376px] leading-[50px] text-white text-[36px] text-center">
         Em qual lado da ponte você está?
       </Text>
     ),
     description: (
-        <Text className="font-interRegular text-14">Quer doar alimentos ou recebê-los para quem precisa?</Text>
+        <Text className="font-interRegular w-[275px] text-center text-14 text-white">Quer doar alimentos ou recebê-los para quem precisa?</Text>
     )
   }
 ];
