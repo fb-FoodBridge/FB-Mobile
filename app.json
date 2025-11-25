@@ -19,9 +19,7 @@
     "android": {
       "package": "com.fbmobile.app"
     },
-    "web": {
-      "bundler": "metro"
-    },
+    "web": {},
     "plugins": [
       "expo-router",
       "expo-font"
