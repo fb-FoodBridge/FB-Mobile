@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import {useEffect,useRef} from "react"
+
+
 import { SafeAreaView, StatusBar, View, Animated, Easing, Text } from "react-native";
 import Logo from "../assets/icons/Logo.svg";
 import "../global.css";
