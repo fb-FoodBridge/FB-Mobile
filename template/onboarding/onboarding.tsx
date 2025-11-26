@@ -1,15 +1,20 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, View, Image } from "react-native";
 import { dataOnboarding } from "./data";
 import Step1 from "../../assets/icons/onboard-welcome.svg";
 import Step2 from "../../assets/icons/onboard-combat.svg";
 import Step3 from "../../assets/icons/Sushi-cook.svg";
-import { Pagination } from "ui/Pagination";
 import { propsOnboarding } from "interface/interfaces";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
+import { CardButton } from "components/cardButton";
+import Chief from "../../assets/icons/chief.svg";
+import NGO from "../../assets/png/ngo.png";
+import OnboardingStep1 from "app/screens/onboarding/welcome";
+import Step4 from "app/screens/onboarding/step4";
 
 export function OnboardingTemplate({ index, router }: propsOnboarding) {
   const route = useRouter();
+  
   return (
     <SafeAreaView className="bg-black800 flex-1">
       <Text
@@ -28,10 +33,17 @@ export function OnboardingTemplate({ index, router }: propsOnboarding) {
             <Step3 />
           ) : null}
         </View>
-        <View className="bg-lightGray flex-1 w-full h-[41%] rounded-tr-[44px] rounded-tl-[44px] ">
+        <View
+          className={`bg-lightGray flex-1 w-full ${
+            index === 4 ? "h-[41%]" : "h-[79.5%]"
+          } rounded-tr-[44px] rounded-tl-[44px] `}
+        >
           <View className="mt-[21px] gap-[61px] items-center">
-            <View className="items-center gap-[21px]">
-              <Pagination index={index} />
+            <View
+              className={`items-center ${
+                index === 2 ? "gap-[75.44px]" : "gap-[21px]"
+              }`}
+            >
 
               {dataOnboarding.map((data) => {
                 if (data.index === index) {
@@ -45,86 +57,51 @@ export function OnboardingTemplate({ index, router }: propsOnboarding) {
                 return null;
               })}
             </View>
-
-            <ButtonStyle
-              bg="bg-yellowOrange"
-              size="w-[277px] h-[51px]"
-              onPress={router}
-              children={
-                <Text className="font-interBold text-[16.6px] text-white">
-                  Próximo
-                </Text>
-              }
-            />
+            {index === 4 ? (
+              <View className="w-full pl-[68px] pr-[68px] gap-[69px]">
+                <CardButton
+                  onPress={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  children={
+                    <View className="flex-1 flex-row items-center justify-center mt-[-3px]">
+                      <Chief />
+                      <Text className="font-interBold text-[24px] text-white">
+                        Comerciante
+                      </Text>
+                    </View>
+                  }
+                />
+                <CardButton
+                  onPress={function (): void {
+                    throw new Error("Function not implemented.");
+                  }}
+                  children={
+                    <View className="flex-1 flex-row items-center justify-start mt-[-3px] gap-[43px]">
+                      <Image
+                        source={NGO}
+                        className="h-[143px] w-[85px] ml-[-17px]"
+                      />
+                      <Text className="font-interBold text-[24px] text-white ml-2">
+                        Instituição
+                      </Text>
+                    </View>
+                  }
+                />
+              </View>
+            ) : (
+              <ButtonStyle
+                bg="bg-yellowOrange"
+                size="w-[277px] h-[51px]"
+                onPress={router}
+                children={
+                  <Text className="font-interBold text-[16.6px] text-white">
+                    Próximo
+                  </Text>
+                }
+              />
+            )}
           </View>
-          {index === 1 ? (
-                <View className="flex-1 justify-end items-end pr-[25px] pb-[25px] pl-[25px]">
-
-              <ButtonStyle
-                children={
-                  <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                    Pular
-                  </Text>
-                }
-                bg={""}
-                size={""}
-                onPress={() => route.replace("/screens/onboarding/welcome")}
-              />
-            </View>
-
-          ) : index === 2 ? (
-            <View className="flex-1 justify-end items-end ">
-              <View className="justify-between w-full flex-row pr-[25px] pb-[25px] pl-[25px]">
-              <ButtonStyle
-                children={
-                  <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                    Voltar
-                  </Text>
-                }
-                bg={""}
-                size={""}
-                onPress={() => route.replace("/screens/onboarding/welcome")}
-              />
-
-              <ButtonStyle
-                children={
-                  <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                    Pular
-                  </Text>
-                }
-                bg={""}
-                size={""}
-                onPress={() => route.replace("/screens/onboarding/welcome")}
-              />
-              </View>
-            </View>
-          ) : index === 3 ? (
-            <View className="flex-1 justify-end items-end ">
-              <View className="justify-between w-full flex-row pr-[25px] pb-[25px] pl-[25px]">
-              <ButtonStyle
-                children={
-                  <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                    Voltar
-                  </Text>
-                }
-                bg={""}
-                size={""}
-                onPress={() => route.replace("/screens/onboarding/welcome")}
-              />
-
-              <ButtonStyle
-                children={
-                  <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                    Pular
-                  </Text>
-                }
-                bg={""}
-                size={""}
-                onPress={() => route.replace("/screens/onboarding/welcome")}
-              />
-              </View>
-            </View>
-          ) : null}
         </View>
       </View>
     </SafeAreaView>
