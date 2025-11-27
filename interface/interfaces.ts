@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 export interface propsOnboarding {
-  index: number;
-  router?: () => void;
+  index?: number;
+  button?: () => void;
 }
 
 export interface propsTemplateOnboarding {

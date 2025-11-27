@@ -16,6 +16,7 @@ export const dataOnboarding = [
         </Text>
       </Text>
     ),
+    buttonText: "pular"
   },
   {
     index: 2,
@@ -25,25 +26,17 @@ export const dataOnboarding = [
         <Text className="text-yellow500">fome</Text>
       </Text>
     ),
+    buttonText: "pular"
   },
   {
     index: 3,
     title: (
-      <Text className="font-interBold  w-[306px] text-white text-[27.67px]">
+      <Text className="font-interBold text-center w-[306px] text-white text-[27.67px]">
         Cada Doação Conta
       </Text>
     ),
     description: <Text className="font-interSemiBold text-white text-[15.08px] w-[251.21px] text-center">Transformando excedentes em alimento para quem mais precisa.</Text>,
+    buttonText: "pular"
   },
-  {
-    index:4,
-    title: (
-         <Text className="font-interBold  w-[376px] leading-[50px] text-white text-[36px] text-center">
-        Em qual lado da ponte você está?
-      </Text>
-    ),
-    description: (
-        <Text className="font-interRegular w-[275px] text-center text-14 text-white">Quer doar alimentos ou recebê-los para quem precisa?</Text>
-    )
-  }
+ 
 ];
