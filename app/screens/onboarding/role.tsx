@@ -49,9 +49,9 @@ export default function OnboardingRole() {
                   <View className="flex-1 flex-row items-center justify-start mt-[-3px] gap-[43px]">
                     <Image
                       source={NGO}
-                      className="h-[143px] w-[85px] ml-[-17px]"
+                      className="h-[143px] w-[85px] ml-[2%]"
                     />
-                    <Text className="font-interBold text-[24px] text-white ml-2">
+                    <Text className="font-interBold text-[24px] text-white ">
                       Instituição
                     </Text>
                   </View>

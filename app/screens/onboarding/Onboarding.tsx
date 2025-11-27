@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
 import React, { useRef } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { dataOnboarding } from "template/onboarding/data";
 import { Text, View } from "react-native";
 import { ButtonStyle } from "ui/button";
@@ -9,6 +10,8 @@ import { ButtonStyle } from "ui/button";
 export default function Onboarding() {
   const route = useRouter();
   const sliderRef = useRef<AppIntroSlider>(null);
+  const insets = useSafeAreaInsets();
+  const paginationBottom = (insets.bottom ?? 0) + 24;
 
   const goToNext = () => {
     sliderRef.current?.goToSlide(sliderRef.current.state.activeIndex + 1);
@@ -38,7 +41,6 @@ export default function Onboarding() {
         width: 27,
         height: 14,
         borderRadius: 999,
-        marginBottom: "210%",
       }}
       prevLabel="Voltar"
       showPrevButton={true}
@@ -65,8 +67,37 @@ export default function Onboarding() {
         width: 13,
         height: 14,
         borderRadius: 999,
-        marginBottom: "210%",
       }}
+      renderPagination={(activeIndex: number) => {
+  const total = dataOnboarding.length;
+
+  return (
+    <View
+      style={{
+        position: "absolute",
+        top: insets.top + 460,   // <= FICA EM CIMA COM SAFE AREA
+        left: 0,
+        right: 0,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {Array.from({ length: total }).map((_, i) => (
+        <View
+          key={i}
+          style={{
+            backgroundColor: i === activeIndex ? "#FDD835" : "#D2D4D6",
+            width: i === activeIndex ? 27 : 13,
+            height: 14,
+            borderRadius: 999,
+            marginHorizontal: 6,
+          }}
+        />
+      ))}
+    </View>
+  );
+}}
     />
   );
 }

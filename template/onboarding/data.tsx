@@ -9,7 +9,7 @@ export const dataOnboarding = [
       </Text>
     ),
     description: (
-      <Text className="font-interSemiBold text-[15.08px] text-white text-center w-[276px] mt-[21px]">
+      <Text className="font-interSemiBold text-[15.08px] text-white text-center mt-[21px]">
         Transformando excedentes em 
         <Text className="bg-EcoGreen text-blue h-[19px]">
            {" "}alimento para quem mais precisa.

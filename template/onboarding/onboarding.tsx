@@ -24,9 +24,9 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
         FOOD<Text className="text-yellow500">BRIDGE</Text>
       </Text>
 
-      <View className="flex-col flex-1 justify-center items-center mt-[19%] relative">
+      <View className="flex-col flex-1 justify-center items-center mt-[13%] relative">
         {index !== 4 ? (
-          <View className="relative z-2 top-14 h-[340px]">
+          <View className="relative z-2 top-14 h-[330px]">
             {index === 1 ? (
               <Step1 />
             ) : index === 2 ? (
@@ -38,15 +38,13 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
         ) : null}
 
         <View
-          className={`bg-lightGray flex-1 w-full  ${
-            index !== 4 ? "min-h-[41%]" : "h-full"
-          } rounded-tr-[44px] rounded-tl-[44px] `}
+          className={`bg-lightGray flex-1 w-full  ${index !== 4 ? "min-h-[41%]" : "h-full"
+            } rounded-tr-[44px] rounded-tl-[44px] `}
         >
           <View className="mt-[21px] gap-[61px] items-center">
             <View
-              className={`items-center ${
-                index === 2 ? "gap-[75.44px]" : "gap-[21px]"
-              }`}
+              className={`items-center ${index === 2 ? "gap-[75.44px]" : "gap-[21px]"
+                }`}
             >
               {dataOnboarding.map((data) => {
                 if (data.index === index) {
@@ -56,7 +54,9 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
                       className=" flex-col items-center pt-[26px]"
                     >
                       {data.title}
-                      {data.description}
+                      <View className="w-full pl-[77px] pr-[77px]">
+                        {data.description}
+                      </View>
                     </View>
                   );
                 }
@@ -75,7 +75,7 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
               }
             />
           </View>
-          <View className="flex-1 justify-end items-end mr-[30px] mb-[30px]">
+          <View className="flex-1 justify-end items-end mr-[15%] mb-[15%]">
             <ButtonStyle
               onPress={() => router.replace("/screens/onboarding/role")}
               children={

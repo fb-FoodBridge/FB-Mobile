@@ -1,5 +1,5 @@
 import { SafeAreaView, View } from "react-native";
-import 
+
 export default function Welcome () {
 
     return(

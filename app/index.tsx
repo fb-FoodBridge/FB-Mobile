@@ -32,7 +32,7 @@ export default function Index() {
 
     anim.start(() => {
       if (router && typeof router.replace === "function") {
-        router.replace("/screens/onboarding/onboarding");
+        router.replace("/screens/onboarding/Onboarding");
       } else {
         console.warn("router.replace is not available yet.");
       }
