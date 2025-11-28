@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
 import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StatusBar } from "react-native";
 import { dataOnboarding } from "template/onboarding/data";
 import { ButtonStyle } from "ui/button";
 
@@ -12,15 +12,13 @@ export default function Onboarding() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const goToNext = () => {
-    const nextIndex = activeIndex + 1;
-    sliderRef.current?.goToSlide(nextIndex);
-    setActiveIndex(nextIndex);
+    sliderRef.current?.goToSlide(activeIndex + 1);
+    setActiveIndex(activeIndex + 1);
   };
 
   const goToPrevious = () => {
-    const prevIndex = activeIndex - 1;
-    sliderRef.current?.goToSlide(prevIndex);
-    setActiveIndex(prevIndex);
+    sliderRef.current?.goToSlide(activeIndex - 1);
+    setActiveIndex(activeIndex - 1);
   };
 
   const goToSignIn = () => {
@@ -28,61 +26,67 @@ export default function Onboarding() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <AppIntroSlider
-        ref={sliderRef}
-        data={dataOnboarding}
-        renderItem={({ index }) => (
-          <OnboardingTemplate
-            index={index + 1}
-            button={index < dataOnboarding.length - 1 ? goToNext : goToSignIn}
-          />
-        )}
-        showNextButton={false}
-        showPrevButton={false}
-        showDoneButton={false}
-        
-        // Mantém sincronização pelo swipe também
-        onSlideChange={(index) => setActiveIndex(index)}
+    <>
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
 
-        // Esconde dots originais (mantém animação interna)
-        dotStyle={{ width: 0, height: 0 }}
-        activeDotStyle={{ width: 0, height: 0 }}
-      />
+      <View style={{ flex: 1, backgroundColor: "#000000" }}>
+        <AppIntroSlider
+          ref={sliderRef}
+          data={dataOnboarding}
+          renderItem={({ index }) => (
+            <OnboardingTemplate
+              index={index + 1}
+              button={index < dataOnboarding.length - 1 ? goToNext : goToSignIn}
+            />
+          )}
 
-      {/* Dots FIXOS */}
-      <View style={styles.dotsWrapper}>
-        {dataOnboarding.map((_, i) => (
-          <View
-            key={i}
-            style={i === activeIndex ? styles.activeDot : styles.dot}
-          />
-        ))}
-      </View>
+         
+          renderPagination={() => null}
+          dotStyle={{ width: 0, height: 0, backgroundColor: "transparent" }}
+          activeDotStyle={{ width: 0, height: 0, backgroundColor: "transparent" }}
 
-      {/* Botão VOLTAR */}
-      {activeIndex > 0 && (
-        <View style={styles.backButton}>
-          <ButtonStyle
-            onPress={goToPrevious}
-            bg=""
-            size=""
-            children={
-              <Text className="text-offWhite text-[17px] font-interRegular border-b border-yellow500">
-                Voltar
-              </Text>
-            }
-          />
+          showNextButton={false}
+          showPrevButton={false}
+          showDoneButton={false}
+
+          onSlideChange={(i) => setActiveIndex(i)}
+
+          
+          style={{ flex: 1, backgroundColor: "#000000" }}
+          contentContainerStyle={{ flexGrow: 1, backgroundColor: "#000000" }}
+        />
+
+        <View style={[styles.dotsWrapper, { bottom: 80 }]}>
+          {dataOnboarding.map((_, i) => (
+            <View
+              key={i}
+              style={i === activeIndex ? styles.activeDot : styles.dot}
+            />
+          ))}
         </View>
-      )}
-    </View>
+
+            {activeIndex > 0 && (
+          <View style={[styles.backButton, { bottom: "8%" }]}>
+            <ButtonStyle
+              onPress={goToPrevious}
+              bg=""
+              size=""
+              children={
+                <Text className="text-offWhite text-[17px] font-interRegular border-b border-yellow500">
+                  Voltar
+                </Text>
+              }
+            />
+          </View>
+        )}
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   dotsWrapper: {
     position: "absolute",
-    bottom: "47%",
     alignSelf: "center",
     flexDirection: "row",
   },
@@ -103,6 +107,5 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     left: "10%",
-    bottom: "6.7%",
   },
 });
