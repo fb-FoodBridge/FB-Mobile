@@ -18,7 +18,7 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
   return (
     <SafeAreaView className="bg-black800 flex-1">
       <Text
-        className="font-nourd_bold text-[26.45px] text-white ml-[30px]
+        className="font-nourd_bold text-[26.45px] text-offWhite ml-[30px]
             mt-[30px]"
       >
         FOOD<Text className="text-yellow500">BRIDGE</Text>
@@ -69,7 +69,7 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
               size="w-[277px] h-[51px]"
               onPress={button}
               children={
-                <Text className="font-interBold text-[16.6px] text-white">
+                <Text className="font-interBold text-[16.6px] text-offWhite">
                   Próximo
                 </Text>
               }
@@ -79,7 +79,7 @@ export function OnboardingTemplate({ index, button }: propsOnboarding) {
             <ButtonStyle
               onPress={() => router.replace("/screens/onboarding/role")}
               children={
-                <Text className="text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
+                <Text className="text-offWhite font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
                   Pular
                 </Text>
               }

@@ -17,14 +17,16 @@ module.exports = {
          inter: "Inter_500Medium",
         interBold: "Inter_700Bold",
         interSemiBold: "Inter_600SemiBold",
-        interRegular: "Inter_400Regular"
+        interRegular: "Inter_400Regular",
+        interLight: "Inter_300Light"
       },
       colors:{
         "black800": "#212121",
         "yellowOrange": "#FFB74D",
         "yellow500": "#FDD835",
         "lightGray": "#3D3D3D",
-        "EcoGreen": "#59B666"
+        "EcoGreen": "#59B666",
+        "offWhite": "#FAFAFA"
       }
     },
   },
