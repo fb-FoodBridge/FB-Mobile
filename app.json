@@ -17,8 +17,11 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.fbmobile.app"
-    },
+      "package": "com.fbmobile.app",
+      "navigationBar": {
+        "backgroundColor": "#3D3D3D",
+        "barStyle": "light-content"
+      },
     "web": {},
     "plugins": [
       "expo-router",
@@ -26,4 +29,5 @@
     ],
     "scheme": "fb-mobile"
   }
+}
 }

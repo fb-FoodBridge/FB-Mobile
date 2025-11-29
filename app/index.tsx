@@ -32,7 +32,7 @@ export default function Index() {
 
     anim.start(() => {
       if (router && typeof router.replace === "function") {
-        router.replace("/screens/onboarding/onboarding");
+        router.replace("/screens/onboarding/Onboarding");
       } else {
         console.warn("router.replace is not available yet.");
       }
@@ -53,7 +53,7 @@ export default function Index() {
             <View className="flex justify-center items-center relative z-[1px] w-[812px] h-[804px] rounded-full bg-black800">
             <View className="w-[219px] h-[219px] rounded-full absolute z-[4px]  justify-center items-center">
               <Logo  className="w-[61px] h-[34px]"/>
-              <Text  className="text-[20px] text-white font-nourd_bold ">Food<Text className="text-yellow500">Bridge</Text></Text>
+              <Text  className="text-[20px] text-offWhite font-nourd_bold ">Food<Text className="text-yellow500">Bridge</Text></Text>
             </View>
             </View>
           </AnimatedView>

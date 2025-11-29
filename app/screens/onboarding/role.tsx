@@ -10,7 +10,7 @@ export default function OnboardingRole() {
   return (
     <SafeAreaView className="bg-black800 flex-1">
       <Text
-        className="font-nourd_bold text-[26.45px] text-white ml-[30px]
+        className="font-nourd_bold text-[26.45px] text-offWhite ml-[30px]
             mt-[30px]"
       >
         FOOD<Text className="text-yellow500">BRIDGE</Text>
@@ -22,11 +22,11 @@ export default function OnboardingRole() {
         >
           <View className="mt-[21px] gap-[61px] items-center">
             <View className={`items-center gap-[21px]`}>
-              <Text className="font-interBold  w-[376px] leading-[50px] text-white text-[36px] text-center">
+              <Text className="font-interBold  w-[376px] leading-[50px] text-offWhite text-[36px] text-center">
                 Em qual lado da ponte você está?
               </Text>
 
-              <Text className="font-interRegular w-[275px] text-center text-14 text-white">
+              <Text className="font-interRegular w-[275px] text-center text-14 text-offWhite">
                 Quer doar alimentos ou recebê-los para quem precisa?
               </Text>
             </View>
@@ -36,7 +36,7 @@ export default function OnboardingRole() {
                 children={
                   <View className="flex-1 flex-row items-center justify-center mt-[-3px]">
                     <Chief />
-                    <Text className="font-interBold text-[24px] text-white">
+                    <Text className="font-interBold text-[24px] text-offWhite">
                       Comerciante
                     </Text>
                   </View>
@@ -46,12 +46,12 @@ export default function OnboardingRole() {
                 onPress={() => router.replace("/screens/auth/welcome")
                 }
                 children={
-                  <View className="flex-1 flex-row items-center justify-start mt-[-3px] gap-[43px]">
+                  <View className="w-full flex-row items-center justify-between mt-[-3px] ">
                     <Image
                       source={NGO}
-                      className="h-[143px] w-[85px] ml-[-17px]"
+                      className="h-[143px] w-[85px]"
                     />
-                    <Text className="font-interBold text-[24px] text-white ml-2">
+                    <Text className="font-interBold text-[24px] text-offWhite pr-[10%]">
                       Instituição
                     </Text>
                   </View>

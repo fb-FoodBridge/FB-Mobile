@@ -1,72 +1,85 @@
 import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
 import { dataOnboarding } from "template/onboarding/data";
-import { Text, View } from "react-native";
 import { ButtonStyle } from "ui/button";
 
 export default function Onboarding() {
-  const route = useRouter();
+  const router = useRouter();
   const sliderRef = useRef<AppIntroSlider>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { height } = useWindowDimensions();
 
   const goToNext = () => {
-    sliderRef.current?.goToSlide(sliderRef.current.state.activeIndex + 1);
+    const nextIndex = activeIndex + 1;
+    sliderRef.current?.goToSlide(nextIndex);
+    setActiveIndex(nextIndex);
   };
 
   const goToPrevious = () => {
-    sliderRef.current?.goToSlide(sliderRef.current.state.activeIndex - 1);
+    const prevIndex = activeIndex - 1;
+    sliderRef.current?.goToSlide(prevIndex);
+    setActiveIndex(prevIndex);
   };
 
   const goToSignIn = () => {
-    route.replace("/screens/onboarding/role");
+    router.replace("/screens/onboarding/role");
   };
+
   return (
-    <AppIntroSlider
-      ref={sliderRef}
-      data={dataOnboarding}
-      renderItem={({ index }) => (
-        <OnboardingTemplate
-          index={index + 1}
-          button={index < dataOnboarding.length - 1 ? goToNext : goToSignIn}
-        />
-      )}
-      showDoneButton={false}
-      showNextButton={false}
-      activeDotStyle={{
-        backgroundColor: "#FDD835",
-        width: 27,
-        height: 14,
-        borderRadius: 999,
-        marginBottom: "210%",
-      }}
-      prevLabel="Voltar"
-      showPrevButton={true}
-      nextLabel="Próximo"
-      renderPrevButton={() =>
-        sliderRef.current?.state.activeIndex === 1 || 2 ? (
-          <View className=" relative top-[13px] left-1">
-            <ButtonStyle
-              children={
-                <Text className=" text-white font-interRegular text-[17px] border-solid border-b-[1px] border-b-yellow500 border-spacing-[2px]">
-                  Voltar
-                </Text>
-              }
-              bg={""}
-              size={""}
-              onPress={goToPrevious}
-            />
-          </View>
-        ) : null
-      }
-         
-      dotStyle={{
-        backgroundColor: "#D2D4D6",
-        width: 13,
-        height: 14,
-        borderRadius: 999,
-        marginBottom: "210%",
-      }}
-    />
+    <View style={{ flex: 1 }}>
+      <AppIntroSlider
+        ref={sliderRef}
+        data={dataOnboarding}
+        renderItem={({ index }) => (
+          <OnboardingTemplate
+            index={index + 1}
+            button={index < dataOnboarding.length - 1 ? goToNext : goToSignIn}
+            showBackButton={activeIndex > 0}
+            backAction={goToPrevious}
+          />
+        )}
+        showNextButton={false}
+        showPrevButton={false}
+        showDoneButton={false}
+        onSlideChange={(index) => setActiveIndex(index)}
+        dotStyle={{ width: 0, height: 0 }}
+        activeDotStyle={{ width: 0, height: 0 }}
+      />
+
+      <View style={styles.dotsWrapper}>
+        {dataOnboarding.map((_, i) => (
+          <View
+            key={i}
+            style={i === activeIndex ? styles.activeDot : styles.dot}
+          />
+        ))}
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  dotsWrapper: {
+    position: "absolute",
+    bottom: "43%",
+    alignSelf: "center",
+    flexDirection: "row",
+  },
+  dot: {
+    backgroundColor: "#D2D4D6",
+    width: 13,
+    height: 14,
+    borderRadius: 999,
+    marginHorizontal: 6,
+  },
+  activeDot: {
+    backgroundColor: "#FDD835",
+    width: 27,
+    height: 14,
+    borderRadius: 999,
+    marginHorizontal: 6,
+  },
+});
