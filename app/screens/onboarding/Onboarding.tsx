@@ -11,7 +11,6 @@ export default function Onboarding() {
   const sliderRef = useRef<AppIntroSlider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const { height } = useWindowDimensions();
-  const BUTTON_TOP = height * 0.88;
 
   const goToNext = () => {
     const nextIndex = activeIndex + 1;
