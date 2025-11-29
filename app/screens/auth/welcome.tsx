@@ -2,10 +2,12 @@ import { SafeAreaView, View, Text } from "react-native";
 import Logo from "../../../assets/icons/Logo.svg";
 import Food from "../../../assets/icons/food.svg";
 import { ButtonStyle } from "ui/button";
-import ArrowLight from "../../../assets/icons/arrow-white.svg"
-import ArrowDark from "../../../assets/icons/arrow-black.svg"
+import ArrowLight from "../../../assets/icons/arrow-white.svg";
+import ArrowDark from "../../../assets/icons/arrow-black.svg";
+import { useRouter } from "expo-router";
 
 export default function Welcome() {
+  const router = useRouter();
   return (
     <SafeAreaView className="flex-1 bg-black800">
       <View className="w-full mt-10 ml-10">
@@ -37,16 +39,14 @@ export default function Welcome() {
                   <ArrowLight />
                 </View>
               }
-              onPress={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              onPress={() => router.replace("/screens/auth/login")}
             />
             <ButtonStyle
               bg="bg-offWhite"
               rouded="rounded-[10px]"
               size="w-[166px] h-[67px]"
               children={
-                 <View className="flex-row items-center justify-center gap-[13px]">
+                <View className="flex-row items-center justify-center gap-[13px]">
                   <Text className="text-black800 font-interBold text-[18.66px]">
                     Cadastrar
                   </Text>

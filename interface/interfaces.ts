@@ -26,3 +26,13 @@ export interface propsCardButton {
   onPress: () => void;
   children: ReactNode;
 }
+
+export interface propsInput {
+  label: string;
+  bg: colorBG;
+}
+
+enum colorBG {
+  white,
+  black
+}
