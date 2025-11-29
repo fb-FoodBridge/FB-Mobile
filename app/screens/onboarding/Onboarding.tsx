@@ -83,8 +83,4 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     marginHorizontal: 6,
   },
-  backButton: {
-    position: "absolute",
-    left: "12.5%",
-  },
 });
