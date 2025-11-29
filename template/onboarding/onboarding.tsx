@@ -34,7 +34,7 @@ export function OnboardingTemplate({
 
         {index === 3 ? (
           <View className="top-[-18px] w-[330px] h-[330px] items-center ">
-            {index === 3 ? <Step3 /> : null}
+            <Step3 />
           </View>
         ) : null}
         {index === 2 ? (
