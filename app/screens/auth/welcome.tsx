@@ -2,16 +2,17 @@ import { SafeAreaView, View, Text } from "react-native";
 import Logo from "../../../assets/icons/Logo.svg";
 import Food from "../../../assets/icons/food.svg";
 import { ButtonStyle } from "ui/button";
+import ArrowLight from "../../../assets/icons/arrow-white.svg"
+import ArrowDark from "../../../assets/icons/arrow-black.svg"
+
 export default function Welcome() {
   return (
     <SafeAreaView className="flex-1 bg-black800">
       <View className="w-full mt-10 ml-10">
         <Logo width={45} height={28} />
       </View>
-      <View className="flex-col gap-[6.4%] items-center mt-[14.6%]">
-        <View className="w-full pl-[77px] pr-[78px]">
-          <Food/>
-        </View>
+      <View className="flex-col gap-[6.4%] items-center justify-center mt-[14.6%]">
+        <Food />
         <View className="flex-col justify-center items-center pl-[30px] pr-[30px]">
           <Text className="font-nourd_bold text-[28px] text-offWhite text-center">
             Bem-vindo a Food<Text className="text-yellow500">Bridge</Text>!
@@ -28,7 +29,14 @@ export default function Welcome() {
               border="border border-offWhite"
               rouded="rounded-[10px]"
               size="w-[166px] h-[67px]"
-              children={undefined}
+              children={
+                <View className="flex-row items-center justify-center gap-[13px]">
+                  <Text className="text-offWhite font-interBold text-[18.66px]">
+                    Entrar
+                  </Text>
+                  <ArrowLight />
+                </View>
+              }
               onPress={function (): void {
                 throw new Error("Function not implemented.");
               }}
@@ -37,7 +45,14 @@ export default function Welcome() {
               bg="bg-offWhite"
               rouded="rounded-[10px]"
               size="w-[166px] h-[67px]"
-              children={undefined}
+              children={
+                 <View className="flex-row items-center justify-center gap-[13px]">
+                  <Text className="text-black800 font-interBold text-[18.66px]">
+                    Cadastrar
+                  </Text>
+                  <ArrowDark />
+                </View>
+              }
               onPress={function (): void {
                 throw new Error("Function not implemented.");
               }}
