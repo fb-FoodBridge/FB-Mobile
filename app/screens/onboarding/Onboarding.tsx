@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
 import React, { useRef, useState } from "react";
-import { View, Text, StyleSheet, useWindowDimensions } from "react-native";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
 import { dataOnboarding } from "template/onboarding/data";
 import { ButtonStyle } from "ui/button";
 
