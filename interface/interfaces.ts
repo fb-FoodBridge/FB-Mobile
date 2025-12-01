@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { KeyboardTypeOptions } from "react-native";
 
 export interface propsOnboarding {
   index?: number;
@@ -29,10 +30,9 @@ export interface propsCardButton {
 
 export interface propsInput {
   label: string;
-  bg: colorBG;
-}
-
-enum colorBG {
-  white,
-  black
+  bg?: "black" | "white";
+  placeholder: string;
+  placeholderColor: string;
+  icon?: boolean;
+  keyboardType:KeyboardTypeOptions;
 }

@@ -3,7 +3,6 @@ module.exports = {
 
   content: [
      "./app/**/*.{js,jsx,ts,tsx}",
-    "./app/components/**/*.{js,jsx,ts,tsx}",
     "./app/screens/**/*.{js,jsx,ts,tsx}",
     "./template/**/*.{js,jsx,ts,tsx}",
     "./ui/**/*.{js,jsx,ts,tsx}",
@@ -22,11 +21,12 @@ module.exports = {
       },
       colors:{
         "black800": "#212121",
-        "yellowOrange": "#FFB74D",
+        "yellowOrange":"#FFB74D",
         "yellow500": "#FDD835",
         "lightGray": "#3D3D3D",
         "EcoGreen": "#59B666",
-        "offWhite": "#FAFAFA"
+        "offWhite": "#FAFAFA",
+        "offWhite06": "rgb(250,250,250,0.6)"
       }
     },
   },
