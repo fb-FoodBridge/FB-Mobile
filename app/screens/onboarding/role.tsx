@@ -30,7 +30,7 @@ export default function OnboardingRole() {
                 Quer doar alimentos ou recebê-los para quem precisa?
               </Text>
             </View>
-            <View className="w-full pl-[68px] pr-[68px] gap-[69px]">
+            <View className="w-[66%] gap-[69px]">
               <CardButton
                 onPress={() => router.replace("/screens/auth/welcome")}
                 children={

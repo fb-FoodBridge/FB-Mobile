@@ -27,8 +27,8 @@ export default function Login() {
               placeholder="Digite seu email..."
               placeholderColor="#A1A1AA"
             />
-            
-             <InputStyle
+
+            <InputStyle
               keyboardType="default"
               label="Senha"
               placeholder="Digite sua senha..."
@@ -37,13 +37,29 @@ export default function Login() {
             />
           </View>
           <View className=" mt-4 mb-[27px] w-full justify-start items-end">
-            <ButtonStyle  onPress={() => alert("ola")} children={
+            <ButtonStyle onPress={() => alert("ola")} children={
               <Text className="text-yellowOrange border-b border-b-yellowOrange font-interSemiBold text-[13px]">Esqueceu a senha?</Text>
-            }/>
+            } />
           </View>
-           <ButtonStyle size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
-         <Text className="text-offWhite font-interSemiBold text-[16px]">Entrar</Text>
-        }/>
+          <ButtonStyle onPress={() => alert("alert")} shadow="shadow-custom-light " size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
+            <Text className="text-offWhite font-interSemiBold text-[16px]">Entrar</Text>
+          } />
+
+          <View className="w-full mt-[29px] flex-row justify-center items-center gap-2">
+            <View className="w-[90px] bg-offWhite h-[1px]"></View>
+            <Text className="text-offWhite font-interExtraBold text-[14px]">
+              ou
+            </Text>
+            <View className="w-[90px] bg-offWhite h-[1px]"></View>
+          </View>
+          <View className="w-full mt-[29px] flex-row justify-center items-center">
+            <Text className="font-interSemiBold text-4 text-offWhite ">Ainda não tem uma conta?</Text>
+            <ButtonStyle onPress={() => alert("alert")} children={
+              <Text className="text-yellowOrange font-interSemiBold text-4 border-b border-b-yellowOrange">
+                {" "}Cadastre-se!
+              </Text>
+            } />
+          </View>
         </View>
       </View>
     </SafeAreaView>

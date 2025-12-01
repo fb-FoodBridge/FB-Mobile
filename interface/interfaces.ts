@@ -20,6 +20,7 @@ export interface propsButtonStyle {
   border?: string;
   margin?: string;
   onPress: () => void;
+  shadow?: string;
 }
 
 
