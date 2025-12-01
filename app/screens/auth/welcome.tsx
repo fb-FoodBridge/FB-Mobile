@@ -53,9 +53,7 @@ export default function Welcome() {
                   <ArrowDark />
                 </View>
               }
-              onPress={function (): void {
-                throw new Error("Function not implemented.");
-              }}
+              onPress={() => router.replace("/screens/auth/register")}
             />
           </View>
         </View>
