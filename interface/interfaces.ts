@@ -1,11 +1,5 @@
 import { ReactNode } from "react";
 
-export interface propsOnboarding {
-  index?: number;
-  button?: () => void;
-  showBackButton?: boolean;
-  backAction?: () => void;
-}
 
 export interface propsTemplateOnboarding {
   index: number;
