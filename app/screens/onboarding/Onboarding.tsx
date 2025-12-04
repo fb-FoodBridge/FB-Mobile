@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
 import React, { useRef, useState } from "react";
-import { View, StyleSheet, useWindowDimensions } from "react-native";
+import { View, StyleSheet, useWindowDimensions, SafeAreaView } from "react-native";
 import { dataOnboarding } from "template/onboarding/data";
 import { ButtonStyle } from "ui/button";
 
@@ -27,9 +27,9 @@ export default function Onboarding() {
   const goToSignIn = () => {
     router.replace("/screens/onboarding/role");
   };
-
+  const DOTS_BOTTOM = height * 0.52;
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView className="flex-1 bg-black800">
       <AppIntroSlider
         ref={sliderRef}
         data={dataOnboarding}
@@ -49,7 +49,7 @@ export default function Onboarding() {
         activeDotStyle={{ width: 0, height: 0 }}
       />
 
-      <View style={styles.dotsWrapper}>
+      <View style={[styles.dotsWrapper, {bottom:DOTS_BOTTOM}]}>
         {dataOnboarding.map((_, i) => (
           <View
             key={i}
@@ -57,14 +57,13 @@ export default function Onboarding() {
           />
         ))}
       </View>
-    </View>
+    </SafeAreaView >
   );
 }
 
 const styles = StyleSheet.create({
   dotsWrapper: {
     position: "absolute",
-    bottom: "43%",
     alignSelf: "center",
     flexDirection: "row",
   },

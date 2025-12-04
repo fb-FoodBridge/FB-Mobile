@@ -20,12 +20,12 @@ export function OnboardingTemplate({
   if (!backAction) return null;
 
   return (
-    <SafeAreaView className="flex-1 bg-black800">
+    <View className="flex-1 bg-black800">
       <Text className="font-nourd_bold text-[26px] text-offWhite ml-[30px] mt-[40px]">
         FOOD<Text className="text-yellow500">BRIDGE</Text>
       </Text>
 
-      <View className="flex-1 justify-center items-center mt-[20%]">
+      <View className="flex-1  items-center ">
         {index === 1 ? (
           <View className="top-[20px] w-[330px] h-[330px] items-center">
             <Step1 />
@@ -43,7 +43,7 @@ export function OnboardingTemplate({
           </View>
         ) : null}
 
-        <View className="bg-lightGray w-full rounded-tr-[44px]  rounded-tl-[44px] flex-1 pt-[40px]">
+        <View className="bg-lightGray w-full rounded-tr-[44px] flex-1 rounded-tl-[44px] pt-10">
           <View className="items-center mt-[21px] mb-10">
             {dataOnboarding.map((data) =>
               data.index === index ? (
@@ -112,6 +112,6 @@ export function OnboardingTemplate({
           }
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
