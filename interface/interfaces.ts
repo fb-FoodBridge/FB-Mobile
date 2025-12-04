@@ -1,12 +1,6 @@
 import { ReactNode } from "react";
 import { KeyboardTypeOptions } from "react-native";
 
-export interface propsOnboarding {
-  index?: number;
-  button?: () => void;
-  showBackButton?: boolean;
-  backAction?: () => void;
-}
 
 export interface propsTemplateOnboarding {
   index: number;
@@ -21,6 +15,7 @@ export interface propsButtonStyle {
   margin?: string;
   onPress: () => void;
   shadow?: string;
+  padding?:string
 }
 
 

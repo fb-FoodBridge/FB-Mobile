@@ -2,21 +2,23 @@ import { SafeAreaView, View, Text, Image } from "react-native";
 import Chief from "assets/png/chiefAuth.png";
 import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
+import { useRouter } from "expo-router";
 
 export default function Login() {
+  const router = useRouter();
   return (
-    <SafeAreaView className="bg-black800 flex-1  gap-[94px]">
-      <View className="bg-yellowOrange w-[111.63%] h-[205px] rounded-br-[168px] pt-[32px] pl-[21px]">
+    <SafeAreaView className="bg-black800 flex-1  gap-20">
+      <View className="bg-yellowOrange w-[111.63%] h-[205px] rounded-br-[168px] pt-8 pl-[21px] relative">
         <Text className="text-lightGray font-nourd_bold text-[36px]">
           Sua <Text className="text-offWhite">ponte</Text> contra o
           <Text className="bg-offWhite"> desperdício.</Text>
         </Text>
-        <View className="relative bottom-[-6px] left-[40%] z-2">
+        <View className="absolute bottom-[-11%] left-[33%] z-2">
           <Image source={Chief} />
         </View>
       </View>
-      <View className="flex-col justify-center flex-1 pl-[35px] pr-[32px]">
-        <View className="flex-1 items-start flex-col">
+      <View className="flex-col flex-1 pl-[35px] pr-[32px]">
+        <View className="flex-1 flex-col">
           <Text className="text-[32px] font-nourd_bold text-offWhite mb-[20px]">
             Entrar
           </Text>
@@ -54,7 +56,7 @@ export default function Login() {
           </View>
           <View className="w-full mt-[29px] flex-row justify-center items-center">
             <Text className="font-interSemiBold text-4 text-offWhite ">Ainda não tem uma conta?</Text>
-            <ButtonStyle onPress={() => alert("alert")} children={
+            <ButtonStyle onPress={() => router.replace("/screens/auth/register")} children={
               <Text className="text-yellowOrange font-interSemiBold text-4 border-b border-b-yellowOrange">
                 {" "}Cadastre-se!
               </Text>
