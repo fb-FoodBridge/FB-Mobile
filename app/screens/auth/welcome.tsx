@@ -13,7 +13,7 @@ export default function Welcome() {
       <View className="w-full mt-10 ml-10">
         <Logo width={45} height={28} />
       </View>
-      <View className="flex-col gap-[6.4%] items-center justify-center mt-[14.6%]">
+      <View className="flex-col gap-[6.4%] items-center justify-center mt-[5%]">
         <Food />
         <View className="flex-col justify-center items-center pl-[30px] pr-[30px]">
           <Text className="font-nourd_bold text-[28px] text-offWhite text-center">
@@ -25,14 +25,14 @@ export default function Welcome() {
             jornada.
           </Text>
 
-          <View className="flex-row justify-between w-full mt-14">
+          <View className="flex-row justify-between mx-[30px] min-w-full mt-14 min-h-[67px] gap-2 ">
             <ButtonStyle
               bg="bg-transparent"
               border="border border-offWhite"
               rouded="rounded-[10px]"
-              size="w-[166px] h-[67px]"
+              size={"h-[67px]"}
               children={
-                <View className="flex-row items-center justify-center gap-[13px]">
+                <View className="flex-row items-center justify-center gap-[13px] px-[36.34px] py-[20.5px]">
                   <Text className="text-offWhite font-interBold text-[18.66px]">
                     Entrar
                   </Text>
@@ -44,10 +44,10 @@ export default function Welcome() {
             <ButtonStyle
               bg="bg-offWhite"
               rouded="rounded-[10px]"
-              size="w-[166px] h-[67px]"
+              size="h-[67px]"
               children={
-                <View className="flex-row items-center justify-center gap-[13px]">
-                  <Text className="text-black800 font-interBold text-[18.66px]">
+                <View className="flex-row items-center justify-center gap-[13px] px-[36.34px] py-[20.5px]">
+                  <Text className="text-black800 font-interBold text-[18.66px] ">
                     Cadastrar
                   </Text>
                   <ArrowDark />
