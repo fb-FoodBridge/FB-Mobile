@@ -2,15 +2,14 @@ import { useRouter } from "expo-router";
 import { OnboardingTemplate } from "template/onboarding/onboarding";
 import AppIntroSlider from "react-native-app-intro-slider";
 import React, { useRef, useState } from "react";
-import { View, StyleSheet, useWindowDimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { dataOnboarding } from "template/onboarding/data";
-import { ButtonStyle } from "ui/button";
 
 export default function Onboarding() {
   const router = useRouter();
   const sliderRef = useRef<AppIntroSlider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const { height } = useWindowDimensions();
+  const { height } = Dimensions.get("window");
 
   const goToNext = () => {
     const nextIndex = activeIndex + 1;
@@ -53,7 +52,7 @@ export default function Onboarding() {
         {dataOnboarding.map((_, i) => (
           <View
             key={i}
-            style={i === activeIndex ? styles.activeDot : styles.dot}
+            style={i === activeIndex ? [styles.activeDot] : [styles.dot]}
           />
         ))}
       </View>
@@ -64,7 +63,7 @@ export default function Onboarding() {
 const styles = StyleSheet.create({
   dotsWrapper: {
     position: "absolute",
-    bottom: "43%",
+    bottom: 50,
     alignSelf: "center",
     flexDirection: "row",
   },
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 6,
   },
   activeDot: {
-    backgroundColor: "#FDD835",
+   backgroundColor: "#FDD835",
     width: 27,
     height: 14,
     borderRadius: 999,

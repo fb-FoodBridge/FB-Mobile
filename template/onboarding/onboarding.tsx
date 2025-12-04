@@ -43,8 +43,8 @@ export function OnboardingTemplate({
           </View>
         ) : null}
 
-        <View className="bg-lightGray w-full rounded-tr-[44px]  rounded-tl-[44px] flex-1 pt-[40px]">
-          <View className="items-center mt-[21px] mb-10">
+        <View className="bg-lightGray w-full rounded-tr-[44px] rounded-tl-[44px] flex-1 pt-10">
+          <View className="items-center mt-5 mb-10">
             {dataOnboarding.map((data) =>
               data.index === index ? (
                 <View key={index} className="items-center gap-4">
@@ -55,10 +55,10 @@ export function OnboardingTemplate({
             )}
           </View>
 
-          <View className="items-center">
+          <View className="items-center ml-[78px] mr-[75px]">
             <ButtonStyle
               bg="bg-yellowOrange"
-              size="w-[277px] h-[51px]"
+              size="w-full h-[51px]"
               onPress={button}
               children={
                 <Text className="font-interBold text-[16px] text-offWhite">
@@ -68,7 +68,7 @@ export function OnboardingTemplate({
             />
           </View>
           {showBackButton ? (
-          <View className=" flex mt-[64px] items-center ml-[40px] mr-[40px]">
+          <View className=" flex mt-16 items-center ml-10 mr-10">
             <View className="w-full justify-between flex-row">
               
                 <ButtonStyle
@@ -99,7 +99,7 @@ export function OnboardingTemplate({
           :
           (
           
-              <View className="flex mt-[64px] items-end ml-[40px] mr-[40px]">
+              <View className="flex mt-16 items-end ml-10 mr-10">
                 <ButtonStyle
                   onPress={() => router.replace("/screens/onboarding/role")}
                   children={

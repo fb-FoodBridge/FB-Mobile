@@ -25,12 +25,13 @@ export default function Welcome() {
             jornada.
           </Text>
 
-          <View className="flex-row justify-between w-full mt-14">
+          <View className="w-full mt-[14%] ml-4 mr-4">
+            <View className="flex-row gap-[6px] w-full">
             <ButtonStyle
               bg="bg-transparent"
               border="border border-offWhite"
               rouded="rounded-[10px]"
-              size="w-[166px] h-[67px]"
+              size="w-full h-[67px]"
               children={
                 <View className="flex-row items-center justify-center gap-[13px]">
                   <Text className="text-offWhite font-interBold text-[18.66px]">
@@ -44,7 +45,7 @@ export default function Welcome() {
             <ButtonStyle
               bg="bg-offWhite"
               rouded="rounded-[10px]"
-              size="w-[166px] h-[67px]"
+              size="w-full h-[67px]"
               children={
                 <View className="flex-row items-center justify-center gap-[13px]">
                   <Text className="text-black800 font-interBold text-[18.66px]">
@@ -55,6 +56,7 @@ export default function Welcome() {
               }
               onPress={() => router.replace("/screens/auth/register")}
             />
+            </View>
           </View>
         </View>
       </View>
