@@ -2,12 +2,14 @@ import { ReactNode } from "react";
 import { KeyboardTypeOptions } from "react-native";
 
 
-export interface propsTemplateOnboarding {
+export interface propsTemplate {
   index: number;
+  button: () => void
 }
 
 export interface propsButtonStyle {
-  children: ReactNode;
+  type : "GoBack" | "default"
+  children?: ReactNode;
   bg?: string;
   size?: string;
   rouded?: string;

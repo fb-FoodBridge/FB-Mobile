@@ -27,6 +27,7 @@ export default function Welcome() {
 
           <View className="flex-row justify-between mx-[30px] min-w-full mt-11 min-h-[67px] gap-2 ">
             <ButtonStyle
+            type="default"
               bg="bg-transparent"
               border="border border-offWhite"
               rouded="rounded-[10px]"
@@ -42,6 +43,7 @@ export default function Welcome() {
               onPress={() => router.replace("/screens/auth/login")}
             />
             <ButtonStyle
+            type="default"
               bg="bg-offWhite"
               rouded="rounded-[10px]"
               size="h-[67px]"

@@ -39,11 +39,15 @@ export default function Login() {
             />
           </View>
           <View className=" mt-4 mb-[27px] w-full justify-start items-end">
-            <ButtonStyle onPress={() => router.replace("/screens/auth/password/forgot")} children={
+            <ButtonStyle
+            type="default"
+             onPress={() => router.replace("/screens/auth/password/forgot")} children={
               <Text className="text-yellowOrange border-b border-b-yellowOrange font-interSemiBold text-[13px]">Esqueceu a senha?</Text>
             } />
           </View>
-          <ButtonStyle onPress={() => alert("alert")} shadow="shadow-custom-light " size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
+          <ButtonStyle
+          type="default"
+           onPress={() => alert("alert")} shadow="shadow-custom-light " size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
             <Text className="text-offWhite font-interSemiBold text-[16px]">Entrar</Text>
           } />
 
@@ -56,7 +60,9 @@ export default function Login() {
           </View>
           <View className="w-full mt-[29px] flex-row justify-center items-center">
             <Text className="font-interSemiBold text-4 text-offWhite ">Ainda não tem uma conta?</Text>
-            <ButtonStyle onPress={() => router.replace("/screens/auth/register")} children={
+            <ButtonStyle
+            type="default"
+             onPress={() => router.replace("/screens/auth/register")} children={
               <Text className="text-yellowOrange font-interSemiBold text-4 border-b border-b-yellowOrange">
                 {" "}Cadastre-se!
               </Text>

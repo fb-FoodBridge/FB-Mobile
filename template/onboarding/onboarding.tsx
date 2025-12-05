@@ -74,6 +74,7 @@ export function OnboardingTemplate() {
 
               <View className="items-center mt-8 ">
                 <ButtonStyle
+                type="default"
                   bg="bg-yellowOrange"
                   size="w-[277px] h-[51px]"
                   onPress={goToNext}
@@ -100,6 +101,7 @@ export function OnboardingTemplate() {
           {activeIndex > 0 ? (
             <View className="flex-row justify-between">
               <ButtonStyle
+              type="default"
                 onPress={goToPrevious}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
@@ -109,6 +111,7 @@ export function OnboardingTemplate() {
               />
 
               <ButtonStyle
+              type="default"
                 onPress={() => router.replace("/screens/onboarding/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
@@ -120,6 +123,7 @@ export function OnboardingTemplate() {
           ) : (
             <View className="items-end">
               <ButtonStyle
+              type="default"
                 onPress={() => router.replace("/screens/onboarding/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
