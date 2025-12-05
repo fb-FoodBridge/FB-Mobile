@@ -10,8 +10,8 @@ export default function Login() {
     <SafeAreaView className="bg-black800 flex-1  gap-20">
       <View className="bg-yellowOrange w-[111.63%] h-[205px] rounded-br-[168px] pt-8 pl-[21px] relative">
         <Text className="text-lightGray font-nourd_bold text-[36px]">
-          Sua <Text className="text-offWhite">ponte</Text> contra o
-          <Text className="bg-offWhite"> desperdício.</Text>
+          Sua <Text className="text-offWhite">ponte</Text> contra o{" "}
+          <Text className="bg-offWhite">desperdício.</Text>
         </Text>
         <View className="absolute bottom-[-11%] left-[33%] z-2">
           <Image source={Chief} />
