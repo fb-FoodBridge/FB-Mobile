@@ -16,6 +16,7 @@ export const data = [
     ),
     input: (
       <InputStyle
+        
         label="Email"
         placeholder="Digite seu email..."
         keyboardType="default"
@@ -36,6 +37,9 @@ export const data = [
         Digite o código recebido no e-mail vinculado à sua conta e prossiga para
         redefinir sua senha
       </Text>
+    ),
+    input:(
+      <InputStyle otp={true} />
     ),
     buttonChildren: "Confirmar",
   },

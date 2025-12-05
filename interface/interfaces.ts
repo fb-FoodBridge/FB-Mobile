@@ -27,10 +27,11 @@ export interface propsCardButton {
 }
 
 export interface propsInput {
-  label: string;
+  otp?: true;
+  label?: string;
   bg?: "black" | "white";
-  placeholder: string;
-  placeholderColor: string;
+  placeholder?: string;
+  placeholderColor?: string;
   icon?: boolean;
-  keyboardType:KeyboardTypeOptions;
+  keyboardType?: KeyboardTypeOptions;
 }
