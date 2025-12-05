@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { StatusBar, View, Animated, Easing, Text } from "react-native";
-import Logo from "../assets/icons/Logo.svg";
+import Logo from "../assets/svg/Logo.svg"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 

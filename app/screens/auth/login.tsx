@@ -39,7 +39,7 @@ export default function Login() {
             />
           </View>
           <View className=" mt-4 mb-[27px] w-full justify-start items-end">
-            <ButtonStyle onPress={() => alert("ola")} children={
+            <ButtonStyle onPress={() => router.replace("/screens/auth/password/forgot")} children={
               <Text className="text-yellowOrange border-b border-b-yellowOrange font-interSemiBold text-[13px]">Esqueceu a senha?</Text>
             } />
           </View>

@@ -1,7 +1,7 @@
-import { Text, View } from "react-native";
-import Step1 from "../../assets/icons/onboard-welcome.svg";
-import Step2 from "../../assets/icons/onboard-combat.svg";
-import Step3 from "../../assets/icons/Sushi-cook.svg";
+import { SafeAreaView, Text, View } from "react-native";
+import Step1 from "../../assets/svg/illustrations/onboard-welcome.svg";
+import Step2 from "../../assets/svg/illustrations/onboard-combat.svg";
+import Step3 from "../../assets/svg/illustrations/Sushi-cook.svg";
 import { dataOnboarding } from "./data";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";

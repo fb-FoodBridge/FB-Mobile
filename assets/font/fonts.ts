@@ -18,6 +18,7 @@ export const useAppFonts = () => {
     const loadCustomFont = async () => {
       await Font.loadAsync({
         "nourd_bold": require("./nourd_bold.ttf"),
+        "nourd_heavy": require("./nourd_heavy.ttf"),
       });
       setFontsLoadedCustom(true);
     };

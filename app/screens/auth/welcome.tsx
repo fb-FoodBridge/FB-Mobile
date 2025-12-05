@@ -1,9 +1,9 @@
-import { SafeAreaView, View, Text } from "react-native";
-import Logo from "../../../assets/icons/Logo.svg";
-import Food from "../../../assets/icons/food.svg";
+import { SafeAreaView, Text, View } from "react-native";
+import Logo from "../../../assets/svg/Logo.svg";
+import Food from "../../../assets/svg/illustrations/food.svg";
 import { ButtonStyle } from "ui/button";
-import ArrowLight from "../../../assets/icons/arrow-white.svg";
-import ArrowDark from "../../../assets/icons/arrow-black.svg";
+import ArrowLight from "../../../assets/svg/icons/arrow-white.svg";
+import ArrowDark from "../../../assets/svg/icons/arrow-black.svg";
 import { useRouter } from "expo-router";
 
 export default function Welcome() {
