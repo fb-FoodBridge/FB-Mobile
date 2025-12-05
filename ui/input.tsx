@@ -10,7 +10,7 @@ export function InputStyle({ ...props }: propsInput) {
   return (
     <>
       {props.otp ?
-        <OTPInputView numInputs={4} keyboardType="decimal-pad" />
+        <OTPInputView numInputs={4} inputStyle={{backgroundColor: "#3D3D3D", borderRadius: 10, width:49, height: 49, color: "#FFFFFF"}} keyboardType="decimal-pad" />
         :
         <View>
           {props.label && (
