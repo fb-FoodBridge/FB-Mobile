@@ -1,8 +1,9 @@
-import { View } from "react-native";
+
+import { HomeTemplate } from "template/users/home";
 
 export default function Home () {
 
     return(
-        
+        <HomeTemplate/>
     )
 }

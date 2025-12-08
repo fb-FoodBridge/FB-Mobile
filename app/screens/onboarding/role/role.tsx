@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, View, Image } from "react-native";
 import { useRouter } from "expo-router";
 import { CardButton } from "components/cardButton";
-import Chief from "../../../assets/svg/illustrations/chief.svg";
+import Chief from "assets/svg/illustrations/chief.svg";
 import NGO from "assets/png/ngo.png"
 
 export default function OnboardingRole() {

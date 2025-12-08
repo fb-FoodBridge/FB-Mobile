@@ -1,14 +1,13 @@
 import { ReactNode } from "react";
 import { KeyboardTypeOptions } from "react-native";
 
-
 export interface propsTemplate {
   index: number;
-  button: () => void
+  button: () => void;
 }
 
 export interface propsButtonStyle {
-  type : "GoBack" | "default"
+  type: "GoBack" | "default";
   children?: ReactNode;
   bg?: string;
   size?: string;
@@ -17,9 +16,8 @@ export interface propsButtonStyle {
   margin?: string;
   onPress: () => void;
   shadow?: string;
-  padding?:string
+  padding?: string;
 }
-
 
 export interface propsCardButton {
   onPress: () => void;
@@ -34,4 +32,8 @@ export interface propsInput {
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
+}
+
+export interface role {
+  role: "merchant" | "ngo";
 }

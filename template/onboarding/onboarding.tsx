@@ -20,7 +20,7 @@ export function OnboardingTemplate() {
     if (activeIndex < dataOnboarding.length - 1) {
       sliderRef.current?.goToSlide(activeIndex + 1, true);
     } else {
-      router.replace("/screens/onboarding/role");
+      router.replace("/screens/role/role");
     }
   };
 
@@ -31,8 +31,8 @@ export function OnboardingTemplate() {
   };
 
   return (
-    <View className={`flex-1 bg-black800 `}>
-      <Text className="font-nourd_bold text-[26px] text-offWhite ml-[30px] mt-[40px]">
+    <View className={`flex-1 bg-black800`}>
+      <Text className="font-nourd_bold text-[26px] text-offWhite ml-[30px] mt-[50px]">
         FOOD<Text className="text-yellow500">BRIDGE</Text>
       </Text>
 
@@ -112,7 +112,7 @@ export function OnboardingTemplate() {
 
               <ButtonStyle
               type="default"
-                onPress={() => router.replace("/screens/onboarding/role")}
+                onPress={() => router.replace("/screens/role/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
                     Pular
@@ -124,7 +124,7 @@ export function OnboardingTemplate() {
             <View className="items-end">
               <ButtonStyle
               type="default"
-                onPress={() => router.replace("/screens/onboarding/role")}
+                onPress={() => router.replace("/screens/role/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
                     Pular

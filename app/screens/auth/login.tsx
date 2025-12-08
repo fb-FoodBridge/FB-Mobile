@@ -47,7 +47,7 @@ export default function Login() {
           </View>
           <ButtonStyle
           type="default"
-           onPress={() => alert("alert")} shadow="shadow-custom-light " size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
+           onPress={() => router.replace("/screens/users/merchant/home")} shadow="shadow-custom-light " size="w-full h-[53px]" bg="bg-lightGray" border="border border-offWhite06" rouded="rounded-[11.12px]" children={
             <Text className="text-offWhite font-interSemiBold text-[16px]">Entrar</Text>
           } />
 
