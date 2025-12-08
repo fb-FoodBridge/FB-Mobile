@@ -2,7 +2,7 @@ import { propsInput } from "interface/interfaces";
 import { TextInput, View, Text } from "react-native";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 import React, { useState } from "react";
-import OTPInputView from 'react-native-input-otp'
+import { OtpInput }from 'react-native-otp-entry'
 
 export function InputStyle({ ...props }: propsInput) {
   const [visibility, setVisibility] = useState(false)
@@ -10,7 +10,25 @@ export function InputStyle({ ...props }: propsInput) {
   return (
     <>
       {props.otp ?
-        <OTPInputView numInputs={4} inputStyle={{backgroundColor: "#3D3D3D", borderRadius: 10, width:49, height: 49, color: "#FFFFFF"}} keyboardType="decimal-pad" />
+        <OtpInput  numberOfDigits={4} theme={{
+          containerStyle:{
+            gap:23
+          },
+          pinCodeTextStyle:{
+            color: "#FAFAFA"
+          },
+          pinCodeContainerStyle:{
+          backgroundColor: "#3D3D3D",
+          width: 49,
+          height: 49,
+          borderRadius: 10,
+          borderColor: "transparent"
+        },
+        }
+      }
+      focusColor={"#FFB74D"}
+      
+        />
         :
         <View>
           {props.label && (

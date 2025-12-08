@@ -12,7 +12,7 @@ export function ForgotPasswordTemplate({ index, button }: propsTemplate) {
       <View className="px-[38px]  mt-14 w-full flex-row justify-between items-center">
         <ButtonStyle
           type="GoBack"
-          onPress={() => router.replace("/screens/auth/login")}
+          onPress={() => index === 0? router.replace("/screens/auth/login")  : index === 1? router.replace("/screens/auth/password/forgot") : router.replace("/screens/auth/password/code") }
         />
         <Logo width={45} height={28} />
       </View>
@@ -21,7 +21,7 @@ export function ForgotPasswordTemplate({ index, button }: propsTemplate) {
           {data[index].title}
           {data[index].description}
         </View>
-        <View className="mt-[88px] mb-[72px]">
+        <View className="mt-[88px] mb-[72px] gap-[30px]">
             {data[index].input}
         </View>
         <ButtonStyle
