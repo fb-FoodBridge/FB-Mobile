@@ -3,7 +3,7 @@ import Chief from "assets/png/chiefAuth.png";
 import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
-import React, {useEffect, useState} from "node_modules/@types/react";
+import React, {useEffect, useState} from "react";
 import { getUserRole } from "utils/userStorage";
 
 export default function Login() {

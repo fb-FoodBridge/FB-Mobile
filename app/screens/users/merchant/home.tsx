@@ -1,5 +1,5 @@
 
-import { HomeTemplate } from "template/users/home";
+import { HomeTemplate } from "template/users/home/home";
 
 export default function Home () {
 

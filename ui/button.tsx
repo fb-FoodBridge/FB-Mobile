@@ -1,6 +1,6 @@
 import { propsButtonStyle } from "interface/interfaces";
 import { Button, Pressable, View } from "react-native";
-import ArrowBack from "../assets/svg/icons/arrow_yellow.svg";
+import ArrowBack from "../assets/svg/icons/arrows/arrow_yellow.svg";
 
 export function ButtonStyle({ ...props }: propsButtonStyle) {
   return (

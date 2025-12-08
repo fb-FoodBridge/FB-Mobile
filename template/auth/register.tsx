@@ -2,7 +2,7 @@ import { SafeAreaView, View, Text, Image } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { InputStyle } from "ui/input";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "node_modules/@types/react";
+import React, { useState, useEffect } from "react";
 import { getUserRole } from "utils/userStorage";
 
 export function RegisterTemplate() {

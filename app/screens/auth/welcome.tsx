@@ -2,8 +2,8 @@ import { SafeAreaView, Text, View } from "react-native";
 import Logo from "../../../assets/svg/Logo.svg";
 import Food from "../../../assets/svg/illustrations/food.svg";
 import { ButtonStyle } from "ui/button";
-import ArrowLight from "../../../assets/svg/icons/arrow-white.svg";
-import ArrowDark from "../../../assets/svg/icons/arrow-black.svg";
+import ArrowLight from "../../../assets/svg/icons/arrows/arrow-white.svg";
+import ArrowDark from "../../../assets/svg/icons/arrows/arrow-black.svg";
 import { useRouter } from "expo-router";
 
 
