@@ -2,9 +2,20 @@ import { SafeAreaView, View, Text, Image } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { InputStyle } from "ui/input";
 import { useRouter } from "expo-router";
+import React, { useState, useEffect } from "node_modules/@types/react";
+import { getUserRole } from "utils/userStorage";
 
 export function RegisterTemplate() {
   const router = useRouter();
+  const [role, setRole] = useState<string | null>(null);
+  useEffect(() => {
+    async function loadRole() {
+      const value = await getUserRole();
+      setRole(value);
+    }
+    loadRole();
+  }, []);
+  if (!role) return null;
   return (
     <SafeAreaView className="bg-black800 flex-1 gap-[14px]">
       <View className="bg-yellowOrange w-[111.63%] h-[170px] rounded-br-[168px] pt-[38px] pl-[38px]">
@@ -93,7 +104,7 @@ export function RegisterTemplate() {
                 Já possui uma conta?{"  "}
               </Text>
               <ButtonStyle
-              type="default"
+                type="default"
                 onPress={() => router.replace("/screens/auth/login")}
                 children={
                   <Text className="text-yellowOrange font-interSemiBold text-4 border-b border-b-yellowOrange">

@@ -3,9 +3,21 @@ import Chief from "assets/png/chiefAuth.png";
 import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
+import React, {useEffect, useState} from "node_modules/@types/react";
+import { getUserRole } from "utils/userStorage";
 
 export default function Login() {
   const router = useRouter();
+   const [role, setRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadRole() {
+      const value = await getUserRole();
+      setRole(value);
+    }
+    loadRole();
+  }, []);
+    if (!role) return null
   return (
     <SafeAreaView className="bg-black800 flex-1  gap-20">
       <View className="bg-yellowOrange w-[111.63%] h-[205px] rounded-br-[168px] pt-8 pl-[21px] relative">
