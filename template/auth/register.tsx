@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, Image } from "react-native";
+import { SafeAreaView, View, Text } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { InputStyle } from "ui/input";
 import { useRouter } from "expo-router";
