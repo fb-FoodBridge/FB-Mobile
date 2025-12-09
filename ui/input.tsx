@@ -10,24 +10,25 @@ export function InputStyle({ ...props }: propsInput) {
   return (
     <>
       {props.otp ?
-        <OtpInput  numberOfDigits={4} theme={{
-          containerStyle:{
-            gap:23
-          },
-          pinCodeTextStyle:{
-            color: "#FAFAFA"
-          },
-          pinCodeContainerStyle:{
-          backgroundColor: "#3D3D3D",
-          width: 49,
-          height: 49,
-          borderRadius: 10,
-          borderColor: "transparent"
-        },
-        }
-      }
-      focusColor={"#FFB74D"}
-      
+        <OtpInput 
+          numberOfDigits={4}
+          onTextChange={(text) => setCode(text)}
+          theme={{
+            containerStyle:{
+              gap:23
+            },
+            pinCodeTextStyle:{
+              color: "#FAFAFA"
+            },
+            pinCodeContainerStyle:{
+              backgroundColor: "#3D3D3D",
+              width: 49,
+              height: 49,
+              borderRadius: 10,
+              borderColor: "transparent"
+            },
+          }}
+          focusColor={"#FFB74D"}
         />
         :
         <View>
