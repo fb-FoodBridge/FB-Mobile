@@ -1,11 +1,17 @@
 import { SafeAreaView, Text, View, Image } from "react-native";
 import { useRouter } from "expo-router";
-import { CardButton } from "components/cardButton";
-import Chief from "../../../assets/icons/chief.svg";
-import NGO from "../../../assets/png/ngo.png"
+import { CardButton } from "components/card/cardButton";
+import Chief from "assets/svg/illustrations/chief.svg";
+import NGO from "assets/png/ngo.png"
+import { setUserRole } from "utils/userStorage";
 
 export default function OnboardingRole() {
   const router = useRouter();
+
+  const handleSelectMerchant = async () => {
+  await setUserRole("merchant");
+  router.replace("/screens/auth/welcome");
+};
 
   return (
     <SafeAreaView className="bg-black800 flex-1">
@@ -30,9 +36,9 @@ export default function OnboardingRole() {
                 Quer doar alimentos ou recebê-los para quem precisa?
               </Text>
             </View>
-            <View className="w-full pl-[68px] pr-[68px] gap-[69px]">
+            <View className="w-[66%] gap-[69px]">
               <CardButton
-                onPress={() => router.replace("/screens/auth/welcome")}
+                onPress={handleSelectMerchant}
                 children={
                   <View className="flex-1 flex-row items-center justify-center mt-[-3px]">
                     <Chief />
@@ -43,8 +49,7 @@ export default function OnboardingRole() {
                 }
               />
               <CardButton
-                onPress={() => router.replace("/screens/auth/welcome")
-                }
+                onPress={() => router.replace("/screens/auth/welcome?role=merchant")}
                 children={
                   <View className="w-full flex-row items-center justify-between mt-[-3px] ">
                     <Image

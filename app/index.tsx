@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { StatusBar, View, Animated, Easing, Text } from "react-native";
-import Logo from "../assets/icons/Logo.svg";
+import Logo from "../assets/svg/Logo.svg"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
@@ -35,9 +35,9 @@ export default function Index() {
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-black800">
+    <SafeAreaView className="flex-1 items-center justify-center  bg-yellowOrange">
       <StatusBar hidden />
-      <View className="flex-1 bg-yellowOrange justify-center items-center">
+      <View className="flex-1 justify-center items-center">
         <Animated.View
           style={{ transform: [{ scale }] }}
           className="items-center justify-center"

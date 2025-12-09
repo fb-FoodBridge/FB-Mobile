@@ -1,7 +1,7 @@
-import { Text, View } from "react-native";
-import Step1 from "../../assets/icons/onboard-welcome.svg";
-import Step2 from "../../assets/icons/onboard-combat.svg";
-import Step3 from "../../assets/icons/Sushi-cook.svg";
+import { SafeAreaView, Text, View } from "react-native";
+import Step1 from "../../assets/svg/illustrations/onboard-welcome.svg";
+import Step2 from "../../assets/svg/illustrations/onboard-combat.svg";
+import Step3 from "../../assets/svg/illustrations/Sushi-cook.svg";
 import { dataOnboarding } from "./data";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
@@ -20,7 +20,7 @@ export function OnboardingTemplate() {
     if (activeIndex < dataOnboarding.length - 1) {
       sliderRef.current?.goToSlide(activeIndex + 1, true);
     } else {
-      router.replace("/screens/onboarding/role");
+      router.replace("/screens/oboarding/role/role");
     }
   };
 
@@ -30,15 +30,13 @@ export function OnboardingTemplate() {
     }
   };
 
-
-
   return (
-    <View className={`flex-1 bg-black800 `}>
-      <Text className="font-nourd_bold text-[26px] text-offWhite ml-[30px] mt-[40px]">
+    <View className={`flex-1 bg-black800`}>
+      <Text className="font-nourd_bold text-[26px] text-offWhite ml-[30px] mt-[50px]">
         FOOD<Text className="text-yellow500">BRIDGE</Text>
       </Text>
 
-      <View className="flex-1 justify-center items-center mt-[10%]">
+      <View className="flex-1 justify-center items-center ">
         {activeIndex === 0 ? (
           <View className="top-[20px] w-[330px] h-[330px] items-center">
             <Step1 />
@@ -70,12 +68,13 @@ export function OnboardingTemplate() {
           ref={sliderRef}
           data={dataOnboarding}
           renderItem={({ item }) => (
-            <View className="flex-col items-center ">
+            <View className="flex-col items-center">
                 {item.title}
                 {item.description}
 
-              <View className="items-center mt-8">
+              <View className="items-center mt-8 ">
                 <ButtonStyle
+                type="default"
                   bg="bg-yellowOrange"
                   size="w-[277px] h-[51px]"
                   onPress={goToNext}
@@ -102,6 +101,7 @@ export function OnboardingTemplate() {
           {activeIndex > 0 ? (
             <View className="flex-row justify-between">
               <ButtonStyle
+              type="default"
                 onPress={goToPrevious}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
@@ -111,7 +111,8 @@ export function OnboardingTemplate() {
               />
 
               <ButtonStyle
-                onPress={() => router.replace("/screens/onboarding/role")}
+              type="default"
+                onPress={() => router.replace("/screens/oboarding/role/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
                     Pular
@@ -122,7 +123,8 @@ export function OnboardingTemplate() {
           ) : (
             <View className="items-end">
               <ButtonStyle
-                onPress={() => router.replace("/screens/onboarding/role")}
+              type="default"
+                onPress={() => router.replace("/screens/onboarding/role/role")}
                 children={
                   <Text className="text-offWhite font-interRegular text-[17px] border-b border-yellow500">
                     Pular
