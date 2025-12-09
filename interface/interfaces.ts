@@ -33,6 +33,7 @@ export interface propsInput {
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
+  onOtpChange?: (text: string) => void;
 }
 
 export interface role {

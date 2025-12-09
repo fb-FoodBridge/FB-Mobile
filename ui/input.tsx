@@ -7,12 +7,20 @@ import { OtpInput }from 'react-native-otp-entry'
 export function InputStyle({ ...props }: propsInput) {
   const [visibility, setVisibility] = useState(false)
   const [code, setCode] = useState("");
+  
+  const handleOtpChange = (text: string) => {
+    setCode(text);
+    if (props.onOtpChange) {
+      props.onOtpChange(text);
+    }
+  };
+  
   return (
     <>
       {props.otp ?
         <OtpInput 
           numberOfDigits={4}
-          onTextChange={(text) => setCode(text)}
+          onTextChange={handleOtpChange}
           theme={{
             containerStyle:{
               gap:23
