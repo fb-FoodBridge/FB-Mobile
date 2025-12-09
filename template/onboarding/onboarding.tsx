@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import Step1 from "../../assets/svg/illustrations/onboard-welcome.svg";
 import Step2 from "../../assets/svg/illustrations/onboard-combat.svg";
 import Step3 from "../../assets/svg/illustrations/Sushi-cook.svg";
