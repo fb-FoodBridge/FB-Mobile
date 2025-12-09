@@ -7,10 +7,10 @@ export function ButtonStyle({ ...props }: propsButtonStyle) {
     <>
       {props.type === "default" ? (
         <Pressable
+          
           onPress={props.onPress}
-          className={`${props.bg}  ${props.size} ${props.border} ${
-            props.margin
-          } ${props.padding} ${
+          key={props.key}
+          className={`${props.bg}  ${props.size} ${props.direction} ${props.border} ${
             props.rouded ? props.rouded : "rounded-[25.45px]"
           } flex justify-center items-center ${
             props.shadow ? props.shadow : ""

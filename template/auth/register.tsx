@@ -76,20 +76,21 @@ export function RegisterTemplate() {
               placeholderColor="#A1A1AA"
               icon
             />
-            <ButtonStyle
-              type="default"
-              margin="mt-2"
-              onPress={() => alert("teste")}
-              shadow="shadow-custom-light"
-              bg="bg-lightGray"
-              children={
-                <Text className="text-offWhite font-interSemiBold text-[16px]">
-                  Cadastrar
-                </Text>
-              }
-              size="h-[53.4px] min-w-full"
-              rouded="rounded-[11.12px]"
-            />
+            <View className="mt-2">
+              <ButtonStyle
+                type="default"
+                onPress={() => alert("teste")}
+                shadow="shadow-custom-light"
+                bg="bg-lightGray"
+                children={
+                  <Text className="text-offWhite font-interSemiBold text-[16px]">
+                    Cadastrar
+                  </Text>
+                }
+                size="h-[53.4px] min-w-full"
+                rouded="rounded-[11.12px]"
+              />
+            </View>
 
             <View className="w-full mt-1 flex-row justify-center items-center gap-2">
               <View className="w-[90px] bg-offWhite h-[1px]"></View>

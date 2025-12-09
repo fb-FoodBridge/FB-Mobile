@@ -5,6 +5,7 @@ import { data, dataButtons } from "./data";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import Svg from "node_modules/react-native-svg/lib/typescript";
+import { ButtonStyle } from "ui/button";
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -67,29 +68,48 @@ export function HomeTemplate() {
         </View>
       </View>
       <View className="flex-1 mx-5    mt-[91px]">
-        <View className=" flex-row w-full flex-wrap gap-5 justify-center">
+        <View className=" flex-row w-full flex-wrap gap-5 justify-center pb-[100px]">
           {dataButtons.map((item, index) => {
-            return (
-              <>
-                {index <= 2 ? (
-                  <View
+            return index <= 2 ? (
+                  <ButtonStyle
+                    type={"default"}
                     key={index}
-                    className="bg-lightGray flex-col rounded-[14px] min-w-[26.97%] h-[109px] items-center justify-center gap-[10px]"
-                  >
-                    <item.icon width={41} height={41} />
-                    <Text className="text-offWhite text-5 font-nourd_bold">{item.title}</Text>
-                  </View>
+
+                    children={
+                        <View
+                          className="bg-lightGray w-full flex-col rounded-[14px] min-w-[26.97%] h-[109px] items-center justify-center gap-[10px]"
+                        >
+                          <item.icon width={41} height={41} />
+                          <Text className="text-offWhite text-5 font-nourd_bold">
+                            {item.title}
+                          </Text>
+                        </View>
+                    }
+                    onPress={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  />
                 ) : (
-                  <View
+                  <ButtonStyle
+                    type={"default"}
                     key={index}
-                    className={`bg-lightGray justify-center items-center gap-[10px] rounded-[14px] ${ index ===3?"min-w-[59.07%%]" : "min-w-[26.97%]"} h-[109px] ${ index ===3?"flex-row" : "flex-col"} `}
-                  >
-                    <item.icon width={41} height={41} />
-                    <Text className="text-offWhite text-5 font-nourd_bold">{item.title}</Text>
-                  </View>
-                )}
-              </>
-            );
+                    children={
+                      <View
+                        className={`bg-lightGray w-full justify-center items-center gap-[10px] rounded-[14px] ${
+                          index === 3 ? "min-w-[59.07%%]" : "min-w-[26.97%]"
+                        } h-[109px] ${index === 3 ? "flex-row" : "flex-col"} `}
+                      >
+                        <item.icon width={41} height={41} />
+                        <Text className="text-offWhite text-5 font-nourd_bold">
+                          {item.title}
+                        </Text>
+                      </View>
+                    }
+                    onPress={function (): void {
+                      throw new Error("Function not implemented.");
+                    }}
+                  />
+                )
           })}
         </View>
       </View>

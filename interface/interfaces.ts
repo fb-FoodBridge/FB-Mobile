@@ -8,15 +8,16 @@ export interface propsTemplate {
 
 export interface propsButtonStyle {
   type: "GoBack" | "default";
+  key?: React.Key
+  direction?: string;
   children?: ReactNode;
   bg?: string;
   size?: string;
   rouded?: string;
   border?: string;
-  margin?: string;
   onPress: () => void;
   shadow?: string;
-  padding?: string;
+
 }
 
 export interface propsCardButton {
