@@ -4,7 +4,6 @@ import Carousel from "react-native-reanimated-carousel";
 import { data, dataButtons } from "./data";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import Svg from "node_modules/react-native-svg/lib/typescript";
 import { ButtonStyle } from "ui/button";
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
