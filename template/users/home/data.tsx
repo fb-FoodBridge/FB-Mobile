@@ -2,7 +2,11 @@ import FruitSalad from "../../../assets/svg/icons/carrossel/pana.svg"
 import Solidarity from "../../../assets/svg/icons/carrossel/cuate.svg"
 import Love from "../../../assets/svg/icons/carrossel/bro.svg"
 import Pizza from "../../../assets/svg/icons/carrossel/pizza.svg"
-import MaterialIcons from "node_modules/@react-native-vector-icons/material-icons/lib/typescript/module/src"
+import Box from "../../../assets/svg/icons/button/box-broken.svg"
+import Handshake from "../../../assets/svg/icons/button/hand.svg"
+import History from "../../../assets/svg/icons/button/history.svg"
+import Heart from "../../../assets/svg/icons/button/heart-broken.svg"
+import About from "../../../assets/svg/icons/button/about.svg"
 
 export const data = [
     {
@@ -31,6 +35,23 @@ export const data = [
 
 export const dataButtons = [
     {
-        icon: <MaterialIcons name=""/>
-    }
+        icon: Box,
+        title: "Entrada"
+    },
+    {
+        icon: Handshake,
+        title: "Doações"
+    },
+    {
+        icon: History,
+        title: "Carrinho"
+    },
+    {
+        icon: Heart,
+        title: "Impacto social"
+    },
+    {
+        icon: About,
+        title: "Sobre nós"
+    },
 ]
