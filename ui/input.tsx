@@ -10,9 +10,7 @@ export function InputStyle({ ...props }: propsInput) {
   
   const handleOtpChange = (text: string) => {
     setCode(text);
-    if (props.onOtpChange) {
-      props.onOtpChange(text);
-    }
+    props.onOtpChange?.(text);
   };
   
   return (
