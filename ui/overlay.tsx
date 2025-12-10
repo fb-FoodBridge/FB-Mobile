@@ -7,7 +7,7 @@ export function Overlay ({button}:propsOverlay) {
         <ButtonStyle
         direction="absolute z-20"
         size="w-full h-full"
-        bg="bg-black800 opacity-65"
+        bg="bg-black800 opacity-75"
         type="default"
         onPress={button}
 

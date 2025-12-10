@@ -12,7 +12,8 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        "custom-light": "-1px 3px 16.3px rgba(255,255,255,0.25)"
+        "custom-light": "-1px 3px 16.3px rgba(255,255,255,0.25)",
+        "shadow-modal": "0px 4px 40px rgba(255,255,255,0.3)"
       },
       screens: {
         md: "768px",

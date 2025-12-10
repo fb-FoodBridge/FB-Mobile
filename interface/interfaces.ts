@@ -10,6 +10,13 @@ export interface propsOverlay {
   button: () => void;
 }
 
+export interface propsModal {
+  data:{
+    placeholder: string,
+    label: string
+  } 
+}
+
 export interface propsButtonStyle {
   type: "GoBack" | "default";
   key?: React.Key
@@ -31,12 +38,13 @@ export interface propsCardButton {
 
 export interface propsInput {
   otp?: true;
-  label?: string;
+  label?: ReactNode;
   bg?: "black" | "white";
   placeholder?: string;
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
+
 }
 
 export interface role {

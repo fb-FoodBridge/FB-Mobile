@@ -56,6 +56,7 @@ export function InputStyle({ ...props }: propsInput) {
             <TextInput
               className={`min-w-full h-[40px] text-black800 font-interRegular ${props.bg === "black" ? "bg-lightGray" : "bg-offWhite"
                 } rounded-[6px] px-3`}
+              keyboardType={props.keyboardType}
               placeholder={props.placeholder}
               placeholderTextColor={props.placeholderColor}
             />
