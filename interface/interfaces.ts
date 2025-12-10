@@ -6,6 +6,10 @@ export interface propsTemplate {
   button: () => void;
 }
 
+export interface propsOverlay {
+  button: () => void;
+}
+
 export interface propsButtonStyle {
   type: "GoBack" | "default";
   key?: React.Key

@@ -5,8 +5,12 @@ import { data, dataButtons } from "./data";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { ButtonStyle } from "ui/button";
+import { useRouter } from "expo-router";
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter()
+
+  
 
   return (
     <ScrollView className="bg-black800 flex-1 flex-col ">
@@ -84,9 +88,7 @@ export function HomeTemplate() {
                           </Text>
                         </View>
                     }
-                    onPress={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
+                    onPress={() => router.replace(item.path? item.path : "")}
                   />
                 ) : (
                   <ButtonStyle
@@ -104,9 +106,7 @@ export function HomeTemplate() {
                         </Text>
                       </View>
                     }
-                    onPress={function (): void {
-                      throw new Error("Function not implemented.");
-                    }}
+                    onPress={() => router.replace(item.path? item.path : "")}
                   />
                 )
           })}

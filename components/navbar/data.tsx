@@ -10,12 +10,14 @@ import HomeActive from "../../assets/svg/icons/button/active/home.svg"
 export const iconsNavbar = [
     {
         icon: Home,
-        active: HomeActive
+        active: HomeActive,
+        path: "/screens/users/merchant/home"
         
     },
     {
         icon: Handshake,
-        active: HandshakeActive
+        active: HandshakeActive,
+        path: "/screens/users/merchant/donation"
         
     },
      {

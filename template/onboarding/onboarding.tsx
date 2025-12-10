@@ -20,7 +20,7 @@ export function OnboardingTemplate() {
     if (activeIndex < dataOnboarding.length - 1) {
       sliderRef.current?.goToSlide(activeIndex + 1, true);
     } else {
-      router.replace("/screens/oboarding/role/role");
+     router.replace("/screens/onboarding/role/role")
     }
   };
 

@@ -36,22 +36,27 @@ export const data = [
 export const dataButtons = [
     {
         icon: Box,
-        title: "Entrada"
+        title: "Entrada",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: Handshake,
-        title: "Doações"
+        title: "Doações",
+        path: "/screens/users/merchant/donation"
     },
     {
         icon: History,
-        title: "Carrinho"
+        title: "Carrinho",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: Heart,
-        title: "Impacto social"
+        title: "Impacto social",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: About,
-        title: "Sobre nós"
+        title: "Sobre nós",
+        path:"/screens/users/merchant/home"
     },
 ]

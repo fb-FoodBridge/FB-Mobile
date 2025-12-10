@@ -21,6 +21,7 @@ module.exports = {
       fontFamily: {
         "nourd_bold": "nourd_bold",
         "nourd_heavy": "nourd_heavy",
+        "nourd_medium": "nourd_medium",
         inter: "Inter_500Medium",
         interBold: "Inter_700Bold",
         interSemiBold: "Inter_600SemiBold",
