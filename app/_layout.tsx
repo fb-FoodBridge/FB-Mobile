@@ -3,6 +3,7 @@ import "../global.css";
 
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import Toast from "react-native-toast-message";
 
 export default function RootLayout() {
   const fontsLoaded = useAppFonts();
@@ -12,6 +13,11 @@ export default function RootLayout() {
     <>
       <StatusBar backgroundColor={"transparent"} />
       <Stack screenOptions={{ headerShown: false }} />
+      <Toast
+        config={{
+          
+        }}
+      />
     </>
   );
 }

@@ -1,30 +1,28 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import type { ZodLoginTypes, ZodRegisterTypes } from "../validations/ZodValidationsTypes";
 
-
 export const useAuth = () => {
-  
- const [loginAuth, setLoginAuth] = useState<ZodLoginTypes>({ email: "", password: "" });
+  const [loginAuth, setLoginAuth] = useState<ZodLoginTypes>({
+    email: "",
+    password: "",
+  });
 
-const [registerAuth, setRegisterAuth] = useState<ZodRegisterTypes>({
-  email: "",
-  password: "",
-  username: "",
-  cnpj: "",
-});
+  const [registerAuth, setRegisterAuth] = useState<ZodRegisterTypes>({
+    email: "",
+    password: "",
+    username: "",
+    cnpj: "",
+  });
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  function handleLoginChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = e.target;
-    setLoginAuth((prev) => ({ ...prev, [name]: value })) 
+  function handleLoginChange(name: keyof ZodLoginTypes, value: string) {
+    setLoginAuth((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleRegisterChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const { name, value } = e.target;
-     setRegisterAuth((prev) => ({ ...prev, [name]: value }))
+  function handleRegisterChange(name: keyof ZodRegisterTypes, value: string) {
+    setRegisterAuth((prev) => ({ ...prev, [name]: value }));
   }
-
 
   return {
     loginAuth,
@@ -34,5 +32,4 @@ const [registerAuth, setRegisterAuth] = useState<ZodRegisterTypes>({
     loading,
     setLoading,
   };
-
-}
+};

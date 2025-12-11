@@ -4,22 +4,62 @@ import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { getUserRole } from "utils/userStorage";
+import { useAuth } from "hook/useAuth";
+import { LoginMerchant } from "../../../services/users/auth/merchant/login";
+import { handleCallApi } from "services/handleCallApi";
+import { propsData } from "interface/interfaces";
+import toast from "react-native-toast-message";
+import { LoginNGO } from "services/users/auth/ngo/login";
 
 export default function Login() {
   const router = useRouter();
-  const [role, setRole] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { loginAuth, handleLoginChange, loading, setLoading } = useAuth();
+  async function handleLogin() {
+    try {
+      const result: propsData = await handleCallApi(LoginMerchant, loginAuth);
 
-  useEffect(() => {
-    async function loadRole() {
-      const value = await getUserRole();
-      setRole(value);
+      if (!result.success && (result.fields || result.error)) {
+        if (typeof result.error === "string") {
+          toast.show({
+            type: "error",
+            text1: result.error,
+          });
+          console.log(result.error);
+        }
+        return;
+      }
+      toast.show({
+        type: "success",
+        text1: result.message,
+      });
+      return router.replace("/screens/users/merchant/home")
+    } catch (error) {
+      console.warn(error);
+      try {
+        const result:propsData = await handleCallApi(LoginNGO, loginAuth);
+
+        if (!result.success && (result.fields || result.error)) {
+          if (typeof result.error === "string") {
+            toast.show({
+              type: "error",
+              text1: result.error,
+            });
+          }
+          return;
+        }
+        toast.show({
+          type: "success",
+          text1: result.message,
+        });
+        return router.replace("/screens/users/merchant/home")
+      } catch (error) {
+        console.warn(error);
+      }
+    } finally {
+      setLoading(false);
     }
-    loadRole();
-  }, []);
-  if (!role) return null;
+  }
+
   return (
     <SafeAreaView className="bg-black800 flex-1  gap-20">
       <View className="bg-yellowOrange w-[111.63%] h-[205px] rounded-br-[168px] pt-8 pl-[21px] relative">
@@ -42,13 +82,13 @@ export default function Login() {
               label="Email"
               placeholder="Digite seu email..."
               placeholderColor="#A1A1AA"
-              onChange={setEmail}
-              value={}
+              onChange={(value) => handleLoginChange("email", value)}
+              value={loginAuth.email}
             />
 
             <InputStyle
-              onChange={}
-              value={}
+              onChange={(value) => handleLoginChange("password", value)}
+              value={loginAuth.password}
               keyboardType="default"
               label="Senha"
               placeholder="Digite sua senha..."
@@ -69,7 +109,7 @@ export default function Login() {
           </View>
           <ButtonStyle
             type="default"
-            onPress={() => router.replace("/screens/users/merchant/home")}
+            onPress={handleLogin}
             shadow="shadow-custom-light "
             size="w-full h-[53px]"
             bg="bg-lightGray"

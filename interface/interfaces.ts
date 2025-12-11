@@ -53,3 +53,10 @@ export interface role {
   role: "merchant" | "ngo";
 }
 
+export interface propsData<T = unknown> {
+  success: boolean;
+  message?: string;
+  fields?: { [key: string]: string };
+  error?: unknown | string
+  data?: T;
+}
