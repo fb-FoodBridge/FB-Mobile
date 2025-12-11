@@ -34,7 +34,7 @@ export function Modal() {
     // Adiciona nova doação
     await addDonation({
       title: values.name,
-      createdAt: new Date().toISOString(),
+      validity: values.validity,
       quantity: Number(values.quantity),
     });
 
@@ -63,20 +63,25 @@ export function Modal() {
         <View className="flex-row gap-2 items-center">
           <ButtonStyle
             type="GoBack"
-            onPress={() => router.replace("/screens/users/merchant/donation")}
+            onPress={
+              next
+                ? () => setNext(false)
+                : () => router.replace("/screens/users/merchant/donation")
+            }
           />
           <Text className="font-nourd_bold text-[20px] text-offWhite">
             Crie sua doação!
           </Text>
         </View>
+
         <View className="w-full items-center mt-[23px]">
           {next ? (
             <>
-               <ScrollView
-      className="w-full max-h-[330px] items-center"
-      contentContainerStyle={{ gap: 10}}
-      showsVerticalScrollIndicator={false}
-    >
+              <ScrollView
+                className="w-full max-h-[270px]"
+                contentContainerStyle={{ gap: 10, alignItems: "center" }}
+                showsVerticalScrollIndicator={false}
+              >
                 {donations.map((item, index) => {
                   return (
                     <View
@@ -86,13 +91,44 @@ export function Modal() {
                       <Text className="font-nourd_medium text-[14px] text-offWhite">
                         {item.title}
                       </Text>
+
                       <Text className="font-nourd_medium text-[14px] text-offWhite">
-                        val: {formatISODate(item.createdAt)}
+                        val: {item.validity}
                       </Text>
                     </View>
                   );
                 })}
               </ScrollView>
+              <View className="w-full items-center">
+                <View className="w-[274px] border-b border-offWhite"></View>
+              </View>
+              <View className="flex-row mt-[42px] w-full items-center justify-end pr-[30px] gap-[20px]">
+                <ButtonStyle
+                  type={"default"}
+                  rouded="rounded-[5px]"
+                  bg="bg-lightGray"
+                  border="border-2 border-offWhite"
+                  size="w-[70px] h-[23px]"
+                  children={
+                    <MaterialIcons name="add" color={"#FFFF"} size={20} />
+                  }
+                  onPress={() => setNext(false)}
+                />
+                <ButtonStyle
+                  type={"default"}
+                  bg="bg-yellowOrange"
+                  size="w-[90px] h-[23px]"
+                  rouded="rounded-[7px]"
+                  children={
+                    <Text className="text-offWhite font-interSemiBold">
+                      Enviar
+                    </Text>
+                  }
+                  onPress={() =>
+                    router.replace("/screens/users/merchant/donation")
+                  }
+                />
+              </View>
             </>
           ) : (
             <>
@@ -126,7 +162,7 @@ export function Modal() {
                   border="border-2 border-offWhite"
                   size="w-[70px] h-[23px]"
                   children={
-                    <MaterialIcons name="add" color={"#FFFFFF"} size={20} />
+                    <MaterialIcons name="add" color={"#FFFF"} size={20} />
                   }
                   onPress={function (): void {
                     throw new Error("Function not implemented.");
