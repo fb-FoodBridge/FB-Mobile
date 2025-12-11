@@ -52,3 +52,8 @@ export interface propsInput {
 export interface role {
   role: "merchant" | "ngo";
 }
+
+export interface propsLogin{
+  email:string,
+  password: string
+}
