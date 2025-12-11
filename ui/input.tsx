@@ -6,7 +6,6 @@ import { OtpInput }from 'react-native-otp-entry'
 
 export function InputStyle({ ...props }: propsInput) {
   const [visibility, setVisibility] = useState(false)
-  const [code, setCode] = useState("");
   return (
     <>
       {props.otp ?
@@ -59,6 +58,8 @@ export function InputStyle({ ...props }: propsInput) {
               keyboardType={props.keyboardType}
               placeholder={props.placeholder}
               placeholderTextColor={props.placeholderColor}
+              onChangeText={props.onChange}
+              value={props.value}
             />
           )}
         </View>

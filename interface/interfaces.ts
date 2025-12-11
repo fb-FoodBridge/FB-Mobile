@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { KeyboardTypeOptions } from "react-native";
+import { KeyboardTypeOptions, TextInputChangeEvent } from "react-native";
 
 export interface propsTemplate {
   index: number;
@@ -44,6 +44,8 @@ export interface propsInput {
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
+  onChange:  (text: string) => void;
+  value: string;
 
 }
 
