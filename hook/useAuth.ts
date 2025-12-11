@@ -1,0 +1,38 @@
+import { ChangeEvent, useState } from "react";
+import type { ZodLoginTypes, ZodRegisterTypes } from "../validations/ZodValidationsTypes";
+
+
+export const useAuth = () => {
+  
+ const [loginAuth, setLoginAuth] = useState<ZodLoginTypes>({ email: "", password: "" });
+
+const [registerAuth, setRegisterAuth] = useState<ZodRegisterTypes>({
+  email: "",
+  password: "",
+  username: "",
+  cnpj: "",
+});
+
+    const [loading, setLoading] = useState(false);
+
+  function handleLoginChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value } = e.target;
+    setLoginAuth((prev) => ({ ...prev, [name]: value })) 
+  }
+
+  function handleRegisterChange(e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value } = e.target;
+     setRegisterAuth((prev) => ({ ...prev, [name]: value }))
+  }
+
+
+  return {
+    loginAuth,
+    registerAuth,
+    handleLoginChange,
+    handleRegisterChange,
+    loading,
+    setLoading,
+  };
+
+}
