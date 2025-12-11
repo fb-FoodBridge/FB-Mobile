@@ -18,13 +18,14 @@ export async function LoginMerchant(credentials: ZodLoginTypes) {
       }),
     });
 
-    console.log("Response Status:", res.status);
-    console.log(credentials)
+    
     const json: LoginResponse | any = await res.json();
 
     if (res.status === 400 || res.status === 401) {
-      return console.log("Response Status:", res.status, credentials);
-    
+      return {
+        success: false,
+        error: "Email ou senha inválido",
+      };
     }
 
     if (!res.ok) {

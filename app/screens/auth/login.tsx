@@ -32,7 +32,7 @@ export default function Login() {
         type: "success",
         text1: result.message,
       });
-      return router.replace("/screens/users/merchant/home")
+      router.replace("/screens/users/merchant/home")
     } catch (error) {
       console.warn(error);
       try {
@@ -51,7 +51,7 @@ export default function Login() {
           type: "success",
           text1: result.message,
         });
-        return router.replace("/screens/users/merchant/home")
+        router.replace("/screens/users/ngo/home")
       } catch (error) {
         console.warn(error);
       }
