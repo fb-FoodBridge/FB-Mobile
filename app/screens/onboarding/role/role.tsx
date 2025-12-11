@@ -13,6 +13,11 @@ export default function OnboardingRole() {
   router.replace("/screens/auth/welcome");
 };
 
+  const handleSelectNGO = async () => {
+    await setUserRole("ngo");
+  router.replace("/screens/auth/welcome");
+};
+
   return (
     <SafeAreaView className="bg-black800 flex-1">
       <Text
@@ -49,7 +54,7 @@ export default function OnboardingRole() {
                 }
               />
               <CardButton
-                onPress={() => router.replace("/screens/auth/welcome?role=merchant")}
+                onPress={handleSelectNGO}
                 children={
                   <View className="w-full flex-row items-center justify-between mt-[-3px] ">
                     <Image

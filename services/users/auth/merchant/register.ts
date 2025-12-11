@@ -16,7 +16,7 @@ export async function RegisterMerchant(data: ZodRegisterTypes) {
       fields: validate.fields,
     };
   }
-
+ const username = `${validate.data?.firstName} ${validate.data?.lastName}`;
   const response = await fetch(`${api}/merchant`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export async function RegisterMerchant(data: ZodRegisterTypes) {
       cnpj: validate.data?.cnpj,
       email: validate.data?.email,
       password: validate.data?.password,
-      username: validate.data?.username,
+      username: username,
     }),
   })
     .then(async (res) => {

@@ -10,7 +10,9 @@ export const useAuth = () => {
   const [registerAuth, setRegisterAuth] = useState<ZodRegisterTypes>({
     email: "",
     password: "",
-    username: "",
+    firstName: "",
+    lastName: "",
+    confirmPassword: "",
     cnpj: "",
   });
 

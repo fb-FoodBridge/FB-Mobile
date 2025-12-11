@@ -1,8 +1,10 @@
 import { z } from "zod";
 
 export const ZodRegisterSchema = z.object({
-  username: z.string(),
-  email: z.email("Email inválido"),
+  firstName: z.string(),
+  lastName: z.string(),
+  confirmPassword: z.string(),
+  email: z.string().email("Email inválido"),
   password: z
     .string()
     .min(8, { message: "Senha com no mínimo 8 caracteres" })
