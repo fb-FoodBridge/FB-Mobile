@@ -1,5 +1,1 @@
-import axios from "axios"
-export const api = axios.create({
-    baseURL: process.env.BASE_URL,
-    timeout: 5000,
-})
+export const api: string | undefined = process.env.BASE_url
