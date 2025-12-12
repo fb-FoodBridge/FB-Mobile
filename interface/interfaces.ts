@@ -44,8 +44,8 @@ export interface propsInput {
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
-  onChange:  (text: string) => void;
-  value: string;
+  onChange?:  (text: string) => void;
+  value?: string;
 
 }
 

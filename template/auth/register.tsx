@@ -26,8 +26,21 @@ export function RegisterTemplate() {
     loadRole();
   }, []);
 
+  useEffect(() => {
+  if (!error) return;
 
-  async function handleRegister() {
+  const firstMessage = Object.values(error)[0];
+
+  setTimeout(() => {
+    toast.show({
+      type: "error",
+      text1: firstMessage,
+    });
+  }, 0);
+}, [error]);
+
+
+ async function handleRegister() {
     if (role === "" || !role) {
       toast.show({
         type: "error",
@@ -35,43 +48,61 @@ export function RegisterTemplate() {
       });
       return;
     }
+
     setLoading(true);
+
     try {
+      let result: propsData;
+
       if (role === "merchant") {
-        const result:propsData = await handleCallApi(RegisterMerchant, registerAuth);
-        if (!result.success && (result.fields || result.error)) {
-          if (typeof result.error === "string") {
-            return toast.show({
-              type: "error",
-              text1: result.error,
-            });
-          } else {
-            setError(result.fields);
-          }
+        result = await handleCallApi(RegisterMerchant, registerAuth);
+      } else {
+        result = await handleCallApi(RegisterNGO, registerAuth);
+      }
+
+      // -------------- VALIDAÇÃO CORRIGIDA --------------
+      if (!result.success) {
+        // Erros de campos
+        if (result.fields) {
+          setError(result.fields);
           return;
         }
+
+        // Erro simples direto
+        if (typeof result.error === "string") {
+          toast.show({
+            type: "error",
+            text1: result.error,
+          });
+          return;
+        }
+
+        // Mensagem genérica vinda da API
+        if (result.message) {
+          toast.show({
+            type: "error",
+            text1: result.message,
+          });
+          return;
+        }
+
+        // Fallback
         toast.show({
-          type: "success",
-          text1: result.message,
+          type: "error",
+          text1: "Erro inesperado",
         });
+        return;
+      }
+      // -------------- FIM DA CORREÇÃO --------------
+
+      toast.show({
+        type: "success",
+        text1: result.message,
+      });
+
+      if (role === "merchant") {
         router.replace("/screens/users/merchant/home");
-      } else if (role === "ngo") {
-        const result:propsData = await handleCallApi(RegisterNGO, registerAuth);
-        if (!result.success && (result.fields || result.error)) {
-          if (typeof result.error === "string") {
-            return toast.show({
-              type: "error",
-              text1: result.error,
-            });
-          } else {
-            setError(result.fields);
-          }
-          return;
-        }
-        toast.show({
-          type: "success",
-          text1: result.message,
-        });
+      } else {
         router.replace("/screens/users/ngo/home");
       }
     } catch (error) {
@@ -84,7 +115,6 @@ export function RegisterTemplate() {
       setLoading(false);
     }
   }
-
   return (
     <SafeAreaView className="bg-black800 flex-1 gap-[14px]">
       <View className="bg-yellowOrange w-[111.63%] h-[170px] rounded-br-[168px] pt-[38px] pl-[38px]">
@@ -172,7 +202,7 @@ export function RegisterTemplate() {
             <View className="mt-2">
               <ButtonStyle
                 type="default"
-                onPress={() => alert("teste")}
+                onPress={handleRegister}
                 shadow="shadow-custom-light"
                 bg="bg-lightGray"
                 children={
@@ -199,7 +229,7 @@ export function RegisterTemplate() {
               </Text>
               <ButtonStyle
                 type="default"
-                onPress={handleRegister}
+                onPress={() => router.replace("/screens/auth/login")}
                 children={
                   <Text className="text-yellowOrange font-interSemiBold text-4 border-b border-b-yellowOrange">
                     Entrar

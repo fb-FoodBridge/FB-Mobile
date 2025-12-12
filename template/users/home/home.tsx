@@ -2,14 +2,22 @@ import { View, Text, ScrollView } from "react-native";
 import Logo from "../../../assets/svg/Logo.svg";
 import Carousel from "react-native-reanimated-carousel";
 import { data, dataButtons } from "./data";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
+import { getUserRole } from "utils/userStorage";
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
   const router = useRouter()
-
+  const [role, setRole] = useState<string | null>(null);
+  useEffect(() => {
+      async function loadRole() {
+        const value = await getUserRole();
+        setRole(value);
+      }
+      loadRole();
+    }, []);
   
 
   return (

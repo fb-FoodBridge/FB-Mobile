@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ZodLoginTypes, ZodRegisterTypes } from "../validations/ZodValidationsTypes";
+import type { ZodCodeTypes, ZodForgotPasswordTypes, ZodLoginTypes, ZodNewPasswordTypes, ZodRegisterTypes } from "../validations/ZodValidationsTypes";
 
 export const useAuth = () => {
   const [loginAuth, setLoginAuth] = useState<ZodLoginTypes>({
@@ -14,6 +14,19 @@ export const useAuth = () => {
     lastName: "",
     confirmPassword: "",
     cnpj: "",
+  });
+
+  const [forgotPasswordAuth, setForgotPasswordAuth] = useState<ZodForgotPasswordTypes>({
+    email: "",
+  });
+  
+  const [codeAuth, setCodeAuth] = useState<ZodCodeTypes>({
+    code: "",
+  });
+
+  const [newPasswordAuth, setNewPasswordAuth] = useState<ZodNewPasswordTypes>({
+    password: "",
+    newPassword: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -33,5 +46,11 @@ export const useAuth = () => {
     handleRegisterChange,
     loading,
     setLoading,
+    forgotPasswordAuth,
+    setForgotPasswordAuth,
+    codeAuth,
+    setCodeAuth,
+    newPasswordAuth,
+    setNewPasswordAuth,
   };
 };

@@ -8,8 +8,9 @@ import { View, Text } from "react-native";
 
 export default function RootLayout() {
   const fontsLoaded = useAppFonts();
-
   if (!fontsLoaded) return null;
+
+  
   return (
     <>
       <StatusBar backgroundColor={"transparent"} />

@@ -10,6 +10,7 @@ export interface Donation {
 
 export async function addDonation(donation: Donation) {
   const stored = await AsyncStorage.getItem(STORAGE_KEY);
+  console.log("Role armazenado:", stored)
   const donations: Donation[] = stored ? JSON.parse(stored) : [];
 
   donations.push(donation);
@@ -19,6 +20,7 @@ export async function addDonation(donation: Donation) {
 
 export async function getDonations(): Promise<Donation[]> {
   const stored = await AsyncStorage.getItem(STORAGE_KEY);
+  console.log("Role armazenado:", stored)
   return stored ? JSON.parse(stored) : [];
 }
 

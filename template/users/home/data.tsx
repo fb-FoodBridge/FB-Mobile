@@ -60,3 +60,7 @@ export const dataButtons = [
         path:"/screens/users/merchant/home"
     },
 ]
+
+export const dataNGOButtons = [
+    
+]
