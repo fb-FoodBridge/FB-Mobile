@@ -5,17 +5,19 @@ import { useRouter } from "expo-router";
 import React, { useState, useEffect } from "react";
 import { getUserRole } from "utils/userStorage";
 import { useAuth } from "hook/useAuth";
-import toast from "react-native-toast-message"
+import toast from "react-native-toast-message";
 import { propsData } from "interface/interfaces";
 import { handleCallApi } from "services/handleCallApi";
 import { RegisterMerchant } from "services/users/auth/merchant/register";
 import { RegisterNGO } from "services/users/auth/ngo/register";
+import { LoginMerchant } from "services/users/auth/merchant/login";
+import { LoginNGO } from "services/users/auth/ngo/login";
 
 export function RegisterTemplate() {
   const router = useRouter();
   const [role, setRole] = useState<string | null>(null);
   const { registerAuth, handleRegisterChange, setLoading, loading } = useAuth();
-    const [error, setError] = useState<{ [key: string]: string } | undefined>(
+  const [error, setError] = useState<{ [key: string]: string } | undefined>(
     undefined
   );
   useEffect(() => {
@@ -27,20 +29,19 @@ export function RegisterTemplate() {
   }, []);
 
   useEffect(() => {
-  if (!error) return;
+    if (!error) return;
 
-  const firstMessage = Object.values(error)[0];
+    const firstMessage = Object.values(error)[0];
 
-  setTimeout(() => {
-    toast.show({
-      type: "error",
-      text1: firstMessage,
-    });
-  }, 0);
-}, [error]);
+    setTimeout(() => {
+      toast.show({
+        type: "error",
+        text1: firstMessage,
+      });
+    }, 0);
+  }, [error]);
 
-
- async function handleRegister() {
+  async function handleRegister() {
     if (role === "" || !role) {
       toast.show({
         type: "error",
@@ -60,15 +61,12 @@ export function RegisterTemplate() {
         result = await handleCallApi(RegisterNGO, registerAuth);
       }
 
-      // -------------- VALIDAÇÃO CORRIGIDA --------------
       if (!result.success) {
-        // Erros de campos
         if (result.fields) {
           setError(result.fields);
           return;
         }
 
-        // Erro simples direto
         if (typeof result.error === "string") {
           toast.show({
             type: "error",
@@ -77,7 +75,6 @@ export function RegisterTemplate() {
           return;
         }
 
-        // Mensagem genérica vinda da API
         if (result.message) {
           toast.show({
             type: "error",
@@ -86,20 +83,57 @@ export function RegisterTemplate() {
           return;
         }
 
-        // Fallback
         toast.show({
           type: "error",
           text1: "Erro inesperado",
         });
         return;
       }
-      // -------------- FIM DA CORREÇÃO --------------
 
       toast.show({
         type: "success",
         text1: result.message,
       });
 
+      if (role === "merchant") {
+        result = await handleCallApi(LoginMerchant, registerAuth);
+      } else {
+        result = await handleCallApi(LoginNGO, registerAuth);
+      }
+
+      if (!result.success) {
+        if (result.fields) {
+          setError(result.fields);
+          return;
+        }
+
+        if (typeof result.error === "string") {
+          toast.show({
+            type: "error",
+            text1: result.error,
+          });
+          return;
+        }
+
+        if (result.message) {
+          toast.show({
+            type: "error",
+            text1: result.message,
+          });
+          return;
+        }
+
+        toast.show({
+          type: "error",
+          text1: "Erro inesperado",
+        });
+        return;
+      }
+
+      toast.show({
+        type: "success",
+        text1: result.message,
+      });
       if (role === "merchant") {
         router.replace("/screens/users/merchant/home");
       } else {
@@ -135,9 +169,7 @@ export function RegisterTemplate() {
               <View className="w-[150px]">
                 <InputStyle
                   value={registerAuth.firstName}
-                  onChange={(text) =>
-                    handleRegisterChange("firstName", text)
-                  }
+                  onChange={(text) => handleRegisterChange("firstName", text)}
                   keyboardType="default"
                   label="Nome"
                   placeholder="Nome"
@@ -147,9 +179,7 @@ export function RegisterTemplate() {
               <View className="w-[150px] ">
                 <InputStyle
                   value={registerAuth.lastName}
-                  onChange={(text) =>
-                    handleRegisterChange("lastName", text)
-                  }
+                  onChange={(text) => handleRegisterChange("lastName", text)}
                   keyboardType="default"
                   label="Sobrenome"
                   placeholder="Sobrenome"
@@ -159,9 +189,7 @@ export function RegisterTemplate() {
             </View>
             <InputStyle
               value={registerAuth.email}
-              onChange={(text) =>
-                handleRegisterChange("email", text)
-              }
+              onChange={(text) => handleRegisterChange("email", text)}
               keyboardType="email-address"
               label="Email"
               placeholder="Digite seu email..."
@@ -169,9 +197,7 @@ export function RegisterTemplate() {
             />
             <InputStyle
               value={registerAuth.cnpj}
-              onChange={(text) =>
-                handleRegisterChange("cnpj", text)
-              }
+              onChange={(text) => handleRegisterChange("cnpj", text)}
               keyboardType="default"
               label="CNPJ"
               placeholder="Digite seu CNPJ..."
@@ -179,9 +205,7 @@ export function RegisterTemplate() {
             />
             <InputStyle
               value={registerAuth.password}
-              onChange={(text) =>
-                handleRegisterChange("password", text)
-              }
+              onChange={(text) => handleRegisterChange("password", text)}
               keyboardType="default"
               label="Senha"
               placeholder="Digite sua senha..."
@@ -190,10 +214,8 @@ export function RegisterTemplate() {
             />
             <InputStyle
               value={registerAuth.confirmPassword}
-              onChange={(text) =>
-                handleRegisterChange("confirmPassword", text)
-              }
-              keyboardType="default"  
+              onChange={(text) => handleRegisterChange("confirmPassword", text)}
+              keyboardType="default"
               label="Confirme a Senha"
               placeholder="Confirme sua senha..."
               placeholderColor="#A1A1AA"
@@ -207,7 +229,7 @@ export function RegisterTemplate() {
                 bg="bg-lightGray"
                 children={
                   <Text className="text-offWhite font-interSemiBold text-[16px]">
-                    Cadastrar
+                    {loading ? "Cadastrando..." : "Cadastrar"}
                   </Text>
                 }
                 size="h-[53.4px] min-w-full"

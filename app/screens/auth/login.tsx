@@ -117,7 +117,7 @@ export default function Login() {
             rouded="rounded-[11.12px]"
             children={
               <Text className="text-offWhite font-interSemiBold text-[16px]">
-                Entrar
+                {loading ? "Entrando..." : "Entrar"}
               </Text>
             }
           />

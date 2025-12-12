@@ -1,24 +1,51 @@
 import { View, Text, ScrollView } from "react-native";
 import Logo from "../../../assets/svg/Logo.svg";
 import Carousel from "react-native-reanimated-carousel";
-import { data, dataButtons } from "./data";
+import { data, dataButtons, dataNGOButtons } from "./data";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
 import { getUserRole } from "utils/userStorage";
+import { jwtDecode } from "jwt-decode";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const router = useRouter()
+  const router = useRouter();
+  const [username, setUsername] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
   useEffect(() => {
-      async function loadRole() {
-        const value = await getUserRole();
-        setRole(value);
+    async function checkToken() {
+      const token = await AsyncStorage.getItem("token");
+      if (!token) {
+        router.replace("/screens/auth/login");
       }
-      loadRole();
-    }, []);
-  
+    }
+    checkToken();
+  }, []);
+  useEffect(() => {
+    async function loadRole() {
+      const value = await getUserRole();
+      setRole(value);
+    }
+    loadRole();
+  }, []);
+
+  useEffect(() => {
+    async function decodeToken() {
+      const token = await AsyncStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        console.log(decoded);
+        setUsername(decoded.username);
+
+        setRole(decoded.role);
+      }
+    }
+
+    decodeToken();
+  }, []);
 
   return (
     <ScrollView className="bg-black800 flex-1 flex-col ">
@@ -26,9 +53,9 @@ export function HomeTemplate() {
         <Logo width={49} height={25} />
       </View>
       <Text className=" pl-5 font-nourd_bold mb-[75px] text-offWhite text-[20px] pt-[41px] ml-1">
-        Bem-vindo de volta, {"["}
-        <Text className="text-yellow500">Nome</Text>
-        {"]"}!
+        Bem-vindo de volta,
+        <Text className="text-yellow500">{username}</Text>
+        !
       </Text>
       <View className="w-full justify-center items-center gap-[69px] flex-col">
         <View
@@ -80,23 +107,21 @@ export function HomeTemplate() {
       </View>
       <View className="flex-1 mx-5    mt-[91px]">
         <View className=" flex-row w-full flex-wrap gap-5 justify-center pb-[100px]">
-          {dataButtons.map((item, index) => {
-            return index <= 2 ? (
+          {role === "merchant"
+            ? dataButtons.map((item, index) => {
+                return index <= 2 ? (
                   <ButtonStyle
                     type={"default"}
                     key={index}
-
                     children={
-                        <View
-                          className="bg-lightGray w-full flex-col rounded-[14px] min-w-[26.97%] h-[109px] items-center justify-center gap-[10px]"
-                        >
-                          <item.icon width={41} height={41} />
-                          <Text className="text-offWhite text-5 font-nourd_bold">
-                            {item.title}
-                          </Text>
-                        </View>
+                      <View className="bg-lightGray w-full flex-col rounded-[14px] min-w-[26.97%] h-[109px] items-center justify-center gap-[10px]">
+                        <item.icon width={41} height={41} />
+                        <Text className="text-offWhite text-5 font-nourd_bold">
+                          {item.title}
+                        </Text>
+                      </View>
                     }
-                    onPress={() => router.replace(item.path? item.path : "")}
+                    onPress={() => router.replace(item.path ? item.path : "")}
                   />
                 ) : (
                   <ButtonStyle
@@ -114,10 +139,45 @@ export function HomeTemplate() {
                         </Text>
                       </View>
                     }
-                    onPress={() => router.replace(item.path? item.path : "")}
+                    onPress={() => router.replace(item.path ? item.path : "")}
                   />
-                )
-          })}
+                );
+              })
+            : dataNGOButtons.map((item, index) => {
+                return index <= 2 ? (
+                  <ButtonStyle
+                    type={"default"}
+                    key={index}
+                    children={
+                      <View className="bg-lightGray w-full flex-col rounded-[14px] min-w-[26.97%] h-[109px] items-center justify-center gap-[10px]">
+                        <item.icon width={41} height={41} />
+                        <Text className="text-offWhite text-5 font-nourd_bold">
+                          {item.title}
+                        </Text>
+                      </View>
+                    }
+                    onPress={() => router.replace(item.path ? item.path : "")}
+                  />
+                ) : (
+                  <ButtonStyle
+                    type={"default"}
+                    key={index}
+                    children={
+                      <View
+                        className={`bg-lightGray w-full justify-center items-center gap-[10px] rounded-[14px] ${
+                          index === 3 ? "min-w-[59.07%%]" : "min-w-[26.97%]"
+                        } h-[109px] ${index === 3 ? "flex-row" : "flex-col"} `}
+                      >
+                        <item.icon width={41} height={41} />
+                        <Text className="text-offWhite text-5 font-nourd_bold">
+                          {item.title}
+                        </Text>
+                      </View>
+                    }
+                    onPress={() => router.replace(item.path ? item.path : "")}
+                  />
+                );
+              })}
         </View>
       </View>
     </ScrollView>

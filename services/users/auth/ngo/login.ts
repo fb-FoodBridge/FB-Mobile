@@ -17,7 +17,7 @@ export async function LoginNGO(credentials: ZodLoginTypes) {
         password: credentials.password,
       }),
     });
-    console.log("Response Status:", res.status); // Log da resposta para depuração
+    console.log("Response Status:", res.status); 
     console.log(credentials)
     const json: LoginResponse | any = await res.json();
 
@@ -35,7 +35,6 @@ export async function LoginNGO(credentials: ZodLoginTypes) {
       };
     }
 
-    // Salvar token corretamente no React Native
     await AsyncStorage.setItem("token", json.access_token);
 
     return {
