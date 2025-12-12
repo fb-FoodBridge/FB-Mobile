@@ -31,21 +31,21 @@ export function Modal() {
       return;
     }
 
-    // Adiciona nova doação
+
     await addDonation({
       title: values.name,
       validity: values.validity,
       quantity: Number(values.quantity),
     });
 
-    // ⬇️ Atualiza a lista imediatamente
+  
     const updated = await getDonations();
     setDonations(updated);
 
-    // Limpa os inputs
+  
     setValues({ name: "", validity: "", quantity: "" });
 
-    // Agora sim troca a tela depois de salvar
+
     setNext(true);
   }
 

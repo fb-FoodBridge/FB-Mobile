@@ -54,7 +54,7 @@ export const iconsNavbarNGO = [
     {
         icon: Request,
         active: RequestActive,
-        path: "/screens/users/merchant/donation"
+        path: "/screens/users/ngo/request"
         
     },
     

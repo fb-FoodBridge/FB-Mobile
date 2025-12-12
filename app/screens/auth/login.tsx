@@ -1,4 +1,5 @@
-import { SafeAreaView, View, Text, Image } from "react-native";
+import { View, Text, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Chief from "assets/png/chiefAuth.png";
 import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
@@ -16,6 +17,7 @@ export default function Login() {
   const { loginAuth, handleLoginChange, loading, setLoading } = useAuth();
   async function handleLogin() {
     try {
+      setLoading(true);
       const result: propsData = await handleCallApi(LoginMerchant, loginAuth);
 
       if (!result.success && (result.fields || result.error)) {
@@ -32,11 +34,11 @@ export default function Login() {
         type: "success",
         text1: result.message,
       });
-      router.replace("/screens/users/merchant/home")
+      router.replace("/screens/users/merchant/home");
     } catch (error) {
       console.warn(error);
       try {
-        const result:propsData = await handleCallApi(LoginNGO, loginAuth);
+        const result: propsData = await handleCallApi(LoginNGO, loginAuth);
 
         if (!result.success && (result.fields || result.error)) {
           if (typeof result.error === "string") {
@@ -51,7 +53,7 @@ export default function Login() {
           type: "success",
           text1: result.message,
         });
-        router.replace("/screens/users/ngo/home")
+        router.replace("/screens/users/ngo/home");
       } catch (error) {
         console.warn(error);
       }

@@ -4,15 +4,30 @@ import { ButtonStyle } from "ui/button";
 import { iconsNavbar, iconsNavbarNGO } from "./data";
 import { useRouter } from "expo-router";
 import { getUserRole } from "utils/userStorage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { jwtDecode } from "jwt-decode";
 export function Navbar() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [role, setRole] = useState<string | null>(null);
-  useEffect(() => {
+   useEffect(() => {
     async function loadRole() {
       const value = await getUserRole();
       setRole(value);
     }
     loadRole();
+  }, []);
+
+  useEffect(() => {
+    async function decodeToken() {
+      const token = await AsyncStorage.getItem("token");
+      if (token) {
+        const decoded: any = jwtDecode(token);
+        console.log(decoded);
+
+        setRole(decoded.role);
+      }
+    }
+    decodeToken();
   }, []);
 
   useEffect(() => {});
