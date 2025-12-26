@@ -9,6 +9,6 @@ export const dataModal = [
     },
     {
         label: "Quantidade:",
-        placeholder: "digite a data"
+        placeholder: "digite a quantidade"
     },
 ]

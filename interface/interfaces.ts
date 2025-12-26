@@ -6,8 +6,9 @@ export interface propsTemplate {
   button: () => void;
 }
 
-export interface propsOverlay {
+export interface propsClose {
   button: () => void;
+  children?: ReactNode;
 }
 
 export interface propsModal {
@@ -15,6 +16,16 @@ export interface propsModal {
     placeholder: string,
     label: string
   } 
+}
+export interface propsCreateDonation {
+  quantity: number;
+  products: [
+    {
+      name: string;
+      validity: string;
+      quantity: number;
+    }
+  ]
 }
 
 export interface propsButtonStyle {

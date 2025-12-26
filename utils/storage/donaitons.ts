@@ -5,7 +5,7 @@ const STORAGE_KEY = "@donations";
 export interface Donation {
   title: string;
   quantity: number;
-  validity: string;
+  validity: never | string;
 }
 
 export async function addDonation(donation: Donation) {

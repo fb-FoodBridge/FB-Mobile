@@ -1,50 +1,45 @@
 import { useRouter } from "expo-router";
 import { View, Text, ScrollView } from "react-native";
 import { ButtonStyle } from "ui/button";
-import { dataModal } from "./data";
 import { InputStyle } from "ui/input";
 import React, { useEffect, useState } from "react";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 import { addDonation, Donation, getDonations } from "utils/storage/donaitons";
-import { formatDate, formatISODate } from "utils/formatDate";
+import { propsClose } from "interface/interfaces";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import Toast from "react-native-toast-message";
+import { formatDate } from "utils/formatDate";
 
-export function Modal() {
+export function Modal({ button }: propsClose) {
   const router = useRouter();
   const [next, setNext] = useState(false);
   const [donations, setDonations] = useState<Donation[]>([]);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [date, setDate] = useState<Date | null>(new Date());
   const [values, setValues] = useState({
     name: "",
-    validity: "",
     quantity: "",
   });
 
-  function handleChange(value: string, index: number) {
-    if (index === 0) setValues((p) => ({ ...p, name: value }));
-    if (index === 1) setValues((p) => ({ ...p, validity: formatDate(value) }));
-    if (index === 2)
-      setValues((p) => ({ ...p, quantity: value.replace(/[^0-9]/g, "") }));
-  }
-
   async function handleNext() {
-    if (!values.name || !values.validity || !values.quantity) {
-      console.warn("Preencha todos os campos.");
+    if (!values.name || !date || !values.quantity) {
+      Toast.show({
+        type: "error",
+        text1: "Preencha todos os campos.",
+      });
       return;
     }
 
-
     await addDonation({
       title: values.name,
-      validity: values.validity,
+      validity: date ? date.toLocaleDateString("pt-BR") : "",
       quantity: Number(values.quantity),
     });
 
-  
     const updated = await getDonations();
     setDonations(updated);
 
-  
-    setValues({ name: "", validity: "", quantity: "" });
-
+    setValues({ name: "", quantity: "" });
 
     setNext(true);
   }
@@ -58,17 +53,10 @@ export function Modal() {
   }, []);
 
   return (
-    <View className="absolute z-40 justify-center items-center w-full h-full  ">
+    <View className="z-40 justify-center items-center">
       <View className="w-[84.42%] rounded-[14px] bg-black800 h-[459px] shadow-shadow-modal pt-[20px] pl-[20px]">
         <View className="flex-row gap-2 items-center">
-          <ButtonStyle
-            type="GoBack"
-            onPress={
-              next
-                ? () => setNext(false)
-                : () => router.replace("/screens/users/merchant/donation")
-            }
-          />
+          <ButtonStyle type="GoBack" onPress={button} />
           <Text className="font-nourd_bold text-[20px] text-offWhite">
             Crie sua doação!
           </Text>
@@ -133,26 +121,70 @@ export function Modal() {
           ) : (
             <>
               <View className="flex-col gap-[15px] h-auto w-[234px]">
-                {dataModal.map((item, index) => {
-                  const isLast = index === dataModal.length - 1;
-                  return (
-                    <View key={index} className="w-full">
-                      <InputStyle
-                        label={item.label}
-                        placeholder={item.placeholder}
-                        keyboardType={isLast ? "number-pad" : "default"}
-                        value={
-                          index === 0
-                            ? values.name
-                            : index === 1
-                            ? values.validity
-                            : values.quantity
+                <View className="w-full">
+                  <InputStyle
+                    label={"Nome do produto:"}
+                    placeholder={"digite o nome"}
+                    keyboardType={"default"}
+                    placeholderColor=""
+                    value={values.name}
+                    onChange={(value) => {
+                      setValues((item) => ({ ...item, name: value }));
+                    }}
+                  />
+                </View>
+                <View className="flex-col gap-[5px]">
+                  <Text className="font-interLight text-offWhite text-[14px]">
+                    Data de vencimento:
+                  </Text>
+                  <ButtonStyle
+                    type={"default"}
+                    children={
+                      <View className="w-full h-[40px] rounded-lg border bg-offWhite px-3 flex-row items-center justify-between">
+                        <Text
+                          className={`${
+                            date ? "text-black800" : "text-black800/60"
+                          } font-interRegular text-[14px]`}
+                        >
+                          {date && date.toLocaleDateString("pt-BR")}
+                        </Text>
+                        <MaterialIcons
+                          name="calendar-today"
+                          size={20}
+                          color="#00000099"
+                        />
+                      </View>
+                    }
+                    onPress={() => setShowDatePicker(!showDatePicker)}
+                  />
+
+                  {showDatePicker && (
+                    <DateTimePicker
+                      value={date ?? new Date()}
+                      mode="date"
+                      display="calendar"
+                      minimumDate={new Date()}
+                      onChange={(event, selectedDate) => {
+                        setShowDatePicker(false);
+                        if (selectedDate) {
+                          setDate(selectedDate);
                         }
-                        onChange={(text) => handleChange(text, index)}
-                      />
-                    </View>
-                  );
-                })}
+                      }}
+                    />
+                  )}
+                </View>
+                <View className="w-full">
+                  <InputStyle
+                    label={"Quantidade:"}
+                    placeholder={"digite a quantidade"}
+                    keyboardType={"default"}
+                    placeholderColor=""
+                    value={values.quantity}
+                    onChange={(value) => {
+                      setValues((item) => ({ ...item, quantity: value }));
+                    }}
+                  />
+                </View>
               </View>
               <View className="flex-row mt-[42px] w-full items-center justify-end pr-[30px] gap-[20px]">
                 <ButtonStyle
@@ -168,6 +200,7 @@ export function Modal() {
                     throw new Error("Function not implemented.");
                   }}
                 />
+
                 <ButtonStyle
                   type={"default"}
                   bg="bg-yellowOrange"

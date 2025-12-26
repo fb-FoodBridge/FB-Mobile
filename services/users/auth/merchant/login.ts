@@ -1,6 +1,8 @@
+import { ZodLoginSchema } from "validations/ZodValidationSchema";
 import type { ZodLoginTypes } from "../../../../validations/ZodValidationsTypes";
 import { api } from "../../../base_url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ZodValidate } from "utils/zodValidationUtil";
 
 interface LoginResponse {
   access_token: string;
@@ -8,13 +10,14 @@ interface LoginResponse {
 }
 
 export async function LoginMerchant(credentials: ZodLoginTypes) {
+  const validate = ZodValidate(ZodLoginSchema, credentials);
   try {
     const res = await fetch(`${api}/merchant/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
+        email: validate.data?.email,
+        password: validate.data?.password,
       }),
     });
 

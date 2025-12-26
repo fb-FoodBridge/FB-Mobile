@@ -1,12 +1,13 @@
-import { View, Text, ScrollView } from "react-native"; 
+import { View, Text, ScrollView } from "react-native";
 import Logo from "../../../../assets/svg/Logo.svg";
 import Build from "../../../../assets/svg/icons/card/building.svg";
 import { ButtonStyle } from "ui/button";
 import React, { useEffect, useState } from "react";
-import { Modal } from "components/modal/modal";
+import { Modal } from "../../../../components/modal/modal";
 import { Overlay } from "ui/overlay";
 import { handleCallApi } from "services/handleCallApi";
 import { ListNGO } from "services/users/auth/ngo/listing";
+
 
 export default function Donation() {
   const [active, setActive] = useState(false);
@@ -22,12 +23,7 @@ export default function Donation() {
       console.log("LISTAGEM NGO:", response);
 
       if (response?.success) {
-        // Correção: garante compatibilidade com qualquer formato da API
-        const data =
-          response.data?.data?.ngo ||
-          response.data?.ngo ||
-          response.data ||
-          [];
+        const data = response.data || [];
 
         if (Array.isArray(data)) {
           setNgoList(data);
@@ -39,12 +35,12 @@ export default function Donation() {
 
   return (
     <View className="flex-1 bg-black800 relative">
-    
       {active && (
-        <>
-          <Overlay button={() => setActive(!active)} />
-          <Modal />
-        </>
+
+          <Overlay button={() => setActive(false)} >
+            <Modal button={() => setActive(false)} />
+          </Overlay>
+
       )}
 
       <View className="mt-10 ml-[25px]">
@@ -57,7 +53,7 @@ export default function Donation() {
         </Text>
       </View>
 
-      <ScrollView className="mx-5">
+      <ScrollView showsVerticalScrollIndicator={false} className="mx-5">
         {ngoList.length === 0 ? (
           <Text className="text-offWhite text-center mt-10">Carregando...</Text>
         ) : (

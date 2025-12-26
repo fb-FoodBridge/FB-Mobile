@@ -64,3 +64,9 @@ export const ZodNewPasswordSchema = z.object({
       "A senha deve conter pelo menos um caractere especial"
     ),
 });
+
+export const ZodDonationSchema = z.object({
+  name: z.string().min(3, "O nome do alimento é obrigatório"),
+  validity: z.string().min(1, "A validade é obrigatória"),
+  quantity: z.number().min(1, "A quantidade deve ser pelo menos 1").max(10, "A quantidade máxima é 10"),
+});
