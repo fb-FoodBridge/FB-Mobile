@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import { CardButton } from "components/card/cardButton";
 import Chief from "assets/svg/illustrations/chief.svg";
 import NGO from "assets/png/ngo.png"
-import { setUserRole } from "utils/userStorage";
+import { setUserRole } from "utils/storage/userStorage";
 
 export default function OnboardingRole() {
   const router = useRouter();

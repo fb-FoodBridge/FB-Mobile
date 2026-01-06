@@ -1,8 +1,8 @@
-import { propsClose } from "interface/interfaces";
+import { propsCloseModal } from "interface/interfaces";
 import { ButtonStyle } from "./button";
 import { View } from "react-native";
 
-export function Overlay({ button, children }: propsClose) {
+export function Overlay({ button, children }: propsCloseModal) {
   return (
     <View className="absolute inset-0 z-20" >
       <ButtonStyle

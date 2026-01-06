@@ -19,7 +19,7 @@ export const ZodRegisterSchema = z.object({
     ),
   cnpj: z.preprocess((input) => {
     if (typeof input === "string") {
-       return input.replace(/[.\-/]/g, "");
+      return input.replace(/[.\-/]/g, "");
     }
     return input;
   }, z.string()),
@@ -36,7 +36,7 @@ export const ZodForgotPasswordSchema = z.object({
 
 export const ZodCodeSchema = z.object({
   code: z.string().max(4, "Código inválido").min(4, "Código inválido"),
-})
+});
 
 export const ZodNewPasswordSchema = z.object({
   password: z
@@ -51,7 +51,7 @@ export const ZodNewPasswordSchema = z.object({
       (val) => /[!@#$%^&*()_+\-=[\]{}|;:'",.<>/?]/.test(val),
       "A senha deve conter pelo menos um caractere especial"
     ),
-    newPassword:  z
+  newPassword: z
     .string()
     .min(8, { message: "Senha com no mínimo 8 caracteres" })
     .refine(
@@ -66,7 +66,19 @@ export const ZodNewPasswordSchema = z.object({
 });
 
 export const ZodDonationSchema = z.object({
-  name: z.string().min(3, "O nome do alimento é obrigatório"),
-  validity: z.string().min(1, "A validade é obrigatória"),
-  quantity: z.number().min(1, "A quantidade deve ser pelo menos 1").max(10, "A quantidade máxima é 10"),
+  ngo_id: z.uuid(),
+  products: z.array(
+    z.object({
+      name: z.string().min(3, "O nome do alimento é obrigatório"),
+      validity: z.string().min(1, "A validade é obrigatória"),
+      quantity: z
+        .number()
+        .min(1, "A quantidade deve ser pelo menos 1")
+        .max(10, "A quantidade máxima é 10"),
+    })
+  ),
 });
+
+export const ZodValidateEmailSchema = z.object({
+  email: z.email("Email inválido")
+})

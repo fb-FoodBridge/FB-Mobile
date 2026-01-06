@@ -7,11 +7,14 @@ import { Modal } from "../../../../components/modal/modal";
 import { Overlay } from "ui/overlay";
 import { handleCallApi } from "services/handleCallApi";
 import { ListNGO } from "services/users/auth/ngo/listing";
+import { ngoList } from "interface/interfaces";
 
 
 export default function Donation() {
   const [active, setActive] = useState(false);
   const [ngoList, setNgoList] = useState<any[]>([]);
+  const [ngoId, setNgoId] = useState("")
+
 
   async function handleListingNGO() {
     return await handleCallApi(ListNGO, {});
@@ -20,7 +23,6 @@ export default function Donation() {
   useEffect(() => {
     async function loadNGO() {
       const response = await handleListingNGO();
-      console.log("LISTAGEM NGO:", response);
 
       if (response?.success) {
         const data = response.data || [];
@@ -38,7 +40,7 @@ export default function Donation() {
       {active && (
 
           <Overlay button={() => setActive(false)} >
-            <Modal button={() => setActive(false)} />
+            <Modal button={() => setActive(false)} ngoId={ngoId}  />
           </Overlay>
 
       )}
@@ -57,16 +59,16 @@ export default function Donation() {
         {ngoList.length === 0 ? (
           <Text className="text-offWhite text-center mt-10">Carregando...</Text>
         ) : (
-          ngoList.map((item: any, index: number) => (
+          ngoList.map((item: ngoList) => (
             <View
-              key={index}
+              key={item.id}
               className="bg-lightGray w-full h-[133px] rounded-[14px] pt-[22px] pl-[10px] pr-[38px] mb-5"
             >
               <View className="flex-row gap-[10px]">
                 <Build />
                 <View className="flex-col gap-[6px]">
                   <Text className="font-interBold text-offWhite text-[16px]">
-                    {item.username || item.name || "Nome não informado"}
+                    {item.username || "Nome não informado"}
                   </Text>
 
                   <Text className="font-interRegular text-[12px] text-[#AEAEAE] w-[264px]">
@@ -78,7 +80,10 @@ export default function Donation() {
               <View className="w-full items-end pt-[10px]">
                 <ButtonStyle
                   bg="bg-black800"
-                  onPress={() => setActive(!active)}
+                  onPress={() => {
+                    setActive(!active)
+                    setNgoId(item.id)
+                  }}
                   type="default"
                   size="w-[75px] h-[25px]"
                 >

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ButtonStyle } from "ui/button";
 import { iconsNavbar, iconsNavbarNGO } from "./data";
 import { useRouter } from "expo-router";
-import { getUserRole } from "utils/userStorage";
+import { getUserRole } from "utils/storage/userStorage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
 export function Navbar() {

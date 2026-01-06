@@ -6,10 +6,11 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
-import { getUserRole } from "utils/userStorage";
+import { getUserRole } from "utils/storage/userStorage";
 import { jwtDecode } from "jwt-decode";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 export function HomeTemplate() {
   const [activeIndex, setActiveIndex] = useState(0);
   const router = useRouter();
@@ -37,9 +38,7 @@ export function HomeTemplate() {
       const token = await AsyncStorage.getItem("token");
       if (token) {
         const decoded: any = jwtDecode(token);
-        console.log(decoded);
         setUsername(decoded.username);
-
         setRole(decoded.role);
       }
     }
@@ -54,8 +53,7 @@ export function HomeTemplate() {
       </View>
       <Text className=" pl-5 font-nourd_bold mb-[75px] text-offWhite text-[20px] pt-[41px] ml-1">
         Bem-vindo de volta,
-        <Text className="text-yellow500">{username}</Text>
-        !
+        <Text className="text-yellow500">{username}</Text>!
       </Text>
       <View className="w-full justify-center items-center gap-[69px] flex-col">
         <View

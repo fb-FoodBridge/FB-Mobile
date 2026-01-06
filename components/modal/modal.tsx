@@ -4,15 +4,24 @@ import { ButtonStyle } from "ui/button";
 import { InputStyle } from "ui/input";
 import React, { useEffect, useState } from "react";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
-import { addDonation, Donation, getDonations } from "utils/storage/donaitons";
-import { propsClose } from "interface/interfaces";
+import {
+  addDonation,
+  clearDonations,
+  Donation,
+  getDonations,
+} from "utils/storage/donaitons";
+import { propsCloseModal } from "interface/interfaces";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Toast from "react-native-toast-message";
-import { formatDate } from "utils/formatDate";
+import { handleCallApi } from "services/handleCallApi";
+import { CreateDonation } from "services/donation/create";
+import { getUserRole } from "utils/storage/userStorage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export function Modal({ button }: propsClose) {
+export function Modal({ button, ngoId }: propsCloseModal) {
   const router = useRouter();
   const [next, setNext] = useState(false);
+
   const [donations, setDonations] = useState<Donation[]>([]);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState<Date | null>(new Date());
@@ -20,6 +29,25 @@ export function Modal({ button }: propsClose) {
     name: "",
     quantity: "",
   });
+  
+  if(!ngoId){
+    return null 
+  }
+
+  const handleSubmitProducts = async () => {
+    const ArrayProducts = await getDonations();
+
+    const response = await handleCallApi(CreateDonation, {ngo_id:ngoId,
+      products: ArrayProducts.map((item) => ({
+        name: item.title,
+        validity: item.validity,
+        quantity: item.quantity,
+      })),
+    });
+    console.log(await AsyncStorage.getItem("token"))
+    console.log(await getUserRole())
+    console.log(response.message)
+  };
 
   async function handleNext() {
     if (!values.name || !date || !values.quantity) {
@@ -112,9 +140,7 @@ export function Modal({ button }: propsClose) {
                       Enviar
                     </Text>
                   }
-                  onPress={() =>
-                    router.replace("/screens/users/merchant/donation")
-                  }
+                  onPress={handleSubmitProducts}
                 />
               </View>
             </>

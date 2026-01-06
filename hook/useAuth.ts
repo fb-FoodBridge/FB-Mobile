@@ -35,6 +35,10 @@ export const useAuth = () => {
     setLoginAuth((prev) => ({ ...prev, [name]: value }));
   }
 
+  function handleForgotPassword(name: keyof ZodForgotPasswordTypes, value: string) {
+    setForgotPasswordAuth((prev) => ({ ...prev, [name]: value }));
+  }
+
   function handleRegisterChange(name: keyof ZodRegisterTypes, value: string) {
     setRegisterAuth((prev) => ({ ...prev, [name]: value }));
   }
@@ -47,10 +51,8 @@ export const useAuth = () => {
     loading,
     setLoading,
     forgotPasswordAuth,
-    setForgotPasswordAuth,
+    handleForgotPassword,
     codeAuth,
-    setCodeAuth,
     newPasswordAuth,
-    setNewPasswordAuth,
   };
 };

@@ -1,74 +1,115 @@
+import { useAuth } from "hook/useAuth";
+import { propsDataForgotPassword } from "interface/interfaces";
+import Toast from "react-native-toast-message";
 import { Text } from "react-native";
+import { handleCallApi } from "services/handleCallApi";
+import { ForgotPassword } from "services/users/password/Forgot-Password";
 import { InputStyle } from "ui/input";
 
-export const data = [
-  {
-    index: 0,
-    title: (
-      <Text className=" font-nourd_heavy text-offWhite text-3xl">
-        Esqueceu a senha?
-      </Text>
-    ),
-    description: (
-      <Text className="font-interRegular  text-[12px] text-offWhite w-[300px]">
-        Não se preocupe! Insira o e-mail associado à sua conta.
-      </Text>
-    ),
-    input: (
-      <InputStyle
-        
-        label="Email"
-        placeholder="Digite seu email..."
-        keyboardType="default"
-        placeholderColor="#000"
-      />
-    ),
-    buttonChildren: "Enviar código",
-  },
-  {
-    index: 1,
-    title: (
-      <Text className=" font-nourd_heavy text-offWhite text-3xl">
-        Código de Verificação
-      </Text>
-    ),
-    description: (
-      <Text className="font-interRegular  text-[12px] text-offWhite w-[300px]">
-        Digite o código recebido no e-mail vinculado à sua conta e prossiga para
-        redefinir sua senha
-      </Text>
-    ),
-    input:(
-      <InputStyle otp={true} />
-    ),
-    buttonChildren: "Confirmar",
-  },
-  {
-    index: 2,
-    title: (
-      <Text className=" font-nourd_heavy text-offWhite text-3xl">
-        Digite sua nova senha
-      </Text>
-    ),
-    input: (
-      <>
-        <InputStyle
-          label="Senha"
-          placeholder="Digite sua senha..."
-          keyboardType="default"
-          placeholderColor="#000"
-          icon
-        />
+export function forgotPasswordData({ index }: propsDataForgotPassword): any {
+  const { forgotPasswordAuth, handleForgotPassword } = useAuth();
+  let nextScreen = false
 
+  const ForgotPasswordCallApi = async () => {
+    if (index === 1) {
+      const response = await handleCallApi(ForgotPassword, forgotPasswordAuth);
+      if (!response.success && (response.fields || response.error)) {
+        if (typeof response.error === "string") {
+          return Toast.show({
+            type: "error",
+            text1: response.error,
+          });
+        } else if (response.fields) {
+          const firstFieldError = Object.values(response.fields)[0];
+          Toast.show({
+            type: "error",
+            text1: firstFieldError ,
+          });
+        }
+        return false
+      }
+
+      Toast.show({
+            type: "success",
+            text1: response.message,
+          });
+      return true;
+    }
+  };
+  return [
+    {
+      submit: ForgotPasswordCallApi,
+    },
+    {
+      index: 1,
+      title: (
+        <Text className=" font-nourd_heavy text-offWhite text-3xl">
+          Esqueceu a senha?
+        </Text>
+      ),
+      description: (
+        <Text className="font-interRegular  text-[12px] text-offWhite w-[300px]">
+          Não se preocupe! Insira o e-mail associado à sua conta.
+        </Text>
+      ),
+      input: (
         <InputStyle
-          label="Confirmar a senha"
-          placeholder="Confirme sua senha..."
+          value={forgotPasswordAuth.email}
+          onChange={(value) => handleForgotPassword("email", value)}
+          label="Email"
+          placeholder="Digite seu email..."
           keyboardType="default"
           placeholderColor="#000"
-          icon
         />
-      </>
-    ),
-    buttonChildren: "Redefinir",
-  },
-];
+      ),
+      buttonChildren: "Enviar código",
+      path:  "/screens/auth/password/code",
+    },
+    {
+      index: 2,
+      title: (
+        <Text className=" font-nourd_heavy text-offWhite text-3xl">
+          Código de Verificação
+        </Text>
+      ),
+      description: (
+        <Text className="font-interRegular  text-[12px] text-offWhite w-[300px]">
+          Digite o código recebido no e-mail vinculado à sua conta e prossiga
+          para redefinir sua senha
+        </Text>
+      ),
+      input: <InputStyle otp={true} />,
+      buttonChildren: "Confirmar",
+      path: "/screens/auth/password/newPassword",
+    },
+    {
+      index: 3,
+      title: (
+        <Text className=" font-nourd_heavy text-offWhite text-3xl">
+          Digite sua nova senha
+        </Text>
+      ),
+      input: (
+        <>
+          <InputStyle
+            label="Senha"
+            placeholder="Digite sua senha..."
+            keyboardType="default"
+            placeholderColor="#000"
+            icon
+          />
+
+          <InputStyle
+            label="Confirmar a senha"
+            placeholder="Confirme sua senha..."
+            keyboardType="default"
+            placeholderColor="#000"
+            icon
+          />
+        </>
+      ),
+      buttonChildren: "Redefinir",
+      path: "/screens/auth/login" ,
+    },
+  ];
+}

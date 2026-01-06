@@ -3,34 +3,41 @@ import { KeyboardTypeOptions, TextInputChangeEvent } from "react-native";
 
 export interface propsTemplate {
   index: number;
-  button: () => void;
+  button?: () => void;
 }
 
-export interface propsClose {
+export interface propsDataForgotPassword {
+  index: number;
+}
+
+export interface propsCloseModal {
   button: () => void;
   children?: ReactNode;
+  ngoId?: string;
 }
 
 export interface propsModal {
-  data:{
-    placeholder: string,
-    label: string
-  } 
+  data: {
+    placeholder: string;
+    label: string;
+  };
 }
-export interface propsCreateDonation {
-  quantity: number;
-  products: [
-    {
-      name: string;
-      validity: string;
-      quantity: number;
-    }
-  ]
+
+export interface decodeToken {
+  username: string;
+  role: string;
+  id: string;
+}
+
+export interface ngoList {
+  id: string;
+  username: string;
+  description: string;
 }
 
 export interface propsButtonStyle {
   type: "GoBack" | "default";
-  key?: React.Key
+  key?: React.Key;
   direction?: string;
   children?: ReactNode;
   bg?: string;
@@ -39,7 +46,6 @@ export interface propsButtonStyle {
   border?: string;
   onPress: () => void;
   shadow?: string;
-
 }
 
 export interface propsCardButton {
@@ -55,9 +61,8 @@ export interface propsInput {
   placeholderColor?: string;
   icon?: boolean;
   keyboardType?: KeyboardTypeOptions;
-  onChange?:  (text: string) => void;
+  onChange?: (text: string) => void;
   value?: string;
-
 }
 
 export interface role {
@@ -68,6 +73,6 @@ export interface propsData<T = unknown> {
   success: boolean;
   message?: string;
   fields?: { [key: string]: string };
-  error?: unknown | string
+  error?: unknown | string;
   data?: T;
 }

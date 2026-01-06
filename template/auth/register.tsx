@@ -3,7 +3,7 @@ import { ButtonStyle } from "ui/button";
 import { InputStyle } from "ui/input";
 import { useRouter } from "expo-router";
 import React, { useState, useEffect } from "react";
-import { getUserRole } from "utils/userStorage";
+import { getUserRole } from "utils/storage/userStorage";
 import { useAuth } from "hook/useAuth";
 import toast from "react-native-toast-message";
 import { propsData } from "interface/interfaces";

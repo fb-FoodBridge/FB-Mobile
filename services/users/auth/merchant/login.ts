@@ -48,7 +48,6 @@ export async function LoginMerchant(credentials: ZodLoginTypes) {
     };
 
   } catch (e) {
-    console.log("Erro no LoginMerchant:", e);
     return {
       success: false,
       error: "Erro ao conectar ao servidor.",
