@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 export const ZodRegisterSchema = z.object({
   firstName: z.string(),
@@ -80,5 +80,6 @@ export const ZodDonationSchema = z.object({
 });
 
 export const ZodValidateEmailSchema = z.object({
-  email: z.email("Email inválido")
+  email: z.email("Email inválido"),
+  error: z.string().optional()
 })

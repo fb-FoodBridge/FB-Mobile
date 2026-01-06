@@ -3,12 +3,17 @@ import { propsDataForgotPassword } from "interface/interfaces";
 import Toast from "react-native-toast-message";
 import { Text } from "react-native";
 import { handleCallApi } from "services/handleCallApi";
-import { ForgotPassword } from "services/users/password/Forgot-Password";
+import { ForgotPassword } from "services/users/password/forgot-password";
 import { InputStyle } from "ui/input";
+import { ValidateCode } from "services/users/password/validate-code";
 
-export function forgotPasswordData({ index }: propsDataForgotPassword): any {
-  const { forgotPasswordAuth, handleForgotPassword } = useAuth();
-  let nextScreen = false
+export function forgotPasswordData({ index }: propsDataForgotPassword) {
+  const {
+    forgotPasswordAuth,
+    handleForgotPassword,
+    codeAuth,
+    handleCodeValidate,
+  } = useAuth();
 
   const ForgotPasswordCallApi = async () => {
     if (index === 1) {
@@ -23,16 +28,36 @@ export function forgotPasswordData({ index }: propsDataForgotPassword): any {
           const firstFieldError = Object.values(response.fields)[0];
           Toast.show({
             type: "error",
-            text1: firstFieldError ,
+            text1: firstFieldError,
           });
         }
-        return false
+        return false;
       }
 
       Toast.show({
-            type: "success",
-            text1: response.message,
+        type: "success",
+        text1: response.message,
+      });
+      return true;
+    }
+
+    if (index === 2) {
+      const response = await handleCallApi(ValidateCode,codeAuth);
+      if (response.success === false  && response.error) {
+        if (typeof response.error === "string") {
+          return Toast.show({
+            type: "error",
+            text1: response.error,
           });
+        }
+        return false;
+      }
+
+      Toast.show({
+        type: "success",
+        text1: response.message,
+      });
+
       return true;
     }
   };
@@ -63,7 +88,7 @@ export function forgotPasswordData({ index }: propsDataForgotPassword): any {
         />
       ),
       buttonChildren: "Enviar código",
-      path:  "/screens/auth/password/code",
+      path: "/screens/auth/password/code",
     },
     {
       index: 2,
@@ -78,7 +103,12 @@ export function forgotPasswordData({ index }: propsDataForgotPassword): any {
           para redefinir sua senha
         </Text>
       ),
-      input: <InputStyle otp={true} />,
+      input: (
+        <InputStyle
+          otp={true}
+          onChange={(value) => handleCodeValidate("code", value)}
+        />
+      ),
       buttonChildren: "Confirmar",
       path: "/screens/auth/password/newPassword",
     },
@@ -109,7 +139,7 @@ export function forgotPasswordData({ index }: propsDataForgotPassword): any {
         </>
       ),
       buttonChildren: "Redefinir",
-      path: "/screens/auth/login" ,
+      path: "/screens/auth/login",
     },
   ];
 }

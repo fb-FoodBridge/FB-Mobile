@@ -10,7 +10,8 @@ export function InputStyle({ ...props }: propsInput) {
     <>
       {props.otp ? (
         <OtpInput
-          numberOfDigits={4}
+        onFilled={props.onChange}
+          numberOfDigits={5}
           theme={{
             containerStyle: {
               gap: 23,

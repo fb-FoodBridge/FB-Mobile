@@ -6,6 +6,7 @@ import { useRouter } from "expo-router";
 import { getUserRole } from "utils/storage/userStorage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
+import { decodeToken } from "interface/interfaces";
 export function Navbar() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
   const [role, setRole] = useState<string | null>(null);
@@ -21,9 +22,7 @@ export function Navbar() {
     async function decodeToken() {
       const token = await AsyncStorage.getItem("token");
       if (token) {
-        const decoded: any = jwtDecode(token);
-        console.log(decoded);
-
+        const decoded:decodeToken = jwtDecode(token);
         setRole(decoded.role);
       }
     }

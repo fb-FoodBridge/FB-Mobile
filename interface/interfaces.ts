@@ -24,6 +24,10 @@ export interface propsModal {
 }
 
 export interface decodeToken {
+  role: string
+}
+
+export interface decodeToken {
   username: string;
   role: string;
   id: string;
@@ -75,4 +79,9 @@ export interface propsData<T = unknown> {
   fields?: { [key: string]: string };
   error?: unknown | string;
   data?: T;
+}
+
+export interface propsValidateCode {
+  code: string
+  error? :string
 }
