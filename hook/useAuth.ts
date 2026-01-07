@@ -47,7 +47,7 @@ export const useAuth = () => {
     setCodeAuth((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleNewPassword(name: keyof ZodLoginTypes, value: string) {
+  function handleNewPassword(name: keyof ZodNewPasswordTypes, value: string) {
     setNewPasswordAuth((prev) => ({ ...prev, [name]: value }));
   }
 

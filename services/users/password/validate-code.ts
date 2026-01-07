@@ -5,8 +5,6 @@ import { getEmail } from "utils/storage/userStorage";
 
 export async function ValidateCode( { code }:propsValidateCode ) {
       const email = await getEmail()
-      console.log(email)
-      console.log(code)
       const response = await fetch(`${api}/forgot-password/validate-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

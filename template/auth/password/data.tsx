@@ -6,6 +6,7 @@ import { handleCallApi } from "services/handleCallApi";
 import { ForgotPassword } from "services/users/password/forgot-password";
 import { InputStyle } from "ui/input";
 import { ValidateCode } from "services/users/password/validate-code";
+import { UpdatePassword } from "services/users/password/update-password";
 
 export function forgotPasswordData({ index }: propsDataForgotPassword) {
   const {
@@ -13,6 +14,8 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
     handleForgotPassword,
     codeAuth,
     handleCodeValidate,
+    newPasswordAuth,
+    handleNewPassword,
   } = useAuth();
 
   const ForgotPasswordCallApi = async () => {
@@ -42,12 +45,38 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
     }
 
     if (index === 2) {
-      const response = await handleCallApi(ValidateCode,codeAuth);
-      if (response.success === false  && response.error) {
+      const response = await handleCallApi(ValidateCode, codeAuth);
+      if (response.success === false && response.error) {
         if (typeof response.error === "string") {
           return Toast.show({
             type: "error",
             text1: response.error,
+          });
+        }
+        return false;
+      }
+
+      Toast.show({
+        type: "success",
+        text1: response.message,
+      });
+
+      return true;
+    }
+
+    if (index === 3) {
+      const response = await handleCallApi(UpdatePassword, newPasswordAuth);
+     if (!response.success && (response.fields || response.error)) {
+        if (typeof response.error === "string") {
+          return Toast.show({
+            type: "error",
+            text1: response.error,
+          });
+        } else if (response.fields) {
+          const firstFieldError = Object.values(response.fields)[0];
+          Toast.show({
+            type: "error",
+            text1: firstFieldError,
           });
         }
         return false;
@@ -123,6 +152,8 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
         <>
           <InputStyle
             label="Senha"
+            value={newPasswordAuth.password}
+            onChange={(value) => handleNewPassword("password", value)}
             placeholder="Digite sua senha..."
             keyboardType="default"
             placeholderColor="#000"
@@ -131,6 +162,8 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
 
           <InputStyle
             label="Confirmar a senha"
+            value={newPasswordAuth.newPassword}
+            onChange={(value) => handleNewPassword("newPassword", value)}
             placeholder="Confirme sua senha..."
             keyboardType="default"
             placeholderColor="#000"
