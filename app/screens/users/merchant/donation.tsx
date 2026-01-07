@@ -8,6 +8,7 @@ import { Overlay } from "ui/overlay";
 import { handleCallApi } from "services/handleCallApi";
 import { ListNGO } from "services/users/auth/ngo/listing";
 import { ngoList } from "interface/interfaces";
+import { ListingDonation } from "services/donation/listing";
 
 
 export default function Donation() {
@@ -16,9 +17,21 @@ export default function Donation() {
   const [ngoId, setNgoId] = useState("")
 
 
+   async function handleListingNGODonated() {
+    return await handleCallApi(ListingDonation, {});
+  }
+
+
   async function handleListingNGO() {
     return await handleCallApi(ListNGO, {});
   }
+
+  useEffect(() => {
+     async function loadNGODonated() {
+       await handleListingNGODonated();
+     }
+     loadNGODonated()
+  })
 
   useEffect(() => {
     async function loadNGO() {

@@ -10,7 +10,6 @@ export interface Donation {
 
 export async function addDonation(donation: Donation) {
   const stored = await AsyncStorage.getItem(STORAGE_KEY);
-  console.log("produto armazenado:", stored)
   const donations: Donation[] = stored ? JSON.parse(stored) : [];
 
   donations.push(donation);
@@ -20,8 +19,16 @@ export async function addDonation(donation: Donation) {
 
 export async function getDonations(): Promise<Donation[]> {
   const stored = await AsyncStorage.getItem(STORAGE_KEY);
-  console.log("produto resgatado:", stored)
   return stored ? JSON.parse(stored) : [];
+}
+
+export async function RemoveLastDonation() {
+  const stored = await AsyncStorage.getItem(STORAGE_KEY);
+  const donations: Donation[] = stored ? JSON.parse(stored) : [];
+  donations.pop();
+
+  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(donations));
+  return donations;
 }
 
 export async function clearDonations() {

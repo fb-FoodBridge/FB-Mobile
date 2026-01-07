@@ -6,9 +6,9 @@ import React, { useEffect, useState } from "react";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 import {
   addDonation,
-  clearDonations,
   Donation,
   getDonations,
+  RemoveLastDonation,
 } from "utils/storage/donaitons";
 import { propsCloseModal } from "interface/interfaces";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -29,24 +29,45 @@ export function Modal({ button, ngoId }: propsCloseModal) {
     name: "",
     quantity: "",
   });
-  
-  if(!ngoId){
-    return null 
+
+  if (!ngoId) {
+    return null;
   }
 
   const handleSubmitProducts = async () => {
     const ArrayProducts = await getDonations();
 
-    const response = await handleCallApi(CreateDonation, {ngo_id:ngoId,
+    const response = await handleCallApi(CreateDonation, {
+      ngo_id: ngoId,
       products: ArrayProducts.map((item) => ({
         name: item.title,
         validity: item.validity,
         quantity: item.quantity,
       })),
     });
-    console.log(await AsyncStorage.getItem("token"))
-    console.log(await getUserRole())
-    console.log(response.message)
+
+    if (!response.success && (response.fields || response.error)) {
+      if (typeof response.error === "string") {
+        return Toast.show({
+          type: "error",
+          text1: response.error,
+        });
+      } else if (response.fields) {
+        const firstFieldError = Object.values(response.fields)[0];
+        Toast.show({
+          type: "error",
+          text1: firstFieldError,
+        });
+      }
+      return false;
+    }
+
+    router.replace("/screens/users/merchant/donation")
+    Toast.show({
+      type: "success",
+      text1: response.message,
+    })
+    return true;
   };
 
   async function handleNext() {
@@ -80,6 +101,15 @@ export function Modal({ button, ngoId }: propsCloseModal) {
     load();
   }, []);
 
+  const handleRemoveLastDonation = async () => {
+    const updatedDonations = await RemoveLastDonation();
+    setDonations(updatedDonations);
+    Toast.show({
+      type: "success",
+      text1: "Doação apagada com sucesso",
+    });
+  };
+
   return (
     <View className="z-40 justify-center items-center">
       <View className="w-[84.42%] rounded-[14px] bg-black800 h-[459px] shadow-shadow-modal pt-[20px] pl-[20px]">
@@ -94,31 +124,51 @@ export function Modal({ button, ngoId }: propsCloseModal) {
           {next ? (
             <>
               <ScrollView
-                className="w-full max-h-[270px]"
+                className="w-full h-[270px]"
                 contentContainerStyle={{ gap: 10, alignItems: "center" }}
                 showsVerticalScrollIndicator={false}
               >
-                {donations.map((item, index) => {
-                  return (
-                    <View
-                      key={index}
-                      className="bg-lightGray rounded-[14px] w-[274px] h-[60px]  flex-row justify-between items-center px-5"
-                    >
-                      <Text className="font-nourd_medium text-[14px] text-offWhite">
-                        {item.title}
-                      </Text>
+                {donations.length !== 0 ? (
+                  donations.map((item, index) => {
+                    return (
+                      <View
+                        key={index}
+                        className="bg-lightGray rounded-[14px] w-[274px] h-[60px]  flex-row justify-between items-center px-5"
+                      >
+                        <Text className="font-nourd_medium text-[14px] text-offWhite">
+                          {item.title}
+                        </Text>
 
-                      <Text className="font-nourd_medium text-[14px] text-offWhite">
-                        val: {item.validity}
-                      </Text>
-                    </View>
-                  );
-                })}
+                        <Text className="font-nourd_medium text-[14px] text-offWhite">
+                          val: {item.validity}
+                        </Text>
+                      </View>
+                    );
+                  })
+                ) : (
+                  <Text className="font-nourd_medium text-[16px] text-offWhite">
+                    Nenhuma doação adicionada
+                  </Text>
+                )}
               </ScrollView>
               <View className="w-full items-center">
-                <View className="w-[274px] border-b border-offWhite"></View>
+                {donations.length !== 0 ? (
+                  <View className="w-[274px] border-b border-offWhite"></View>
+                ) : null}
               </View>
               <View className="flex-row mt-[42px] w-full items-center justify-end pr-[30px] gap-[20px]">
+                {donations.length !== 0 ? (
+                  <ButtonStyle
+                    type={"default"}
+                    rouded="rounded-[5px]"
+                    bg="bg-[red]"
+                    size="w-[40px] h-[33px]"
+                    children={
+                      <MaterialIcons name="delete" color={"#FFFF"} size={20} />
+                    }
+                    onPress={handleRemoveLastDonation}
+                  />
+                ) : null}
                 <ButtonStyle
                   type={"default"}
                   rouded="rounded-[5px]"
