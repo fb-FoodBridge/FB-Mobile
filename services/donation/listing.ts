@@ -1,3 +1,4 @@
+import { ListingNgoDonatedResponse} from "interface/interfaces";
 import { api } from "services/base_url";
 
 export async function ListingDonation(){
@@ -7,22 +8,21 @@ export async function ListingDonation(){
           headers: { "Content-Type": "application/json" },
         });
     
-        const json: any = await res.json();
+        const json:ListingNgoDonatedResponse  = await res.json();
         console.log(json)
     
         if (!res.ok) {
           return {
             success: false,
-            error: json?.error || "Erro interno no servidor.",
+            error:  "Erro interno no servidor.",
           };
         }
     
         return {
           success: true,
-          data: json,  
+          data: json.data,  
         };
       } catch (e) {
-        console.log("Erro no ListNGODonated:", e);
         return {
           success: false,
           error: "Erro ao conectar ao servidor.",

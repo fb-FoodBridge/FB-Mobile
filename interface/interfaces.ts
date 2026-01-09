@@ -85,3 +85,13 @@ export interface propsValidateCode {
   code: string
   error? :string
 }
+
+export interface DonationNgo {
+  merchant_id: string;
+  ngo_id: string;
+  status: "pending" | "completed" | "cancelled";
+}
+export interface ListingNgoDonatedResponse {
+  data: DonationNgo[];
+  error:string
+}
