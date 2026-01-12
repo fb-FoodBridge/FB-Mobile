@@ -3,13 +3,18 @@ import { useRouter } from "expo-router";
 import { CardButton } from "components/card/cardButton";
 import Chief from "assets/svg/illustrations/chief.svg";
 import NGO from "assets/png/ngo.png"
-import { setUserRole } from "utils/userStorage";
+import { setUserRole } from "utils/storage/userStorage";
 
 export default function OnboardingRole() {
   const router = useRouter();
 
   const handleSelectMerchant = async () => {
   await setUserRole("merchant");
+  router.replace("/screens/auth/welcome");
+};
+
+  const handleSelectNGO = async () => {
+    await setUserRole("ngo");
   router.replace("/screens/auth/welcome");
 };
 
@@ -49,7 +54,7 @@ export default function OnboardingRole() {
                 }
               />
               <CardButton
-                onPress={() => router.replace("/screens/auth/welcome?role=merchant")}
+                onPress={handleSelectNGO}
                 children={
                   <View className="w-full flex-row items-center justify-between mt-[-3px] ">
                     <Image

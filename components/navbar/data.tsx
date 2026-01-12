@@ -6,16 +6,23 @@ import History from "../../assets/svg/icons/button/history.svg"
 import HistoryActive from "../../assets/svg/icons/button/active/history.svg"
 import Home from "../../assets/svg/icons/button/home.svg"
 import HomeActive from "../../assets/svg/icons/button/active/home.svg"
+import Request from "../../assets/svg/icons/button/request.svg"
+import RequestActive from "../../assets/svg/icons/button/active/request.svg"
+import PDF from "../../assets/svg/icons/button/PDF.svg"
+import PDFActive from "../../assets/svg/icons/button/active/PDF.svg"
 
+ 
 export const iconsNavbar = [
     {
         icon: Home,
-        active: HomeActive
+        active: HomeActive,
+        path: "/screens/users/merchant/home"
         
     },
     {
         icon: Handshake,
-        active: HandshakeActive
+        active: HandshakeActive,
+        path: "/screens/users/merchant/donation"
         
     },
      {
@@ -26,6 +33,34 @@ export const iconsNavbar = [
     {
         icon: History,
         active: HistoryActive
+        
+    },
+    
+
+]
+
+export const iconsNavbarNGO = [
+    {
+        icon: Home,
+        active: HomeActive,
+        path: "/screens/users/merchant/home"
+        
+    },
+     {
+        icon: User,
+        active: UserActive
+        
+    },
+    {
+        icon: Request,
+        active: RequestActive,
+        path: "/screens/users/ngo/request"
+        
+    },
+    
+    {
+        icon: PDF,
+        active: PDFActive
         
     },
     

@@ -7,6 +7,9 @@ import Handshake from "../../../assets/svg/icons/button/hand.svg"
 import History from "../../../assets/svg/icons/button/history.svg"
 import Heart from "../../../assets/svg/icons/button/heart-broken.svg"
 import About from "../../../assets/svg/icons/button/about.svg"
+import  PDF from "../../../assets/svg/icons/button/PDF.svg"
+import User from "../../../assets/svg/icons/button/user.svg"
+import Request from "../../../assets/svg/icons/button/request.svg"
 
 export const data = [
     {
@@ -36,22 +39,56 @@ export const data = [
 export const dataButtons = [
     {
         icon: Box,
-        title: "Entrada"
+        title: "Entrada",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: Handshake,
-        title: "Doações"
+        title: "Doações",
+        path: "/screens/users/merchant/donation"
     },
     {
         icon: History,
-        title: "Carrinho"
+        title: "Carrinho",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: Heart,
-        title: "Impacto social"
+        title: "Impacto social",
+        path:"/screens/users/merchant/home"
     },
     {
         icon: About,
-        title: "Sobre nós"
+        title: "Sobre nós",
+        path:"/screens/users/merchant/home"
     },
+]
+
+export const dataNGOButtons = [
+    {
+        icon: PDF,
+        title: "Comprov.",
+        path:"/screens/users/merchant/home"
+    },
+    {
+        icon: User,
+        title: "Perfil",
+        path:"/screens/users/merchant/home"
+    },
+    {
+        icon: Request,
+        title: "Solicit.",
+        path:"/screens/users/merchant/home"
+    },
+    {
+        icon: Heart,
+        title: "Impacto social",
+        path:"/screens/users/merchant/home"
+    },
+        {
+        icon: About,
+        title: "Sobre nós",
+        path:"/screens/users/merchant/home"
+    },
+    
 ]
