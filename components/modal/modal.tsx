@@ -97,7 +97,7 @@ export function Modal({ button, ngoId }: propsCloseModal) {
 
     await addDonation({
       title: values.name,
-      validity: date ? date.toLocaleDateString("pt-BR") : "",
+      validity: date.toLocaleDateString("pt-BR"),
       quantity: Number(values.quantity),
     });
 
