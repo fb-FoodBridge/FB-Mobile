@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import MaterialIcons from "@react-native-vector-icons/material-icons";
 import {
   addDonation,
+  clearDonations,
   Donation,
   getDonations,
   RemoveLastDonation,
@@ -15,8 +16,6 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import Toast from "react-native-toast-message";
 import { handleCallApi } from "services/handleCallApi";
 import { CreateDonation } from "services/donation/create";
-import { getUserRole } from "utils/storage/userStorage";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Modal({ button, ngoId }: propsCloseModal) {
   const router = useRouter();
@@ -61,12 +60,12 @@ export function Modal({ button, ngoId }: propsCloseModal) {
       }
       return false;
     }
-
-    router.replace("/screens/users/merchant/donation")
+    await clearDonations();
+    router.replace("/screens/users/merchant/donation");
     Toast.show({
       type: "success",
       text1: response.message,
-    })
+    });
     return true;
   };
 
@@ -75,6 +74,23 @@ export function Modal({ button, ngoId }: propsCloseModal) {
       Toast.show({
         type: "error",
         text1: "Preencha todos os campos.",
+      });
+      return;
+    }
+
+    if (Number(values.quantity) <= 0) {
+    Toast.show({
+      type: "error",
+      text1: "Quantidade inválida",
+    });
+    return;
+  }
+
+
+    if (Number(values.quantity) > 10) {
+      Toast.show({
+        type: "error",
+        text1: "Pode ser enviado até 10 items",
       });
       return;
     }
@@ -253,11 +269,12 @@ export function Modal({ button, ngoId }: propsCloseModal) {
                   <InputStyle
                     label={"Quantidade:"}
                     placeholder={"digite a quantidade"}
-                    keyboardType={"default"}
+                    keyboardType={"number-pad"}
                     placeholderColor=""
                     value={values.quantity}
                     onChange={(value) => {
-                      setValues((item) => ({ ...item, quantity: value }));
+                      const onlyNumbers = value.replace(/\D/g, "")
+                      setValues((item) => ({ ...item, quantity: onlyNumbers }));
                     }}
                   />
                 </View>

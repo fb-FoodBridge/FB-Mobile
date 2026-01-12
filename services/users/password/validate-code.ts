@@ -15,7 +15,6 @@ export async function ValidateCode( { code }:propsValidateCode ) {
       })
         .then(async (res) => {
           const json:propsValidateCode = await res.json();
-          console.log(json)
           if (res.status === 401) {
             return {
               success: false,

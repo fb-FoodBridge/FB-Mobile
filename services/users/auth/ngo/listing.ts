@@ -21,7 +21,6 @@ export async function ListNGO() {
       data: json.data.ngo,  
     };
   } catch (e) {
-    console.log("Erro no ListNGO:", e);
     return {
       success: false,
       error: "Erro ao conectar ao servidor.",

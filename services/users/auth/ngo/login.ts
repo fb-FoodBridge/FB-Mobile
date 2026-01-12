@@ -17,8 +17,6 @@ export async function LoginNGO(credentials: ZodLoginTypes) {
         password: credentials.password,
       }),
     });
-    console.log("Response Status:", res.status); 
-    console.log(credentials)
     const json: LoginResponse | any = await res.json();
 
     if (res.status === 400 || res.status === 401) {
@@ -44,7 +42,6 @@ export async function LoginNGO(credentials: ZodLoginTypes) {
     };
 
   } catch (e) {
-    console.log("Erro no LoginNGO:", e);
     return {
       success: false,
       error: "Erro ao conectar ao servidor.",

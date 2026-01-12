@@ -26,7 +26,6 @@ export default function Login() {
             type: "error",
             text1: result.error,
           });
-          console.log(result.error);
         }
         return;
       }

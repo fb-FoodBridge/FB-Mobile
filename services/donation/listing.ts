@@ -9,8 +9,6 @@ export async function ListingDonation(){
         });
     
         const json:ListingNgoDonatedResponse  = await res.json();
-        console.log(json)
-    
         if (!res.ok) {
           return {
             success: false,

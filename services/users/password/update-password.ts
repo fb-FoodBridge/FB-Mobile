@@ -31,8 +31,7 @@ export async function UpdatePassword(data: ZodNewPasswordTypes) {
         email: email,
       }),
     });
-     const json = await response.json();
-     console.log(json)
+    
     if (response.status === 409) {
       return {
         success: false,

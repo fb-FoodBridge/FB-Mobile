@@ -37,8 +37,6 @@ export async function CreateDonation(data: ZodCreateDonationTypes) {
   })
     .then(async (data) => {
       const result = await data.json();
-      console.log("teste: ", result);
-      console.log("teste: ", data);
       if (data.status === 401) {
         return Promise.reject({ success: false, error: "Sem produtos" });
       }
