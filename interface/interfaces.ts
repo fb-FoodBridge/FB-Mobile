@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { KeyboardTypeOptions, TextInputChangeEvent } from "react-native";
+import { KeyboardTypeOptions } from "react-native";
 
 export interface propsTemplate {
   index: number;
