@@ -90,6 +90,8 @@ export interface DonationNgo {
   merchant_id: string;
   ngo_id: string;
   status: "pending" | "completed" | "cancelled";
+  username_merchant: string
+
 }
 export interface ListingNgoDonatedResponse {
   data: DonationNgo[];

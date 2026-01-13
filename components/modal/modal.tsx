@@ -20,7 +20,6 @@ import { CreateDonation } from "services/donation/create";
 export function Modal({ button, ngoId }: propsCloseModal) {
   const router = useRouter();
   const [next, setNext] = useState(false);
-
   const [donations, setDonations] = useState<Donation[]>([]);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [date, setDate] = useState<Date | null>(new Date());
@@ -44,6 +43,7 @@ export function Modal({ button, ngoId }: propsCloseModal) {
         quantity: item.quantity,
       })),
     });
+    console.log(response)
 
     if (!response.success && (response.fields || response.error)) {
       if (typeof response.error === "string") {

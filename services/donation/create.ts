@@ -13,9 +13,15 @@ export async function CreateDonation(data: ZodCreateDonationTypes) {
     };
   }
   const token = await AsyncStorage.getItem("token");
+
   if (!token) {
     return Promise.reject({ success: false, error: "Token não encontrado" });
   }
+
+  function brToISO(date: string) {
+  const [day, month, year] = date.split("/");
+  return `${year}-${month}-${day}`;
+}
 
   const response = await fetch(`${api}/donation`, {
     method: "POST",
@@ -29,7 +35,7 @@ export async function CreateDonation(data: ZodCreateDonationTypes) {
       products: data.products.map((items) => {
         return {
           name: items.name,
-          validity: items.validity,
+          validity: brToISO(items.validity),
           quantity: items.quantity,
         };
       }),
@@ -47,6 +53,13 @@ export async function CreateDonation(data: ZodCreateDonationTypes) {
           error: "Somente comerciantes podem criar doações",
         });
       }
+
+       if (!data.ok) {
+          return {
+            success: false,
+            error:  "Erro interno no servidor.",
+          };
+        }
 
       return {
         success: true,
