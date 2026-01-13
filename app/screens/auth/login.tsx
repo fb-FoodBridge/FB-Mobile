@@ -4,7 +4,7 @@ import Chief from "assets/png/chiefAuth.png";
 import { InputStyle } from "ui/input";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuth } from "hook/useAuth";
 import { LoginMerchant } from "../../../services/users/auth/merchant/login";
 import { handleCallApi } from "services/handleCallApi";

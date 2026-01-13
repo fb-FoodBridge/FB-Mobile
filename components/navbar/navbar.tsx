@@ -29,7 +29,6 @@ export function Navbar() {
     decodeToken();
   }, []);
 
-  useEffect(() => {});
   const router = useRouter();
   const handleRouterButton = (index: number, path: string) => {
     setActiveIndex(index);
