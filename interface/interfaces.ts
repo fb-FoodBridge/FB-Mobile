@@ -24,13 +24,10 @@ export interface propsModal {
 }
 
 export interface decodeToken {
-  role: string;
-}
-
-export interface decodeToken {
   username: string;
   role: string;
   id: string;
+  email: string;
 }
 
 export interface ngoList {
@@ -100,4 +97,8 @@ export interface ListingNgoDonatedResponse {
 export interface AcceptanceDonation {
   email: string;
   id: string;
+}
+
+export interface PendingDonation{
+  id:string
 }
