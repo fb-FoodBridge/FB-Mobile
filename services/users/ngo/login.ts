@@ -1,6 +1,8 @@
-import type { ZodLoginTypes } from "../../../../validations/ZodValidationsTypes";
-import { api } from "../../../base_url";
+import { ZodValidate } from "utils/zodValidationUtil";
+import type { ZodLoginTypes } from "../../../validations/ZodValidationsTypes";
+import { api } from "../../base_url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ZodLoginSchema } from "validations/ZodValidationSchema";
 
 interface LoginResponse {
   access_token: string;
@@ -8,13 +10,20 @@ interface LoginResponse {
 }
 
 export async function LoginNGO(credentials: ZodLoginTypes) {
+  const validate = ZodValidate(ZodLoginSchema, credentials);
+   if (validate.success !== true) {
+    return {
+      success: false,
+      fields: validate.fields,
+    };
+  }
   try {
     const res = await fetch(`${api}/ngo/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
+        email: validate.data?.email,
+        password: validate.data?.password,
       }),
     });
     const json: LoginResponse | any = await res.json();
@@ -38,7 +47,6 @@ export async function LoginNGO(credentials: ZodLoginTypes) {
     return {
       success: true,
       message: "Login realizado com sucesso.",
-      data: json,
     };
 
   } catch (e) {

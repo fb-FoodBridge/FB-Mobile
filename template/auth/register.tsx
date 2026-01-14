@@ -8,10 +8,10 @@ import { useAuth } from "hook/useAuth";
 import toast from "react-native-toast-message";
 import { propsData } from "interface/interfaces";
 import { handleCallApi } from "services/handleCallApi";
-import { RegisterMerchant } from "services/users/auth/merchant/register";
-import { RegisterNGO } from "services/users/auth/ngo/register";
-import { LoginMerchant } from "services/users/auth/merchant/login";
-import { LoginNGO } from "services/users/auth/ngo/login";
+import { RegisterMerchant } from "services/users/merchant/register";
+import { RegisterNGO } from "services/users/ngo/register";
+import { LoginMerchant } from "services/users/merchant/login";
+import { LoginNGO } from "services/users/ngo/login";
 
 export function RegisterTemplate() {
   const router = useRouter();

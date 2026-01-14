@@ -24,7 +24,7 @@ export interface propsModal {
 }
 
 export interface decodeToken {
-  role: string
+  role: string;
 }
 
 export interface decodeToken {
@@ -82,18 +82,22 @@ export interface propsData<T = unknown> {
 }
 
 export interface propsValidateCode {
-  code: string
-  error? :string
+  code: string;
+  error?: string;
 }
 
 export interface DonationNgo {
   merchant_id: string;
   ngo_id: string;
   status: "pending" | "completed" | "cancelled";
-  username_merchant: string
-
+  username_merchant: string;
 }
 export interface ListingNgoDonatedResponse {
   data: DonationNgo[];
-  error:string
+  error: string;
+}
+
+export interface AcceptanceDonation {
+  email: string;
+  id: string;
 }

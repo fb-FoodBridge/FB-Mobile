@@ -43,7 +43,7 @@ export function Modal({ button, ngoId }: propsCloseModal) {
         quantity: item.quantity,
       })),
     });
-    console.log(response)
+  
 
     if (!response.success && (response.fields || response.error)) {
       if (typeof response.error === "string") {

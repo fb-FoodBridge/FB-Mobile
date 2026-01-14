@@ -1,4 +1,4 @@
-import { api } from "../../../base_url";
+import { api } from "../../base_url";
 
 export async function ListNGO() {
   try {

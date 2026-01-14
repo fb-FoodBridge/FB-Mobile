@@ -1,6 +1,6 @@
 import { ZodLoginSchema } from "validations/ZodValidationSchema";
-import type { ZodLoginTypes } from "../../../../validations/ZodValidationsTypes";
-import { api } from "../../../base_url";
+import type { ZodLoginTypes } from "../../../validations/ZodValidationsTypes";
+import { api } from "../../base_url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ZodValidate } from "utils/zodValidationUtil";
 
@@ -11,6 +11,12 @@ interface LoginResponse {
 
 export async function LoginMerchant(credentials: ZodLoginTypes) {
   const validate = ZodValidate(ZodLoginSchema, credentials);
+   if (validate.success !== true) {
+    return {
+      success: false,
+      fields: validate.fields,
+    };
+  }
   try {
     const res = await fetch(`${api}/merchant/login`, {
       method: "POST",

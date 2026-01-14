@@ -11,8 +11,6 @@ import { jwtDecode } from "jwt-decode";
 export default function RequestNgo() {
 const [listDonate, setListDonate] = useState<DonationNgo[]>([])
   const [decode, setDecode] = useState<decodeToken | null>(null);
-console.log(listDonate)
-console.log(listDonate.some((item) => item.ngo_id === decode?.id ))
 
  async function handleListingDonate() {
     return await handleCallApi(ListingDonation, {});

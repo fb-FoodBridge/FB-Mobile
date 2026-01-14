@@ -6,11 +6,11 @@ import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
 import React from "react";
 import { useAuth } from "hook/useAuth";
-import { LoginMerchant } from "../../../services/users/auth/merchant/login";
+import { LoginMerchant } from "../../../services/users/merchant/login";
 import { handleCallApi } from "services/handleCallApi";
 import { propsData } from "interface/interfaces";
 import toast from "react-native-toast-message";
-import { LoginNGO } from "services/users/auth/ngo/login";
+import { LoginNGO } from "services/users/ngo/login";
 
 export default function Login() {
   const router = useRouter();

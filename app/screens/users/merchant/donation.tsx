@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "../../../../components/modal/modal";
 import { Overlay } from "ui/overlay";
 import { handleCallApi } from "services/handleCallApi";
-import { ListNGO } from "services/users/auth/ngo/listing";
+import { ListNGO } from "services/users/ngo/listing";
 import { decodeToken, DonationNgo, ngoList } from "interface/interfaces";
 import { ListingDonation } from "services/donation/listing";
 import AsyncStorage from "@react-native-async-storage/async-storage";

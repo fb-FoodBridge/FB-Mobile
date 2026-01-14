@@ -1,7 +1,7 @@
-import { api } from "../../../base_url";
-import { ZodValidate } from "../../../../utils/zodValidationUtil";
-import { ZodRegisterSchema } from "../../../../validations/ZodValidationSchema";
-import type { ZodRegisterTypes } from "../../../../validations/ZodValidationsTypes";
+import { api } from "../../base_url";
+import { ZodValidate } from "../../../utils/zodValidationUtil";
+import { ZodRegisterSchema } from "../../../validations/ZodValidationSchema";
+import type { ZodRegisterTypes } from "../../../validations/ZodValidationsTypes";
 
 interface zodData {
     status: number;
