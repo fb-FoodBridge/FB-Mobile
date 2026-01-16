@@ -1,21 +1,27 @@
 
 import { AcceptanceDonation } from "interface/interfaces";
-import { api } from "../../base_url";
+import { api } from "../base_url";
 
 
 
 
-export async function AcceptenceDonation({email,id}:AcceptanceDonation) {
+export async function AcceptenceDonation({email,ngoId,
+  donationId
+}:AcceptanceDonation) {
   try {
-    const res = await fetch(`${api}/ngo/acceptence/${id}`, {
+    const res = await fetch(`${api}/ngo/acceptance/${ngoId}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+      "donation": donationId,
+      "Content-Type": "application/json",
+    },
       body: JSON.stringify({
         email: email,
         
       }),
     });
     
+    console.log( await res.json())
 
     if (res.status === 401) {
       return {

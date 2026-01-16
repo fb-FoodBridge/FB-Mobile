@@ -3,34 +3,42 @@ import Logo from "../../../../assets/svg/Logo.svg";
 import React, { useEffect, useState } from "react";
 import { ButtonStyle } from "ui/button";
 import { decodeToken, DonationNgo } from "interface/interfaces";
-import { ListingDonation } from "services/donation/listing";
 import { handleCallApi } from "services/handleCallApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
-import { AcceptenceDonation } from "services/users/ngo/acceptence";
+import { AcceptenceDonation } from "services/donation/acceptence";
 import toast from "react-native-toast-message";
+import { ListingDonationPending } from "services/donation/pending";
 
 export default function RequestNgo() {
   const [listDonate, setListDonate] = useState<DonationNgo[]>([]);
   const [decode, setDecode] = useState<decodeToken | null>(null);
-  console.log(decode);
 
   async function handleListingDonate() {
-    return await handleCallApi(ListingDonation, {});
-  }
-
-  if (!decode) {
-    toast.show({
-      type: "error",
-      text1: "Error interno",
+    if (!decode) return;
+    const response = await handleCallApi(ListingDonationPending, {
+      id: decode.id,
     });
-    return;
+    return response;
   }
 
-  const handleAcceptanceDonation = async () => {
+  async function loadDonate() {
+    const response = await handleListingDonate();
+    if (response?.success) {
+      const data = response.data || [];
+
+      if (Array.isArray(data)) {
+        setListDonate(data);
+      }
+    }
+  }
+
+  const handleAcceptanceDonation = async (donationId: string) => {
+    if (!decode) return;
     const response = await handleCallApi(AcceptenceDonation, {
       email: decode.email,
-      id: decode.id,
+      ngoId: decode.id,
+      donationId,
     });
     if (!response.success && (response.fields || response.error)) {
       if (typeof response.error === "string") {
@@ -45,6 +53,8 @@ export default function RequestNgo() {
       type: "success",
       text1: response.message,
     });
+
+    loadDonate();
   };
 
   useEffect(() => {
@@ -62,18 +72,10 @@ export default function RequestNgo() {
   }, []);
 
   useEffect(() => {
-    async function loadDonate() {
-      const response = await handleListingDonate();
-      if (response?.success) {
-        const data = response.data || [];
-
-        if (Array.isArray(data)) {
-          setListDonate(data);
-        }
-      }
+    if (decode) {
+      loadDonate();
     }
-    loadDonate();
-  }, []);
+  }, [decode]);
 
   if (!decode) {
     return (
@@ -99,11 +101,14 @@ export default function RequestNgo() {
         contentContainerStyle={{ gap: 10, alignItems: "center" }}
         showsVerticalScrollIndicator={false}
       >
-        {listDonate
-          .filter((item) => item.ngo_id === decode.id)
-          .map((item) => (
+        {listDonate.length === 0 ? (
+          <Text className="text-yellowOrange flex-1 self-center text-[16px] font-nourd_bold">
+            Sem doações
+          </Text>
+        ) : (
+          listDonate.map((item) => (
             <View
-              key={item.merchant_id}
+              key={item.donation_id}
               className="bg-lightGray rounded-[10px] w-full h-[56px] flex-row justify-between px-5 items-center"
             >
               <Text className="text-offWhite font-nourd_bold text-[12px] w-[200px]">
@@ -123,7 +128,7 @@ export default function RequestNgo() {
                       Aceitar
                     </Text>
                   }
-                  onPress={handleAcceptanceDonation}
+                  onPress={() => handleAcceptanceDonation(item.donation_id)}
                 />
 
                 <ButtonStyle
@@ -141,7 +146,8 @@ export default function RequestNgo() {
                 />
               </View>
             </View>
-          ))}
+          ))
+        )}
       </ScrollView>
     </View>
   );

@@ -87,6 +87,7 @@ export interface DonationNgo {
   merchant_id: string;
   ngo_id: string;
   status: "pending" | "completed" | "cancelled";
+  donation_id: string
   username_merchant: string;
 }
 export interface ListingNgoDonatedResponse {
@@ -96,7 +97,8 @@ export interface ListingNgoDonatedResponse {
 
 export interface AcceptanceDonation {
   email: string;
-  id: string;
+  ngoId: string;
+  donationId: string;
 }
 
 export interface PendingDonation{

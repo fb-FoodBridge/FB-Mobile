@@ -2,6 +2,7 @@ import { ListingNgoDonatedResponse, PendingDonation} from "interface/interfaces"
 import { api } from "services/base_url";
 
 export async function ListingDonationPending({id}:PendingDonation){
+
     try {
         const res = await fetch(`${api}/donation/pending/${id}`, {
           method: "GET",
@@ -9,6 +10,7 @@ export async function ListingDonationPending({id}:PendingDonation){
         });
     
         const json:ListingNgoDonatedResponse  = await res.json();
+        console.log("teste",json)
         if (!res.ok) {
           return {
             success: false,
