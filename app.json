@@ -22,12 +22,15 @@
         "backgroundColor": "#3D3D3D",
         "barStyle": "light-content"
       },
-    "web": {},
+      "web": {},
+      "plugins": [
+        "expo-router",
+        "expo-font"
+      ],
+      "scheme": "fb-mobile"
+    },
     "plugins": [
-      "expo-router",
-      "expo-font"
-    ],
-    "scheme": "fb-mobile"
+      "expo-router"
+    ]
   }
-}
 }
