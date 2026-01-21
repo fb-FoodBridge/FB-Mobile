@@ -9,6 +9,7 @@ import { jwtDecode } from "jwt-decode";
 import { AcceptenceDonation } from "services/donation/acceptence";
 import toast from "react-native-toast-message";
 import { ListingDonationPending } from "services/donation/pending";
+import { RejectDonation } from "services/donation/reject";
 
 export default function RequestNgo() {
   const [listDonate, setListDonate] = useState<DonationNgo[]>([]);
@@ -24,18 +25,44 @@ export default function RequestNgo() {
 
   async function loadDonate() {
     const response = await handleListingDonate();
-    if (response?.success) {
-      const data = response.data || [];
+    if (!response?.success) return;
 
-      if (Array.isArray(data)) {
-        setListDonate(data);
-      }
+    const data = response.data;
+
+    if (Array.isArray(data)) {
+      setListDonate(data);
+      return;
     }
+    setListDonate([]);
   }
 
   const handleAcceptanceDonation = async (donationId: string) => {
     if (!decode) return;
     const response = await handleCallApi(AcceptenceDonation, {
+      email: decode.email,
+      ngoId: decode.id,
+      donationId,
+    });
+    if (!response.success && (response.fields || response.error)) {
+      if (typeof response.error === "string") {
+        toast.show({
+          type: "error",
+          text1: response.error,
+        });
+      }
+      return;
+    }
+    toast.show({
+      type: "success",
+      text1: response.message,
+    });
+
+    loadDonate();
+  };
+
+  const handleRejectDonation = async (donationId: string) => {
+    if (!decode) return;
+    const response = await handleCallApi(RejectDonation, {
       email: decode.email,
       ngoId: decode.id,
       donationId,
@@ -140,9 +167,7 @@ export default function RequestNgo() {
                       Recusar
                     </Text>
                   }
-                  onPress={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
+                  onPress={() => handleRejectDonation(item.donation_id)}
                 />
               </View>
             </View>

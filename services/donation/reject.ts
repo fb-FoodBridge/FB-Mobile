@@ -1,15 +1,15 @@
 
-import { AcceptanceDonation } from "interface/interfaces";
+import { OptionsDonation } from "interface/interfaces";
 import { api } from "../base_url";
 
 
 
 
-export async function AcceptenceDonation({email,ngoId,
+export async function RejectDonation({email,ngoId,
   donationId
-}:AcceptanceDonation) {
+}:OptionsDonation) {
   try {
-    const res = await fetch(`${api}/ngo/acceptance/${ngoId}`, {
+    const res = await fetch(`${api}/ngo/reject/${ngoId}`, {
       method: "PUT",
       headers: {
       "donation": donationId,
@@ -39,7 +39,7 @@ export async function AcceptenceDonation({email,ngoId,
 
     return {
       success: true,
-      message: "Doação aceita com sucesso",
+      message: "Doação rejeitada",
     };
 
   } catch (e) {

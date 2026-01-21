@@ -1,5 +1,5 @@
 
-import { AcceptanceDonation } from "interface/interfaces";
+import { OptionsDonation } from "interface/interfaces";
 import { api } from "../base_url";
 
 
@@ -7,7 +7,7 @@ import { api } from "../base_url";
 
 export async function AcceptenceDonation({email,ngoId,
   donationId
-}:AcceptanceDonation) {
+}:OptionsDonation) {
   try {
     const res = await fetch(`${api}/ngo/acceptance/${ngoId}`, {
       method: "PUT",

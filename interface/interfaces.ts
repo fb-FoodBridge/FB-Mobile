@@ -95,7 +95,7 @@ export interface ListingNgoDonatedResponse {
   error: string;
 }
 
-export interface AcceptanceDonation {
+export interface OptionsDonation {
   email: string;
   ngoId: string;
   donationId: string;
