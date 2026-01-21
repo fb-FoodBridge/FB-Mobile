@@ -5,5 +5,6 @@ declare module 'expo-router' {
     replace: (path: string) => void;
     back: () => void;
   };
+    export function useSegments(): string[];
   export const Stack: ComponentType<any>;
 }

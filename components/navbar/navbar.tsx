@@ -1,19 +1,18 @@
 import { View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { ButtonStyle } from "ui/button";
 import { iconsNavbar, iconsNavbarNGO } from "./data";
-import { useRouter } from "expo-router";
+import { useRouter, useSegments } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
 import { decodeToken } from "interface/interfaces";
-import { useNavigationState } from "@react-navigation/native";
 
 export function Navbar() {
-   const [role, setRole] = useState<string | null>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [role, setRole] = useState<string | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const router = useRouter();
-  const initialized = React.useRef(false);
+  const segments = useSegments();
 
   const icons = role === "merchant" ? iconsNavbar : iconsNavbarNGO;
 
@@ -28,20 +27,22 @@ export function Navbar() {
     loadRole();
   }, []);
 
- 
   useEffect(() => {
-    if (role && !initialized.current) {
-      setActiveIndex(0);
-      initialized.current = true;
+    if (icons.length > 0 && segments.length > 0) {
+      const currentSegment = segments[segments.length - 1];
+      const matchingIndex = icons.findIndex((icon) => icon.path?.includes(currentSegment));
+      if (matchingIndex !== -1) {
+        setActiveIndex(matchingIndex);
+      }
     }
-  }, [role]);
+  }, [segments, icons]);
 
-  const handlePress = (index: number, path?: string) => {
+  const handlePress = useCallback((index: number, path?: string) => {
     setActiveIndex(index);
-    if (path) router.replace(path);
-  };
+    if (path) router.push(path);
+  }, [router]);
 
-  if (!role || activeIndex === null) return null;
+  if (!role) return null;
 
   return (
     <View className="w-full items-center">
