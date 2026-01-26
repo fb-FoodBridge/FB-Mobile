@@ -25,10 +25,12 @@ export const iconsNavbar = [
   {
     icon: User,
     active: UserActive,
+    path: "/screens/users/profile"
   },
   {
     icon: History,
     active: HistoryActive,
+    path: "/screens/users/merchant/donationCart"
   },
 ];
 
@@ -46,6 +48,7 @@ export const iconsNavbarNGO = [
   {
     icon: User,
     active: UserActive,
+    path: "/screens/users/profile"
   },
 
   {

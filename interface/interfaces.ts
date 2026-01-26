@@ -64,6 +64,8 @@ export interface propsInput {
   keyboardType?: KeyboardTypeOptions;
   onChange?: (text: string) => void;
   value?: string;
+  typeIcon?: string;
+  onPress?: string;
 }
 
 export interface role {
@@ -83,7 +85,7 @@ export interface propsValidateCode {
   error?: string;
 }
 
-export interface DonationNgo {
+export interface DonationList {
   merchant_id: string;
   ngo_id: string;
   status: "pending" | "completed" | "cancelled";
@@ -91,7 +93,7 @@ export interface DonationNgo {
   username_merchant: string;
 }
 export interface ListingNgoDonatedResponse {
-  data: DonationNgo[];
+  data: DonationList[];
   error: string;
 }
 

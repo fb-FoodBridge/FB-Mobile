@@ -81,6 +81,7 @@ export default function Login() {
             <InputStyle
               keyboardType="email-address"
               label="Email"
+
               placeholder="Digite seu email..."
               placeholderColor="#A1A1AA"
               onChange={(value) => handleLoginChange("email", value)}
@@ -92,6 +93,7 @@ export default function Login() {
               value={loginAuth.password}
               keyboardType="default"
               label="Senha"
+              typeIcon="password"
               placeholder="Digite sua senha..."
               placeholderColor="#A1A1AA"
               icon

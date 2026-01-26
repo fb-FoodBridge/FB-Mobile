@@ -51,12 +51,22 @@ export function InputStyle({ ...props }: propsInput) {
                 onChangeText={props.onChange}
                 value={props.value}
               />
+                {props.typeIcon === "password"?
 
-              <MaterialIcons
+             ( <MaterialIcons
                 name={visibility ? "visibility" : "visibility-off"}
                 size={18}
                 onPress={() => setVisibility(!visibility)}
+              />)
+              :
+              <MaterialIcons
+                name={"search"}
+                size={18}
+                color={"#FFB74D"}
+                onPress={() => props.onPress}
               />
+
+              }
             </View>
           ) : (
             <TextInput

@@ -7,7 +7,7 @@ import { Modal } from "../../../../components/modal/modal";
 import { Overlay } from "ui/overlay";
 import { handleCallApi } from "services/handleCallApi";
 import { ListNGO } from "services/users/ngo/listing";
-import { decodeToken, DonationNgo, ngoList } from "interface/interfaces";
+import { decodeToken, DonationList, ngoList } from "interface/interfaces";
 import { ListingDonation } from "services/donation/listing";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
@@ -15,7 +15,7 @@ import { jwtDecode } from "jwt-decode";
 export default function Donation() {
   const [active, setActive] = useState(false);
   const [ngoList, setNgoList] = useState<ngoList[]>([]);
-  const [ngoListDonated, setNgoListDonated] = useState<DonationNgo[]>([]);
+  const [ngoListDonated, setNgoListDonated] = useState<DonationList[]>([]);
   const [ngoId, setNgoId] = useState("");
   const [decode, setDecode] = useState<decodeToken | null>(null);
 
@@ -86,7 +86,7 @@ export default function Donation() {
         </Overlay>
       )}
 
-      <View className="mt-10 ml-[25px]">
+      <View className="mt-[35px] ml-[25px]">
         <Logo width={45} height={25} />
         <Text className="mt-[30px] font-nourd_bold text-[24px] text-offWhite">
           Encontre uma Causa

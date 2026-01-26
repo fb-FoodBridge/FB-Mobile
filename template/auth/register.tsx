@@ -210,6 +210,7 @@ export function RegisterTemplate() {
               label="Senha"
               placeholder="Digite sua senha..."
               placeholderColor="#A1A1AA"
+              typeIcon="password"
               icon
             />
             <InputStyle
@@ -219,6 +220,7 @@ export function RegisterTemplate() {
               label="Confirme a Senha"
               placeholder="Confirme sua senha..."
               placeholderColor="#A1A1AA"
+              typeIcon="password"
               icon
             />
             <View className="mt-2">

@@ -50,7 +50,7 @@ export const dataButtons = [
     {
         icon: History,
         title: "Carrinho",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/merchant/donationCart"
     },
     {
         icon: Heart,

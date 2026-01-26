@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from "react-native";
 import Logo from "../../../../assets/svg/Logo.svg";
 import React, { useEffect, useState } from "react";
 import { ButtonStyle } from "ui/button";
-import { decodeToken, DonationNgo } from "interface/interfaces";
+import { decodeToken, DonationList } from "interface/interfaces";
 import { handleCallApi } from "services/handleCallApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
@@ -12,7 +12,7 @@ import { ListingDonationPending } from "services/donation/pending";
 import { RejectDonation } from "services/donation/reject";
 
 export default function RequestNgo() {
-  const [listDonate, setListDonate] = useState<DonationNgo[]>([]);
+  const [listDonate, setListDonate] = useState<DonationList[]>([]);
   const [decode, setDecode] = useState<decodeToken | null>(null);
 
   async function handleListingDonate() {
@@ -112,7 +112,7 @@ export default function RequestNgo() {
     );
   }
   return (
-    <View className="flex-1 bg-black800 flex-col px-[15px] pt-[55px]">
+    <View className="flex-1 bg-black800 flex-col px-[15px] pt-[35px]">
       <View className="pl-[10px]">
         <Logo width={45} height={28} />
       </View>

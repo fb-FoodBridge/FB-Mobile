@@ -156,6 +156,7 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
             onChange={(value) => handleNewPassword("password", value)}
             placeholder="Digite sua senha..."
             keyboardType="default"
+            typeIcon="password"
             placeholderColor="#000"
             icon
           />
@@ -167,6 +168,7 @@ export function forgotPasswordData({ index }: propsDataForgotPassword) {
             placeholder="Confirme sua senha..."
             keyboardType="default"
             placeholderColor="#000"
+            typeIcon="password"
             icon
           />
         </>
