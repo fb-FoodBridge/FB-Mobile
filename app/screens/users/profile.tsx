@@ -11,10 +11,34 @@ export default function Profile() {
       </View>
       <View className="flex-1 items-center gap-[110px] flex-col">
         <View className="flex-col gap-[20px] items-center">
-            <MaterialIcons name="account-circle" color={"#FFFF"} size={100}/>
-            <Text className="font-nourd_bold text-[20px] text-yellowOrange">
-                {"[Name]!"}
-            </Text>
+          <MaterialIcons name="account-circle" color={"#FFFF"} size={100} />
+          <Text className="font-nourd_bold text-[20px] text-yellowOrange">
+            {"[Name]!"}
+          </Text>
+        </View>
+        <View className="w-full">
+          <ButtonStyle
+            size="w-full h-[60px]"
+            bg="bg-lightGray"
+            rouded=" rounded-[15px]"
+            children={
+              <View className="flex-row justify-around items-center w-full">
+                <MaterialIcons name="logout" color={"#FFFF"} size={24} />
+                <Text className="text-offWhite font-interBold text-[16px]">
+                  Sair
+                </Text>
+                <MaterialIcons
+                  name="keyboard-arrow-right"
+                  color={"#FFFF"}
+                  size={26}
+                />
+              </View>
+            }
+            type={"default"}
+            onPress={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
         </View>
         <View className="w-full">
             <ButtonStyle
@@ -23,10 +47,11 @@ export default function Profile() {
             rouded=" rounded-[15px]"
             children={
                 <View className="flex-row justify-around items-center w-full">
-                    <MaterialIcons name="settings" color={"#FFFF"} size={20}/>
+                    <MaterialIcons name="logout" color={"#FFFF"} size={24}/>
                     <Text className="text-offWhite font-interBold text-[16px]">
-                        Configurações
+                      Excluir conta
                     </Text>
+                    <MaterialIcons name="keyboard-arrow-right" color={"#FFFF"} size={26}/>
                 </View>
             } 
             type={"default"}
@@ -34,7 +59,6 @@ export default function Profile() {
                       throw new Error("Function not implemented.");
                   } }/>
         </View>
-
       </View>
     </View>
   );
