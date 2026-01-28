@@ -17,14 +17,14 @@ export async function RegisterMerchant(data: ZodRegisterTypes) {
     };
   }
 
-      if(validate.data?.confirmPassword !== validate.data?.password){
-        return {
-            success: false,
-            error: "As senhas não coincidem",
-        };
-    }
+  if (validate.data?.confirmPassword !== validate.data?.password) {
+    return {
+      success: false,
+      error: "As senhas não coincidem",
+    };
+  }
 
- const username = `${validate.data?.firstName} ${validate.data?.lastName}`;
+  const username = `${validate.data?.firstName} ${validate.data?.lastName}`;
   const response = await fetch(`${api}/merchant`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

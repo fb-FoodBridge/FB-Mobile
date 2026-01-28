@@ -11,7 +11,7 @@ interface LoginResponse {
 
 export async function LoginMerchant(credentials: ZodLoginTypes) {
   const validate = ZodValidate(ZodLoginSchema, credentials);
-   if (validate.success !== true) {
+  if (validate.success !== true) {
     return {
       success: false,
       fields: validate.fields,
@@ -27,8 +27,7 @@ export async function LoginMerchant(credentials: ZodLoginTypes) {
       }),
     });
 
-    
-    const json: LoginResponse | any = await res.json();
+    const json: LoginResponse  = await res.json();
 
     if (res.status === 400 || res.status === 401) {
       return {
@@ -40,10 +39,9 @@ export async function LoginMerchant(credentials: ZodLoginTypes) {
     if (!res.ok) {
       return {
         success: false,
-        error: json?.error || "Erro interno no servidor.",
+        error: "Erro interno no servidor.",
       };
     }
-
 
     await AsyncStorage.setItem("token", json.access_token);
 
@@ -52,7 +50,6 @@ export async function LoginMerchant(credentials: ZodLoginTypes) {
       message: "Login realizado com sucesso.",
       data: json,
     };
-
   } catch (e) {
     return {
       success: false,

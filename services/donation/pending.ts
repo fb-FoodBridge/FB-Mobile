@@ -1,7 +1,7 @@
-import { ListingNgoDonatedResponse, PendingDonation} from "interface/interfaces";
+import { ListingNgoDonatedResponse, userId} from "interface/interfaces";
 import { api } from "services/base_url";
 
-export async function ListingDonationPending({id}:PendingDonation){
+export async function ListingDonationPending({id}:userId){
 
     try {
         const res = await fetch(`${api}/donation/pending/${id}`, {

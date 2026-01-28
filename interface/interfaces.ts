@@ -103,6 +103,6 @@ export interface OptionsDonation {
   donationId: string;
 }
 
-export interface PendingDonation{
+export interface userId{
   id:string
 }
