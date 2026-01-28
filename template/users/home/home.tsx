@@ -9,6 +9,8 @@ import { useRouter } from "expo-router";
 import { getUserRole } from "utils/storage/userStorage";
 import { jwtDecode } from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { decodeToken } from "interface/interfaces";
+
 
 
 export function HomeTemplate() {
@@ -37,7 +39,7 @@ export function HomeTemplate() {
     async function decodeToken() {
       const token = await AsyncStorage.getItem("token");
       if (token) {
-        const decoded: any = jwtDecode(token);
+        const decoded: decodeToken = jwtDecode(token);
         setUsername(decoded.username);
         setRole(decoded.role);
       }

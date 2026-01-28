@@ -6,14 +6,16 @@ import { dataOnboarding } from "./data";
 import { ButtonStyle } from "ui/button";
 import { useRouter } from "expo-router";
 import AppIntroSlider from "react-native-app-intro-slider";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export function OnboardingTemplate() {
   const router = useRouter();
   const sliderRef = useRef<AppIntroSlider>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  
 
 
   const goToNext = () => {
@@ -29,6 +31,16 @@ export function OnboardingTemplate() {
       sliderRef.current?.goToSlide(activeIndex - 1, true);
     }
   };
+
+  useEffect( () => {
+   async function getToken(){
+     const token = await AsyncStorage.getItem("token")
+     console.log("testando ",token)
+     return token
+   }
+    console.log("passou: ",)
+    getToken()
+  })
 
   return (
     <View className={`flex-1 bg-black800`}>
