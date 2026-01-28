@@ -25,7 +25,7 @@ export const iconsNavbar = [
   {
     icon: User,
     active: UserActive,
-    path: "/screens/users/profile"
+    path: "/screens/users/merchant/profileMerchant"
   },
   {
     icon: History,
@@ -48,7 +48,7 @@ export const iconsNavbarNGO = [
   {
     icon: User,
     active: UserActive,
-    path: "/screens/users/profile"
+    path: "/screens/users/ngo/profileNgo"
   },
 
   {

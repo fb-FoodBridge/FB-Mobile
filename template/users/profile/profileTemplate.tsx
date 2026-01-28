@@ -8,12 +8,12 @@ import { jwtDecode } from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 
-export default function Profile() {
+export default function ProfileTemplate() {
   const [username, setUsername] = useState<string | null>(null);
   const router = useRouter();
   const handleLogoutUser = async () => {
     await AsyncStorage.removeItem("token");
-      router.replace("/screens/auth/welcome");
+    router.replace("/screens/auth/welcome");
   };
 
   useEffect(() => {
