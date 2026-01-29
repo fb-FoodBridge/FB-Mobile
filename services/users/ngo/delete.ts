@@ -1,9 +1,9 @@
 import { userId } from "interface/interfaces";
 import { api } from "services/base_url";
 
-export async function deleteMerchant({ id }: userId) {
+export async function deleteNgo({ id }: userId) {
   try {
-    const response = await fetch(`${api}/merchant/delete/${id}`, {
+    const response = await fetch(`${api}/ngo/delete/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });

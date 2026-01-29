@@ -10,6 +10,7 @@ import { useRouter } from "expo-router";
 import { handleCallApi } from "services/handleCallApi";
 import Toast from "react-native-toast-message";
 import { deleteMerchant } from "services/users/merchant/delete";
+import { deleteNgo } from "services/users/ngo/delete";
 
 export default function ProfileTemplate() {
   const [user, setUser] = useState<decodeToken | null>(null);
@@ -23,6 +24,25 @@ export default function ProfileTemplate() {
     console.log("passou")
     if (!user?.id) return;
     const response = await handleCallApi(deleteMerchant, {
+      id: user.id,
+    });
+    if (!response.success) {
+      if (typeof response.error === "string") {
+        Toast.show({
+          type: "error",
+          text1: response.error,
+        });
+      }
+      return;
+    }
+    await AsyncStorage.removeItem("token");
+    router.replace("/screens/auth/welcome");
+  };
+
+  const handleRemoveAccountNgo = async () => {
+    console.log("passou")
+    if (!user?.id) return;
+    const response = await handleCallApi(deleteNgo, {
       id: user.id,
     });
     if (!response.success) {
@@ -108,7 +128,8 @@ export default function ProfileTemplate() {
             onPress={() => {
               user?.role === "merchant"
                 ? handleRemoveAccountMerchant()
-                : ""}
+                : handleRemoveAccountNgo()
+              }
             }
           />
         </View>
