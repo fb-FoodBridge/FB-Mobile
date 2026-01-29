@@ -7,11 +7,33 @@ import React, { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
+import { handleCallApi } from "services/handleCallApi";
+import Toast from "react-native-toast-message";
+import { deleteMerchant } from "services/users/merchant/delete";
 
 export default function ProfileTemplate() {
-  const [username, setUsername] = useState<string | null>(null);
+  const [user, setUser] = useState<decodeToken | null>(null);
   const router = useRouter();
   const handleLogoutUser = async () => {
+    await AsyncStorage.removeItem("token");
+    router.replace("/screens/auth/welcome");
+  };
+
+  const handleRemoveAccountMerchant = async () => {
+    console.log("passou")
+    if (!user?.id) return;
+    const response = await handleCallApi(deleteMerchant, {
+      id: user.id,
+    });
+    if (!response.success) {
+      if (typeof response.error === "string") {
+        Toast.show({
+          type: "error",
+          text1: response.error,
+        });
+      }
+      return;
+    }
     await AsyncStorage.removeItem("token");
     router.replace("/screens/auth/welcome");
   };
@@ -21,7 +43,7 @@ export default function ProfileTemplate() {
       const token = await AsyncStorage.getItem("token");
       if (token) {
         const decoded: decodeToken = jwtDecode(token);
-        setUsername(decoded.username);
+        setUser(decoded);
       }
     }
 
@@ -36,7 +58,7 @@ export default function ProfileTemplate() {
         <View className="flex-col gap-[20px] items-center">
           <MaterialIcons name="account-circle" color={"#FFFF"} size={100} />
           <Text className="font-nourd_bold text-[20px] text-yellowOrange">
-            {username}
+            {user?.username}
           </Text>
         </View>
         <View className="w-full gap-[20px]">
@@ -83,9 +105,11 @@ export default function ProfileTemplate() {
               </View>
             }
             type={"default"}
-            onPress={function (): void {
-              throw new Error("Function not implemented.");
-            }}
+            onPress={() => {
+              user?.role === "merchant"
+                ? handleRemoveAccountMerchant()
+                : ""}
+            }
           />
         </View>
       </View>
