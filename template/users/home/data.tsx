@@ -55,7 +55,7 @@ export const dataButtons = [
     {
         icon: Heart,
         title: "Impacto social",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/dashboard"
     },
     {
         icon: About,

@@ -3,7 +3,7 @@ import { propsDataForgotPassword } from "interface/interfaces";
 import Toast from "react-native-toast-message";
 import { Text } from "react-native";
 import { handleCallApi } from "services/handleCallApi";
-import { ForgotPassword } from "services/users/password/forgot-password";
+import { ForgotPassword } from "services/users/password/Forgot-Password";
 import { InputStyle } from "ui/input";
 import { ValidateCode } from "services/users/password/validate-code";
 import { UpdatePassword } from "services/users/password/update-password";
