@@ -6,7 +6,7 @@ import { PieChart } from "react-native-gifted-charts"
 export function DashboardTemplate() {
     const data = () => {
         const pieData = [
-            { value: 40, color: '#FFB74D' }, // Aceitas
+            { value: 40, focused:true, color: '#FFB74D' }, // Aceitas
             { value: 30, color: '#6CBE77' }, // Recusadas
             { value: 30, color: '#0077B6' }, // Pendente
         ];
@@ -60,6 +60,10 @@ export function DashboardTemplate() {
             innerRadius={60}
             radius={90}
             sectionAutoFocus
+            showValuesAsLabels
+            textColor="#FFFFFF"
+            textSize={12}
+            showText
             donut
             innerCircleColor={'#3D3D3D'}
             />
