@@ -37,6 +37,7 @@
     "react-native-app-intro-slider": "^4.0.4",
     "react-native-css-interop": "^0.2.1",
     "react-native-dotenv": "^3.4.11",
+    "react-native-gifted-charts": "^1.4.71",
     "react-native-otp-entry": "^1.8.5",
     "react-native-otp-textinput": "^1.1.7",
     "react-native-reanimated": "~4.1.1",

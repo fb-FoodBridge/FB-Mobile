@@ -29,6 +29,7 @@ module.exports = {
         interRegular: "Inter_400Regular",
         interLight: "Inter_300Light",
         interExtraBold: "Inter_800ExtraBold",
+        interMedium: "Inter_500Medium",
       },
       colors: {
         "black800": "#212121",
