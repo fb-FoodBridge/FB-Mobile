@@ -1,8 +1,17 @@
 import { View, Text } from "react-native";
 import Logo from "assets/svg/Logo.svg";
 import PieChartSvg from "assets/svg/icons/pieChart.svg";
+import { PieChart } from "react-native-gifted-charts"
 
 export function DashboardTemplate() {
+    const data = () => {
+        const pieData = [
+            { value: 40, color: '#FFB74D' }, // Aceitas
+            { value: 30, color: '#6CBE77' }, // Recusadas
+            { value: 30, color: '#0077B6' }, // Pendente
+        ];
+        return pieData;
+    }
   return (
     <View className="flex-1 bg-black800">
       <View className="w-full ml-[25px] flex-col gap-[30px] mt-10">
@@ -44,6 +53,16 @@ export function DashboardTemplate() {
               <View className="rounded-[18.77px] w-[25.35px] h-[12.2px] bg-[#FFB74D]"></View>
               <Text className="font-interMedium text-[14px] text-offWhite">Aceitas</Text>
             </View>
+          </View>
+          <View className=" flex w-full items-center">
+            <PieChart
+            data={data()}
+            innerRadius={60}
+            radius={90}
+            sectionAutoFocus
+            donut
+            innerCircleColor={'#3D3D3D'}
+            />
           </View>
         </View>
       </View>
