@@ -17,7 +17,7 @@ export default function ProfileTemplate() {
   const router = useRouter();
   const handleLogoutUser = async () => {
     await AsyncStorage.removeItem("token");
-    router.replace("/screens/auth/welcome");
+    router.replace("/screens/onboarding/role/role");
   };
 
   const handleRemoveAccountMerchant = async () => {
@@ -36,7 +36,7 @@ export default function ProfileTemplate() {
       return;
     }
     await AsyncStorage.removeItem("token");
-    router.replace("/screens/auth/welcome");
+    router.replace("/screens/onboarding/role/role");
   };
 
   const handleRemoveAccountNgo = async () => {
@@ -55,7 +55,7 @@ export default function ProfileTemplate() {
       return;
     }
     await AsyncStorage.removeItem("token");
-    router.replace("/screens/auth/welcome");
+    router.replace("/screens/onboarding/role/role");
   };
 
   useEffect(() => {

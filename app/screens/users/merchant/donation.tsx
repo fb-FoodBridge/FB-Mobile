@@ -96,7 +96,7 @@ export default function Donation() {
         </Text>
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} className="mx-5">
+      <ScrollView showsVerticalScrollIndicator={false} className="mx-5 mb-13">
         {ngoList.length === 0 ? (
           <Text className="text-offWhite text-center mt-10">Carregando...</Text>
         ) : (
