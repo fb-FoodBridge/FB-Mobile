@@ -49,15 +49,15 @@ export function DashboardTemplate() {
     },[])
     useEffect(() => {
                 const accpetedDonations = donations.filter(
-            donation => donation.merchant_id === decodedToken?.id && donation.status === "completed"
+            donation => (donation.merchant_id === decodedToken?.id || donation.ngo_id === decodedToken?.id) && donation.status === "completed"
         ).length
         setAcceptedDonations(accpetedDonations)
         const pendingDonations = donations.filter(
-            donation => donation.merchant_id === decodedToken?.id && donation.status === "pending"
+            donation => (donation.merchant_id === decodedToken?.id || donation.ngo_id === decodedToken?.id) && donation.status === "pending"
         ).length
         setPeddingDonations(pendingDonations)
         const rejectedDonations = donations.filter(
-            donation => donation.merchant_id === decodedToken?.id && donation.status === "cancelled"
+            donation => (donation.merchant_id === decodedToken?.id || donation.ngo_id === decodedToken?.id) && donation.status === "cancelled"
         ).length
         setRejectedDonations(rejectedDonations)
 
@@ -112,6 +112,9 @@ export function DashboardTemplate() {
             </View>
           </View>
           <View className=" flex w-full items-center">
+            { data().length === 0 ? (
+              <Text className="text-offWhite mt-10">Sem dados para exibir</Text>
+            ) :
             <PieChart
             data={data()}
             innerRadius={60}
@@ -124,6 +127,7 @@ export function DashboardTemplate() {
             donut
             innerCircleColor={'#3D3D3D'}
             />
+}
           </View>
         </View>
       </View>

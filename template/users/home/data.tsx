@@ -60,7 +60,7 @@ export const dataButtons = [
     {
         icon: About,
         title: "Sobre nós",
-        path:"/screens/users/merchant/home"
+        path:"https://www.foodbridge.com.br/"
     },
 ]
 
@@ -68,27 +68,27 @@ export const dataNGOButtons = [
     {
         icon: PDF,
         title: "Comprov.",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/ngo/home"
     },
     {
         icon: User,
         title: "Perfil",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/ngo/profileNgo"
     },
     {
         icon: Request,
         title: "Solicit.",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/ngo/request"
     },
     {
         icon: Heart,
         title: "Impacto social",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/ngo/dashboard"
     },
         {
         icon: About,
         title: "Sobre nós",
-        path:"/screens/users/merchant/home"
+        path:"https://www.foodbridge.com.br/"
     },
     
 ]

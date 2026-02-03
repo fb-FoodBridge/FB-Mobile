@@ -1,6 +1,6 @@
 import { DashboardTemplate } from "template/dashboard/dashboard";
 
-export default function DashBoard() {
+export default function DashBoardNgo() {
     return(
         <DashboardTemplate/>
     )
