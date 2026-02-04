@@ -40,7 +40,7 @@ export default function DonationCart() {
         placeholder="Pesquisar doações"
         placeholderColor="white"
       />
-    
+
     </View>
   );
 }

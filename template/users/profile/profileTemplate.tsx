@@ -129,7 +129,7 @@ export default function ProfileTemplate() {
               user?.role === "merchant"
                 ? handleRemoveAccountMerchant()
                 : handleRemoveAccountNgo()
-              }
+            }
             }
           />
         </View>

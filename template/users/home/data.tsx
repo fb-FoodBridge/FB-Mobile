@@ -40,7 +40,7 @@ export const dataButtons = [
     {
         icon: Box,
         title: "Entrada",
-        path:"/screens/users/merchant/home"
+        path:"/screens/users/merchant/entry"
     },
     {
         icon: Handshake,
